@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -171,21 +173,13 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script>
         function login() {
             // Get input values
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
-
-            // Simple validation
-            if (!username) {
-                document.getElementById('username-error').innerHTML = 'Please enter your username';
-                return;
-            }
-            if (!password) {
-                document.getElementById('password-error').innerHTML = 'Please enter your password';
-                return;
-            }
 
             // Prepare data to send
             var data = {
@@ -193,36 +187,14 @@
                 password: password
             };
 
-            // Send POST request using fetch API
-            fetch('/api/member/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log(response);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(response => {
-                // Check resultCode for success
-                if (response.resultCode === "SUCCESS") {
-                    console.log("sdf");
-                    location.href="index.html";
-                    window.localStorage.setItem('key',data.resultCode);
-                    // Redirect user or perform other actions upon successful login
-                } else {
-                    // Handle unsuccessful login
-                    document.getElementById('login-error').innerHTML = 'Invalid username or password';
-                }
-            })
-            .catch(error => {
-                console.error('There was an error with the fetch operation:', error);
-            });
+            // Send POST request using axios
+            try {
+                const response=axios.post("/api/member/login", data);
+                console.log(response.resultCode);
+            }catch (error){
+                console.error("로그인 중 에러:", error);
+            }
+
         }
 
 

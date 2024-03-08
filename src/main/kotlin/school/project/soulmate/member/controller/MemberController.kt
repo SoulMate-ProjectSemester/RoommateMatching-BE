@@ -1,5 +1,9 @@
 package school.project.soulmate.member.controller
 
+import jakarta.validation.Valid
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.authority.TokenInfo
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.common.dto.CustomUser
@@ -7,9 +11,6 @@ import school.project.soulmate.member.dto.LoginDto
 import school.project.soulmate.member.dto.MemberDtoRequest
 import school.project.soulmate.member.dto.MemberDtoResponse
 import school.project.soulmate.member.service.MemberService
-import jakarta.validation.Valid
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -29,6 +30,14 @@ class MemberController(
     /**
      * 로그인
      */
+    @GetMapping("/login")
+    fun login(): ModelAndView {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "signin_signup"
+//        modelAndView.addObject("response", "signin_signup")
+        return modelAndView
+    }
+
     @PostMapping("/login")
     fun login(@RequestBody @Valid loginDto: LoginDto): BaseResponse<TokenInfo> {
         val tokenInfo = memberService.login(loginDto)

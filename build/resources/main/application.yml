@@ -2,11 +2,8 @@ spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/soulmate
     username: sa
-    password: 8923
+    password: ss4015
     driver-class-name: org.h2.Driver
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
   jpa:
     hibernate:
       ddl-auto: create

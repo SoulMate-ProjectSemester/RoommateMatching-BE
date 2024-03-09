@@ -45,8 +45,12 @@ data class MemberDtoRequest(
     private val _gender: String?,
 
     @field:NotBlank
-    @JsonProperty("collage")
-    private val _collage: String?,
+    @JsonProperty("studentNumber")
+    private val _studentNumber: String?,
+
+    @field:NotBlank
+    @JsonProperty("college")
+    private val _college: String?,
 
     @field:NotBlank
     @JsonProperty("major")
@@ -67,15 +71,17 @@ data class MemberDtoRequest(
         get() = _birthDate!!.toLocalDate()
     val gender: Gender
         get() = Gender.valueOf(_gender!!)
-    val collage: String
-        get() = _collage!!
+    val studentNumber: String
+        get() = _studentNumber!!
+    val college: String
+        get() = _college!!
     val major: String
         get() = _major!!
     val email: String
         get() = _email!!
     private fun String.toLocalDate(): LocalDate =
         LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-    fun toEntity(): Member = Member(id, loginId, password, name, birthDate, gender, collage, major, email)
+    fun toEntity(): Member = Member(id, loginId, password, name, birthDate, gender, studentNumber, college, major, email)
 }
 
 data class LoginDto(
@@ -99,7 +105,8 @@ data class MemberDtoResponse(
     val name: String,
     val birthDate: String,
     val gender: String,
-    val collage: String,
+    val studentNumber: String,
+    val college: String,
     val major: String,
     val email: String,
 )

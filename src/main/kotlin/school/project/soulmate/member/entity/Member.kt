@@ -34,8 +34,11 @@ class Member (
     @Enumerated(EnumType.STRING)
     val gender: Gender,
 
+    @Column(nullable = false, length = 15)
+    val studentNumber: String,
+
     @Column(nullable = false, length = 30)
-    val collage: String,
+    val college: String,
 
     @Column(nullable = false, length = 30)
     val major: String,
@@ -52,7 +55,7 @@ class Member (
         this.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
 
     fun toDto(): MemberDtoResponse =
-        MemberDtoResponse(id!!, loginId, name, birthDate.formatDate(), gender.desc, collage, major, email)
+        MemberDtoResponse(id!!, loginId, name, birthDate.formatDate(), gender.desc, studentNumber, college, major, email)
 }
 
 @Entity

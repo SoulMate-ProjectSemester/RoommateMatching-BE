@@ -2,6 +2,7 @@ package school.project.soulmate.member.controller
 
 import jakarta.validation.Valid
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.authority.TokenInfo
@@ -34,7 +35,10 @@ class MemberController(
     fun login(): ModelAndView {
         val modelAndView = ModelAndView()
         modelAndView.viewName = "signin_signup"
-//        modelAndView.addObject("response", "signin_signup")
+
+        val memberDtoRequest: MemberDtoRequest? = null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+
         return modelAndView
     }
 

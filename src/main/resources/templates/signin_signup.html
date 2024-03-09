@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/signin_signup.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
@@ -28,7 +28,7 @@
                 <input type="password" id="password" name="password"/>
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <button type="button" class="submit" id="submit" onclick="login()">로그인</button>
+            <button type="button" class="submit" id="submit" onclick="login()" >로그인</button>
         </form>
 
     </div>
@@ -178,45 +178,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/signin_signup.js"></script>
-
-<script>
-        function login() {
-            // Get input values
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            // Prepare data to send
-            var data = {
-                loginId: username,
-                password: password
-            };
-
-            //set axios instance
-            const instance = axios.create({
-                baseURL: "http://localhost:8080",
-                timeout: 5000,
-                headers: {
-                    "Cache-Control": "no-cache",
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
-                responseType: "json",
-            });
-
-            // Send POST request using axios
-            try {
-                const response=instance.post("/api/member/login",{
-                    loginId: username,
-                    password: password
-                });
-                console.log(response.resultCode);
-            }catch (error){
-                console.error("로그인 중 에러:", error);
-            }
-
-        }
-
-
-</script>
 
 </body>
 

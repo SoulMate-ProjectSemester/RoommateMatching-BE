@@ -19,6 +19,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -28,10 +30,12 @@
     <div class="sidebar">
         <div class="sidebar-text d-flex flex-column h-100 justify-content-center text-center">
             <img class="mx-auto d-block w-75 bg-primary img-fluid rounded-circle mb-4 p-3" src="img/profile.jpg" alt="Image">
-            <h1 class="font-weight-bold">Kate Glover</h1>
-            <p class="mb-4">
-                Justo stet no accusam stet invidunt sanctus magna clita vero eirmod, sit sit labore dolores lorem. Lorem at sit dolor dolores sed diam justo
-            </p>
+            <h1 class="font-weight-bold" id="myProfileName"></h1>
+            <div class="container" style="display: flex; justify-content: center; text-align: center;">
+                <p>전공 :</p>
+                <p id="content-space"></p>
+                <p class="mb-4" id="myProfileMajor"></p>
+            </div>
             <div class="d-flex justify-content-center mb-5">
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -275,7 +279,10 @@
 <script src="mail/jqBootstrapValidation.min.js"></script>
 <script src="mail/contact.js"></script>
 
+<!--axios 라이브러리-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

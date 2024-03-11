@@ -41,3 +41,36 @@
     });
 })(jQuery);
 
+const token = window.localStorage.getItem("token");
+
+const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 5000,
+    headers: {
+        "Cache-Control": "no-cache",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`,
+    },
+});
+
+try {
+    const response=instance.get("/api/member/info");
+    response.then(response => {
+        // Access the 'data' property from the resolved value
+        const responseData = response.data.resultCode;
+        if(responseData=='SUCCESS'){
+            var name = response.data.data.name;
+            var major = response.data.data.major;
+            document.getElementById("myProfileName").innerHTML = name;
+            document.getElementById("content-space").innerHTML="&nbsp";
+            document.getElementById("myProfileMajor").innerHTML = major;
+        }
+    }).catch(error => {
+        // Handle errors if the Promise is rejected
+        console.error('Error occurred:', error);
+        alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
+    });
+
+}catch (error){
+    console.error("로그인 중 에러:", error);
+}

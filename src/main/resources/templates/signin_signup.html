@@ -47,132 +47,66 @@
                 <span class="m--in">로그인</span>
             </div>
         </div>
+<!--        회원가입    -->
         <div class="form sign-up">
             <h2>Sign up</h2>
             <label>
                 <span>이름</span>
-                <input type="text" />
+                <input type="text" id="name"/>
             </label>
             <label>
                 <span>이메일</span>
-                <input type="email" />
+                <input type="email" id="email"/>
             </label>
             <label>
                 <span>아이디</span>
-                <input type="text" />
+                <input type="text" id="signupLoginId"/>
             </label>
             <label>
                 <span>비밀번호</span>
-                <input type="password" />
+                <input type="password" id="signupPassword"/>
             </label>
             <label>
                 <span>학번</span>
-                <input type="text" />
+                <input type="text" id="studentNumber" />
             </label>
-            <label>
-                <span>생년월일</span>
-                <input type="date" id="birthday" name="birthday" />
-            </label>
-            <div class="genderSelect">
-                <span style="margin-top: 15px;">성별</span>
-                <br>
-                <input type="radio" name="gender" value="male" id="man"><label for="man" class="man" style="margin-top: 15px;">남성</label>
-                <input type="radio" name="gender" value="female" id="woman"><label for="woman" class="man" style="margin-top: 15px;">여성</label>
-            </div>
-            <div class="college-select">
-                <span style="margin-top: 15px;">대학/학부</span>
-                <br>
-                <select name="college" id="college-select"
-                        class="dropdown-menu" style="margin-top: 15px;">
-                    <option value="" class="dropdown-item">대학/학부</option>
-                    <option value="공공정책대학" class="dropdown-item">공공정책대학</option>
-                    <option value="과학기술대학" class="dropdown-item">과학기술대학</option>
-                    <option value="글로벌비즈니스대학" class="dropdown-item">글로벌비즈니스대학</option>
-                    <option value="문화스포츠대학" class="dropdown-item">문화스포츠대학</option>
-                    <option value="스마트도시학부" class="dropdown-item">스마트도시학부</option>
-                    <option value="약학대학" class="dropdown-item">약학대학</option>
-                </select>
-            </div>
-
-            <div class="major-select">
-                <span style="margin-top: 15px;">전공</span>
-                <br>
-
-                <select name="major-no" id="선택안함"
-                        class="dropdown-menu" style="margin-top: 15px; width: 144px;">
-                    <option value="" class="dropdown-item">전공</option>
-                </select>
-
-                <select name="major-policy" id="공공정책대학"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="경제정책학전공" class="dropdown-item">경제정책학전공</option>
-                    <option value="공공사회학전공" class="dropdown-item">공공사회학전공</option>
-                    <option value="통일외교안보전공" class="dropdown-item">통일외교안보전공</option>
-                    <option value="빅데이터사이언스학부" class="dropdown-item">빅데이터사이언스학부</option>
-                    <option value="정부행정학부" class="dropdown-item">정부행정학부</option>
-                </select>
-
-                <select name="major-science" id="과학기술대학"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="디스플레이융합전공" class="dropdown-item">디스플레이융합전공</option>
-                    <option value="반도체물리전공" class="dropdown-item">반도체물리전공</option>
-                    <option value="미래모빌리티학과" class="dropdown-item">미래모빌리티학과</option>
-                    <option value="생명정보공학과" class="dropdown-item">생명정보공학과</option>
-                    <option value="스마트에코시티 융합전공" class="dropdown-item">스마트에코시티 융합전공</option>
-                    <option value="식품생명공학과" class="dropdown-item">식품생명공학과</option>
-                    <option value="신소재화학과" class="dropdown-item">신소재화학과</option>
-                    <option value="데이터계산과학전공" class="dropdown-item">데이터계산과학전공</option>
-                    <option value="인공지능사이버보안학과" class="dropdown-item">인공지능사이버보안학과</option>
-                    <option value="자율주행시스템 융합전공" class="dropdown-item">자율주행시스템 융합전공</option>
-                    <option value="전자/기계융합공학과" class="dropdown-item">전자/기계융합공학과</option>
-                    <option value="전자및정보공학과" class="dropdown-item">전자및정보공학과</option>
-                    <option value="지능형반도체공학과" class="dropdown-item">지능형반도체공학과</option>
-                    <option value="컴퓨터융합소프트웨어학과" class="dropdown-item">컴퓨터융합소프트웨어학과</option>
-                    <option value="환경시스템공학과" class="dropdown-item">환경시스템공학과</option>
-                </select>
-
-                <select name="major-global" id="글로벌비즈니스대학"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="독일학전공" class="dropdown-item">독일학전공</option>
-                    <option value="영미학전공" class="dropdown-item">영미학전공</option>
-                    <option value="중국학전공" class="dropdown-item">중국학전공</option>
-                    <option value="한국학전공" class="dropdown-item">한국학전공</option>
-                    <option value="글로벌경영전공" class="dropdown-item">글로벌경영전공</option>
-                    <option value="디지털경영전공" class="dropdown-item">디지털경영전공</option>
-                    <option value="표준/지식학과" class="dropdown-item">표준/지식학과</option>
-                </select>
-
-                <select name="major-sports-media" id="문화스포츠대학"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="스포츠과학전공" class="dropdown-item">스포츠과학전공</option>
-                    <option value="스포츠비즈니스전공" class="dropdown-item">스포츠비즈니스전공</option>
-                    <option value="문화유산융합학부" class="dropdown-item">문화유산융합학부</option>
-                    <option value="문화콘텐츠전공" class="dropdown-item">문화콘텐츠전공</option>
-                    <option value="미디어문예창작전공" class="dropdown-item">미디어문예창작전공</option>
-                    <option value="한류문화산업경영융합전공" class="dropdown-item">한류문화산업경영융합전공</option>
-                </select>
-
-                <select name="major-smart-city" id="스마트도시학부"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="스마트도시학부" class="dropdown-item">스마트도시학부</option>
-                </select>
-
-                <select name="major-medicine" id="약학대학"
-                        class="dropdown-menu" style="margin-top: 15px; display: none;">
-                    <option value="" class="dropdown-item">전공</option>
-                    <option value="약학과" class="dropdown-item">약학과</option>
-                </select>
-
-
-            </div>
-
-            <button type="button" class="submit">회원가입</button>
+        <label>
+            <span>생년월일</span>
+            <input type="date" id="birthDate" name="birthDate" />
+        </label>
+        <div class="genderSelect" id="gender">
+            <span style="margin-top: 15px;">성별</span>
+            <br>
+            <input type="radio" name="gender" value="MAN" id="man"><label for="man" class="man" style="margin-top: 15px;">남성</label>
+            <input type="radio" name="gender" value="WOMAN" id="woman"><label for="woman" class="man" style="margin-top: 15px;">여성</label>
         </div>
+        <div class="college-select" id="collage">
+            <br>
+            <select name="college" id="college-select"
+                    class="dropdown-menu" style="margin-top: 15px;" onchange="collegeChange()">
+                <option value="공공정책대학" class="dropdown-item">공공정책대학</option>
+                <option value="과학기술대학" class="dropdown-item">과학기술대학</option>
+                <option value="글로벌비즈니스대학" class="dropdown-item">글로벌비즈니스대학</option>
+                <option value="문화스포츠대학" class="dropdown-item">문화스포츠대학</option>
+                <option value="스마트도시학부" class="dropdown-item">스마트도시학부</option>
+                <option value="약학대학" class="dropdown-item">약학대학</option>
+            </select>
+        </div>
+
+        <div id="major" style="display: block; width: 100%; margin-top: 5px; padding-bottom: 5px; text-align: center;">
+            <br>
+            <select id="major-select" class="dropdown-menu">
+                <option value="경제정책학전공" class="dropdown-item">경제정책학전공</option>
+                <option value="공공사회학전공" class="dropdown-item">공공사회학전공</option>
+                <option value="통일외교안보전공" class="dropdown-item">통일외교안보전공</option>
+                <option value="빅데이터사이언스학부" class="dropdown-item">빅데이터사이언스학부</option>
+                <option value="정부행정학부" class="dropdown-item">정부행정학부</option>
+            </select>
+        </div>
+
+            <button type="button" id="signupBtn" class="submit">회원가입</button>
+        </div>
+
     </div>
 </div>
 

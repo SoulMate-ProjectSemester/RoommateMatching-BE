@@ -15,6 +15,7 @@ async function signup() {
         major: $('#major-select').val(),
         email: $('#email').val()
     };
+    console.log(signupData);
 
     // set axios instance
     const instance = axios.create({

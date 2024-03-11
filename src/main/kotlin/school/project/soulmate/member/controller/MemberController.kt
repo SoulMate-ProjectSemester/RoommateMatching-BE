@@ -2,7 +2,6 @@ package school.project.soulmate.member.controller
 
 import jakarta.validation.Valid
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.authority.TokenInfo

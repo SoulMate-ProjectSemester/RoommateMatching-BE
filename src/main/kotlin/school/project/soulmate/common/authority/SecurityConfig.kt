@@ -28,6 +28,7 @@ class SecurityConfig (
             .authorizeHttpRequests{
                 it.requestMatchers("/api/member/signup", "/api/member/login").anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
                     .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
+                    .requestMatchers("/ws-stomp/**").permitAll()
                     .anyRequest().permitAll()   // 나머지 url은 접근 가능
             }
 

@@ -27,7 +27,6 @@ class Member (
     val name: String,
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     val birthDate: LocalDate,
 
     @Column(nullable = false, length = 5)

@@ -77,8 +77,12 @@ try {
 }
 
 function logout(){
-    window.location.href='http://localhost:8080/api/member/login';
-    window.localStorage.setItem('token', "");
+    if(confirm("정말 로그아웃 하시겠습니까?")==true){
+        window.location.href='http://localhost:8080/api/member/login';
+        window.localStorage.setItem('token', "");
+    }
+    else
+        return false;
 }
 
 function move(){

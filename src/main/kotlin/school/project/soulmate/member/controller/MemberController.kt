@@ -60,11 +60,21 @@ class MemberController(
     /**
      * 내 정보 수정
      */
-    @PutMapping("/info")
+    @PutMapping("/info_edit")
     fun saveMyInfo(@RequestBody @Valid memberDtoRequest: MemberDtoRequest) : BaseResponse<Unit> {
         val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         memberDtoRequest.id = userId
         val resultMsg: String = memberService.saveMyInfo(memberDtoRequest)
         return BaseResponse(message = resultMsg)
+    }
+
+    @GetMapping("/info_edit")
+    fun info(): ModelAndView{
+        val modelAndView=ModelAndView()
+        modelAndView.viewName="profileEdit"
+
+        val memberDtoRequest: MemberDtoRequest?=null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+        return modelAndView
     }
 }

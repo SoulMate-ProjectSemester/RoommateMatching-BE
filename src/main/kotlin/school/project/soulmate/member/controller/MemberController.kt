@@ -77,4 +77,15 @@ class MemberController(
         modelAndView.addObject("memberDtoRequest", memberDtoRequest)
         return modelAndView
     }
+
+    @GetMapping("/chat")
+    fun chat():ModelAndView{
+        val modelAndView=ModelAndView()
+        modelAndView.viewName="chat"
+
+        val memberDtoRequest: MemberDtoRequest?=null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+        return modelAndView
+    }
+
 }

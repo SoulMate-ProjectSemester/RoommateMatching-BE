@@ -1,0 +1,104 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1A1A1A;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #2F2F2F;
+}
+
+.profile .back-arrow {
+}
+
+.profile .friend-name {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.profile .tweets-count {
+    font-size: 0.8em;
+    color: #757575;
+    margin-left: auto;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+    background-color: #1DA1F2;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+    margin-bottom: 10px;
+    min-width: 10px;
+    max-width: 300px;
+    min-height: 50px;
+    max-height: 400px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column
+}
+
+.message .timestamp {
+    font-size: 0.8em;
+    color: white;
+    text-align: right;
+}
+
+.another_message{
+    background-color: #2F2F2F;
+    padding: 10px;
+    border-radius: 20px 20px 20px 0;
+    margin-bottom: 10px;
+    min-width: 10px;
+    max-width: 300px;
+    min-height: 50px;
+    max-height: 400px;
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column
+}
+
+.another_message .timestamp{
+    font-size: 0.8em;
+    color: white;
+    text-align: right;
+}
+
+footer {
+    display: flex;
+    position: fixed; /* 고정 위치 설정 */
+    bottom: 0; /* 하단에 배치 */
+    width: 100%; /* 화면 너비에 맞춤 */
+    padding: 10px;
+    border-top: 1px solid #2F2F2F;
+    background-color: #1A1A1A; /* 배경색 지정 */
+}
+
+footer input {
+    flex: 1;
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+
+footer button.send {
+    margin-left: 10px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}

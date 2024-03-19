@@ -8,7 +8,7 @@ data class TokenDtoRequest(
     @JsonProperty("expiredMemberId")
     val _memberId: Long?,
     @field:NotBlank
-    @JsonProperty("AccessToken")
+    @JsonProperty("accessToken")
     val accessToken: String,
     @field:NotBlank
     @JsonProperty("refreshToken")

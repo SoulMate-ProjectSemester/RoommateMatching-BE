@@ -29,6 +29,8 @@ header {
 
 .messages {
     padding: 10px;
+    overflow: auto;
+    margin-bottom: 50px
 }
 
 .message {
@@ -39,7 +41,7 @@ header {
     min-width: 10px;
     max-width: 300px;
     min-height: 50px;
-    max-height: 400px;
+    max-height: 600px;
     margin-left: auto;
     display: flex;
     justify-content: flex-end;
@@ -68,6 +70,27 @@ header {
 }
 
 .another_message .timestamp{
+    font-size: 0.8em;
+    color: white;
+    text-align: right;
+}
+
+.my-message{
+    background-color: #1DA1F2;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+    margin-bottom: 10px;
+    min-width: 10px;
+    max-width: 300px;
+    min-height: 50px;
+    max-height: 400px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.my-message .timestamp{
     font-size: 0.8em;
     color: white;
     text-align: right;

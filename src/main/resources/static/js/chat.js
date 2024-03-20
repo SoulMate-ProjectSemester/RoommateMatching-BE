@@ -28,7 +28,6 @@ function sendMessage() {
 
     // 채팅방에 메시지 추가
     chatRoom.appendChild(messageElement);
-
     // 입력 필드 초기화
     messageInput.value = '';
 }
@@ -65,7 +64,6 @@ function formatDate() {
 
 document.addEventListener('DOMContentLoaded', function() {
     var input = document.getElementById('messageInput');
-
     input.addEventListener('keydown', function(event) {
         if (event.keyCode === 13) { // 13 is the keyCode for Enter key
             sendMessage(); // Call the sendMessage function when Enter is pressed
@@ -73,4 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+document.addEventListener('DOMContentLoaded',()=>{
+        var chatRoom = document.getElementById('chatRoom');
+        chatRoom.scrollTop = chatRoom.scrollHeight;
+})

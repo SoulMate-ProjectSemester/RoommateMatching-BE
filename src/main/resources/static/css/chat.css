@@ -29,7 +29,7 @@ header {
 
 .messages {
     padding: 10px;
-    overflow: auto;
+    overflow: scroll;
     margin-bottom: 50px
 }
 

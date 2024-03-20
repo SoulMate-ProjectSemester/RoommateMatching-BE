@@ -9873,3 +9873,84 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* The Modal (background) */
+#myModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    /*div.sidebar 가 z-index: 9로 설정되어 있어서 모달창 z-index는 10으로 설정*/
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 100px;
+}
+
+/* Modal Content/Box */
+#modalContentBox {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.submitBtn{
+    padding-top: 8px;
+}
+
+/* The Close Button */
+.modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* The buttons */
+#closeBtn, #saveBtn {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    float: right;
+}
+
+#closeBtn {
+    background-color: white;
+    color: black;
+    border: 2px solid #f44336;
+}
+
+#closeBtn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+#saveBtn {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+
+#saveBtn:hover {
+    background-color: #008CBA;
+    color: white;
+}

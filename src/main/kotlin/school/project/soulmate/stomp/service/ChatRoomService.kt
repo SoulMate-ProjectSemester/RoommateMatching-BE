@@ -11,7 +11,7 @@ class ChatRoomService(
 ) {
     @Transactional
     fun createChatRoom(chatRoomDto: ChatRoomDto): String {
-        val chatRooms = chatRoomDto.toEntityList()
+        val chatRooms = chatRoomDto.toEntityList(chatRoomDto.roomName)
         chatRoomRepository.saveAll(chatRooms)
         return "채팅방이 생성되었습니다"
     }

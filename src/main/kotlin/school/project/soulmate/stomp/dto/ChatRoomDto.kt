@@ -19,18 +19,18 @@ data class ChatRoomDto(
     @JsonProperty("createDate")
     val createDate: LocalDate,
 ) {
-    fun toEntityList(): List<ChatRoom> {
+    fun toEntityList(roomName: String?): List<ChatRoom> {
         val sharedRoomId = UUID.randomUUID().toString() // 같은 roomId를 생성
         val entities = mutableListOf<ChatRoom>()
 
         // 로그인한 아이디용 ChatRoom 엔티티 생성
         loginId?.let {
-            entities.add(ChatRoom(roomId = sharedRoomId, userId = it, createDate = LocalDate.now()))
+            entities.add(ChatRoom(roomId = sharedRoomId, userId = it, roomName = roomName, createDate = LocalDate.now()))
         }
 
         // 선택한 아이디용 ChatRoom 엔티티 생성
         userId?.let {
-            entities.add(ChatRoom(roomId = sharedRoomId, userId = it, createDate = LocalDate.now()))
+            entities.add(ChatRoom(roomId = sharedRoomId, userId = it, roomName = roomName, createDate = LocalDate.now()))
         }
 
         return entities

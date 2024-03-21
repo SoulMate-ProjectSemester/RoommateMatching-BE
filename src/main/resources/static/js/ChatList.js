@@ -62,12 +62,13 @@ try {
         if(responseData=='SUCCESS'){
             var name = response.data.data.name;
             var major = response.data.data.major;
-            //loginId를 전역변수로 선언하여 어디서든 사용할 수 있도록 함.(var 선언만 안하면 됨)
-            loginId=response.data.data.loginId;
+            // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
+            myloginId=response.data.data.loginId;
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
             document.getElementById("myProfileMajor").innerHTML = major;
         }
+        ShowChatList();
     }).catch(error => {
         // Handle errors if the Promise is rejected
         console.error('Error occurred:', error);
@@ -91,71 +92,6 @@ function move(){
     window.location.href="http://localhost:8080/api/member/info_edit";
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var closeBtn = document.getElementById("closeBtn");
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x) or the Close button, close the modal
-span.onclick = closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-function saveChange(){
-    var inputTitle = document.getElementById("chatroom-name");
-    var messageTitle=inputTitle.value;
-    if (messageTitle.trim() === '') {
-        // 메시지가 비어있는 경우 아무것도 하지 않음
-        return;
-    }
-    // Send POST request using axios
-    try {
-        const response=instance.post("/chat/room",{
-            loginId: loginId,
-            userId: "vkflco08",
-            roomName: messageTitle,
-            createDate: getCurrentDate()
-        });
-        //promise에서 내가 원하는 value 값 받기
-        // response.then(response => {
-        //     // Access the 'data' property from the resolved value
-        //     const responseData = response.data.resultCode;
-        //     if(responseData=='SUCCESS'){
-        //         window.location.href='http://localhost:8080';
-        //         window.localStorage.setItem('token',response.data.data.accessToken);
-        //     }
-        // }).catch(error => {
-        //     // Handle errors if the Promise is rejected
-        //     console.error('Error occurred:', error);
-        //     alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
-        // });
-
-        //채팅방 생성 후, 제목 입력칸 초기화
-        inputTitle.value=null;
-        window.location.href="http://localhost:8080/api/member/chat";
-    }catch (error){
-        console.error("로그인 중 에러:", error);
-    }
-
-}
-
 function getCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -166,9 +102,73 @@ function getCurrentDate() {
     // 최종적으로 'YYYY-MM-DD' 형식의 문자열을 반환합니다.
     return `${year}-${month}-${day}`;
 }
+function ShowChatList(){
+    try {
+        const response=axios.get("http://localhost:8080/chat/rooms", {
+            params:{
+                loginId:myloginId
+            }
+        });
+        //promise에서 내가 원하는 value 값 받기
+        response.then(response => {
+            console.log(response);
+            // Access the 'data' property from the resolved value
+            if(response.data.length>0){
+                //'no-content' 요소 숨기기
+                var noContentDiv = document.querySelector('.no-content');
+                noContentDiv.style.display = 'none';
+                for(let i=0;i<response.data.length;i++){
+                    //룸 아이디와 생성날짜 가져오기
+                    var roomId=response.data[i].roomId;
+                    var createDate=response.data[i].createDate;
 
+                    var chatRoomDiv = document.createElement('div');
+                    chatRoomDiv.className = 'row blog-item px-3 pb-5';
 
+                    // HTML 내용을 문자열로 추가
+                    chatRoomDiv.innerHTML = `
+                    <div class="col-md-5">
+                      <img class="img-fluid mb-4 mb-md-0" src="/img/blog-1.jpg" alt="Image">
+                    </div>
+                    <div class="col-md-7">
+                      <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">상대방 이름</h3>
+                      <div class="d-flex mb-3">
+                        <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
+                        <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${roomId}</small>
+                        <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
+                      </div>
+                      <p>조승빈</p>
+                      <a class="btn btn-link p-0" id="myBtn">채팅하기 <i class="fa fa-angle-right"></i></a>
+                    </div>
+                  `;
+                    // 생성된 div를 문서에 추가
+                    var container = document.querySelector('.container.bg-white.pt-5');
+                    container.appendChild(chatRoomDiv);
 
+                }
+
+            }
+
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
+        });
+
+        //채팅방 생성 후, 제목 입력칸 초기화
+    }catch (error){
+        console.error("로그인 중 에러:", error);
+    }
+
+// var hasChatRoom = true; // 채팅방의 존재 여부
+//
+// if (hasChatRoom) {
+//     // 채팅방 컨텐츠를 담을 div 요소 생성
+//
+//
+//
+// }
+}
 
 
 

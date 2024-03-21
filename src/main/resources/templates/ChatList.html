@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>룸메이트 매칭시스템</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Free Website Template" name="keywords">
+  <meta content="Free Website Template" name="description">
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="sidebar-text d-flex flex-column h-100 justify-content-center text-center">
+      <img class="mx-auto d-block w-75 bg-primary img-fluid rounded-circle mb-4 p-3" src="/img/soulmate_profile.jpg" alt="Image">
+      <h1 class="font-weight-bold" id="myProfileName"></h1>
+      <div class="container" style="display: flex; justify-content: center; text-align: center;">
+        <p>전공 :</p>
+        <p id="content-space"></p>
+        <p class="mb-4" id="myProfileMajor"></p>
+      </div>
+      <div class="d-flex justify-content-center mb-5">
+        <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <a class="btn btn-lg btn-block btn-primary mt-auto" onclick="logout()">log out</a>
+    </div>
+    <div class="sidebar-icon d-flex flex-column h-100 justify-content-center text-right">
+      <i class="fas fa-2x fa-angle-double-right text-primary"></i>
+    </div>
+  </div>
+  <div class="content">
+    <!-- Navbar Start -->
+    <div class="container p-0">
+      <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+        <a href="" class="navbar-brand d-block d-lg-none">Navigation</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav m-auto">
+            <a href="http://localhost:8080" class="nav-item nav-link">Home</a>
+            <a class="nav-item nav-link active">Chat</a>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item">Blog Grid</a>
+                <a class="dropdown-item">Blog Detail</a>
+              </div>
+            </div>
+            <a class="nav-item nav-link" onclick="move()">Contact</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Blog List Start -->
+    <div class="container bg-white pt-5">
+
+      <!--채팅방이 없을 때 표시되는 내용-->
+      <div class="no-content">
+        <span class="no-chatroom"> 생성된 채팅방이 없습니다.</span>
+        <span class="no-chatroom"> 💬상대방과 채팅을 시작해보세요! 😆 </span>
+      </div>
+
+    </div>
+    <!-- Blog List End -->
+
+    <!-- Footer Start -->
+    <div class="container py-4 bg-secondary text-center">
+      <p class="m-0 text-white">
+        &copy; <a class="text-white font-weight-bold" href="#">RoomMate Matching System</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://github.com/SoulMate-ProjectSemester">SOULMATE</a>
+      </p>
+    </div>
+    <!-- Footer End -->
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content" id="modalContentBox">
+    <div>
+      <span class="close" id="closeXbtn">&times;</span>
+    </div>
+    <h4>채팅방 이름 입력</h4>
+    <input type="text" id="chatroom-name" placeholder="여기에 채팅방 이름을 입력해주세요."></input>
+    <div class="submitBtn">
+      <input type="submit" id="closeBtn" value="Close"></input>
+      <input type="submit" id="saveBtn" value="Save changes" onclick="saveChange()"></input>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/mail/contact.js"></script>
+
+<!--axios 라이브러리-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Template Javascript -->
+<script type="text/javascript" src="/js/ChatList.js"></script>
+</body>
+</html>

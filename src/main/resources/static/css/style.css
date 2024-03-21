@@ -4160,6 +4160,7 @@ input[type=button].btn-block {
 }
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
 .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
     color: rgba(255, 255, 255, 0.75);
@@ -9953,4 +9954,11 @@ a.text-dark:hover, a.text-dark:focus {
 #saveBtn:hover {
     background-color: #008CBA;
     color: white;
+}
+
+.no-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
 }

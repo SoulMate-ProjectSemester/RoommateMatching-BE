@@ -88,4 +88,15 @@ class MemberController(
         return modelAndView
     }
 
+    @GetMapping("/chat_list")
+    fun chatList():ModelAndView{
+        val modelAndView=ModelAndView()
+        modelAndView.viewName="ChatList"
+
+        val memberDtoRequest: MemberDtoRequest?=null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+        return modelAndView
+    }
+
+
 }

@@ -47,6 +47,10 @@ class JwtTokenProvider {
             .compact()
     }
 
+    /**
+     * Refresh token 생성
+     */
+
     fun createRefreshToken(authentication: Authentication): String {
         val authorities: String =
             authentication

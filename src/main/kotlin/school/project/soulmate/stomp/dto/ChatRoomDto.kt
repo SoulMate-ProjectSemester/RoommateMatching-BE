@@ -8,19 +8,16 @@ import java.util.*
 
 data class ChatRoomDto(
     var id: Long?,
-
     @field:NotBlank
     @JsonProperty("loginId")
     val loginId: String?,
-
     @field:NotBlank
     @JsonProperty("userId")
     val userId: String?,
-
     @JsonProperty("roomName")
     val roomName: String?,
-
-    val createDate: LocalDate
+    @JsonProperty("createDate")
+    val createDate: LocalDate,
 ) {
     fun toEntityList(): List<ChatRoom> {
         val sharedRoomId = UUID.randomUUID().toString() // 같은 roomId를 생성

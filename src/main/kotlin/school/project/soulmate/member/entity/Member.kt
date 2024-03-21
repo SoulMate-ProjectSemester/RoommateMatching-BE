@@ -7,7 +7,6 @@ import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-
 @Entity
 @Table(
     uniqueConstraints = [UniqueConstraint(name = "uk_member_login_id", columnNames = ["loginId"])]
@@ -44,7 +43,6 @@ class Member (
 
     @Column(nullable = false, length = 30)
     val email: String,
-
     ){
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     val memberRole: List<MemberRole>? = null

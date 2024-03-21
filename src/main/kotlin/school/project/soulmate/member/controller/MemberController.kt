@@ -12,17 +12,18 @@ import school.project.soulmate.member.dto.MemberDtoRequest
 import school.project.soulmate.member.dto.MemberDtoResponse
 import school.project.soulmate.member.service.MemberService
 
-
 @RestController
 @RequestMapping("/api/member")
 class MemberController(
-    private val memberService: MemberService
+    private val memberService: MemberService,
 ) {
     /**
      * 회원가입
      */
     @PostMapping("/signup")
-    fun signUp(@RequestBody @Valid memberDtoRequest: MemberDtoRequest): BaseResponse<Unit> {
+    fun signUp(
+        @RequestBody @Valid memberDtoRequest: MemberDtoRequest,
+    ): BaseResponse<Unit> {
         val resultMsg: String = memberService.signUp(memberDtoRequest)
         return BaseResponse(message = resultMsg)
     }
@@ -42,7 +43,9 @@ class MemberController(
     }
 
     @PostMapping("/login")
-    fun login(@RequestBody @Valid loginDto: LoginDto): BaseResponse<TokenInfo> {
+    fun login(
+        @RequestBody @Valid loginDto: LoginDto,
+    ): BaseResponse<TokenInfo> {
         val tokenInfo = memberService.login(loginDto)
         return BaseResponse(data = tokenInfo)
     }
@@ -60,11 +63,23 @@ class MemberController(
     /**
      * 내 정보 수정
      */
-    @PutMapping("/info")
-    fun saveMyInfo(@RequestBody @Valid memberDtoRequest: MemberDtoRequest) : BaseResponse<Unit> {
+    @PutMapping("/info_edit")
+    fun saveMyInfo(
+        @RequestBody @Valid memberDtoRequest: MemberDtoRequest,
+    ): BaseResponse<Unit> {
         val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         memberDtoRequest.id = userId
         val resultMsg: String = memberService.saveMyInfo(memberDtoRequest)
         return BaseResponse(message = resultMsg)
+    }
+
+    @GetMapping("/info_edit")
+    fun info(): ModelAndView  {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "profileEdit"
+
+        val memberDtoRequest: MemberDtoRequest? = null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+        return modelAndView
     }
 }

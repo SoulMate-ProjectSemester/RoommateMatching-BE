@@ -62,9 +62,20 @@ try {
         if(responseData=='SUCCESS'){
             var name = response.data.data.name;
             var major = response.data.data.major;
+            var email=response.data.data.email;
+            var birthDate=response.data.data.birthDate;
+            var loginId=response.data.data.loginId;
+            var studentNumber=response.data.data.studentNumber;
+
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
             document.getElementById("myProfileMajor").innerHTML = major;
+            document.getElementById("myMajor").innerHTML=major;
+            document.getElementById("myEmail").innerHTML=email;
+            myName.placeholder=name;
+            myLoginId.placeholder=loginId;
+            myBirthDate.placeholder=birthDate;
+            myStudentNumber.placeholder=studentNumber;
         }
     }).catch(error => {
         // Handle errors if the Promise is rejected
@@ -77,14 +88,6 @@ try {
 }
 
 function logout(){
-    if(confirm("정말 로그아웃 하시겠습니까?")==true){
-        window.location.href='http://localhost:8080/api/member/login';
-        window.localStorage.setItem('token', "");
-    }
-    else
-        return false;
-}
-
-function move(){
-    window.location.href="http://localhost:8080/api/member/info_edit";
+    window.location.href="http://localhost:8080/api/member/login";
+    window.localStorage.setItem('token', "");
 }

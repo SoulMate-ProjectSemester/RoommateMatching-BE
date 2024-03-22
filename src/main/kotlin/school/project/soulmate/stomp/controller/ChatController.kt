@@ -14,13 +14,12 @@ import school.project.soulmate.stomp.repository.ChatMessageRepository
 class ChatController(
     val messagingTemplate: SimpMessageSendingOperations,
     val chatMessageRepository: ChatMessageRepository,
-
 ) {
     @MessageMapping("/message")
     fun message(message: ChatMessageDto) {
         // DTO를 엔터티로 변환하는 로직 필요
         val chatMessage = message.toEntity()
         chatMessageRepository.save(chatMessage) // 메시지 저장
-        messagingTemplate.convertAndSend("/sub/chat/room/" + message.chatRoomId, message)
+        messagingTemplate.convertAndSend("/sub/chat/room/" + message.chatRoom, message)
     }
 }

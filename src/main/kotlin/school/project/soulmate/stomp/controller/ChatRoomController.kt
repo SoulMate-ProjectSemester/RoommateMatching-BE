@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.*
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
-import school.project.soulmate.stomp.entity.ChatRoom
-import school.project.soulmate.stomp.repository.ChatRoomRepository
+import school.project.soulmate.stomp.dto.ChatRoomMemberDto
 import school.project.soulmate.stomp.service.ChatRoomService
 
 @RequiredArgsConstructor
@@ -13,7 +12,6 @@ import school.project.soulmate.stomp.service.ChatRoomService
 @RequestMapping("/chat")
 class ChatRoomController(
     val chatRoomService: ChatRoomService,
-    val chatRoomRepository: ChatRoomRepository,
 ) {
     // 채팅방 생성
     @PostMapping("/room")
@@ -28,7 +26,7 @@ class ChatRoomController(
     @GetMapping("/rooms")
     fun rooms(
         @RequestParam("loginId") loginId: String,
-    ): List<ChatRoom>? {
-        return chatRoomRepository.findAllByUserIdOrderByCreateDateAsc(loginId)
+    ): List<ChatRoomMemberDto>? {
+        return chatRoomService.findRooms(loginId)
     }
 }

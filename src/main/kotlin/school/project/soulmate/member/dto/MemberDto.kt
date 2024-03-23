@@ -1,13 +1,12 @@
 package school.project.soulmate.member.dto
 
-import school.project.soulmate.common.annotation.ValidEnum
-import school.project.soulmate.common.status.Gender
-import school.project.soulmate.member.entity.Member
-
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
+import school.project.soulmate.common.annotation.ValidEnum
+import school.project.soulmate.common.status.Gender
+import school.project.soulmate.member.entity.Member
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -67,15 +66,15 @@ data class MemberDtoRequest(
         get() = _password!!
     val name: String
         get() = _name!!
-    val birthDate: LocalDate
+    private val birthDate: LocalDate
         get() = _birthDate!!.toLocalDate()
-    val gender: Gender
+    private val gender: Gender
         get() = Gender.valueOf(_gender!!)
-    val studentNumber: String
+    private val studentNumber: String
         get() = _studentNumber!!
-    val college: String
+    private val college: String
         get() = _college!!
-    val major: String
+    private val major: String
         get() = _major!!
     val email: String
         get() = _email!!

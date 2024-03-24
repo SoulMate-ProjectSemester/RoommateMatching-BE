@@ -32,6 +32,7 @@ class MemberService(
     /**
      * 회원가입
      */
+    @Transactional
     fun signUp(memberDtoRequest: MemberDtoRequest): String {
         var member = memberRepository.findByLoginId(memberDtoRequest.loginId)
         if (member != null) {
@@ -49,6 +50,7 @@ class MemberService(
     /**
      * 로그인 -> 토큰 발행
      */
+    @Transactional
     fun login(loginDto: LoginDto): TokenInfo { // 사용자에게 받은 정보를 TokenInfo에 담아서 전달
         val authenticationToken = UsernamePasswordAuthenticationToken(loginDto.loginId, loginDto.password)
         val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
@@ -77,12 +79,17 @@ class MemberService(
     /**
      * 내 정보 수정
      */
+    @Transactional
     fun saveMyInfo(memberDtoRequest: MemberDtoRequest): String {
         val member: Member = memberDtoRequest.toEntity()
         memberRepository.save(member)
         return "수정 완료되었습니다."
     }
 
+    /**
+     * 로그아웃
+     */
+    @Transactional
     fun deleteRefToken(loginId: Long): String {
         memberRefreshTokenRepository.deleteById(loginId)
         return "로그아웃 되었습니다."

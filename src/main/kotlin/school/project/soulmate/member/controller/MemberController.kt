@@ -74,12 +74,23 @@ class MemberController(
     }
 
     @GetMapping("/info_edit")
-    fun info(): ModelAndView  {
+    fun info(): ModelAndView {
         val modelAndView = ModelAndView()
         modelAndView.viewName = "profileEdit"
 
         val memberDtoRequest: MemberDtoRequest? = null
         modelAndView.addObject("memberDtoRequest", memberDtoRequest)
         return modelAndView
+    }
+
+    /**
+     * 로그아웃
+     */
+    @DeleteMapping("/logout")
+    fun logout(
+        @RequestParam("loginId") loginId: Long,
+    ): BaseResponse<Unit> {
+        val resultMsg: String = memberService.deleteRefToken(loginId)
+        return BaseResponse(message = resultMsg)
     }
 }

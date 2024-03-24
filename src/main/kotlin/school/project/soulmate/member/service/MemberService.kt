@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 import school.project.soulmate.common.authority.JwtTokenProvider
 import school.project.soulmate.common.authority.TokenInfo
 import school.project.soulmate.common.exception.InvalidInputException
+import school.project.soulmate.common.repository.MemberRefreshTokenRepository
 import school.project.soulmate.common.service.SignService
 import school.project.soulmate.common.status.ROLE
 import school.project.soulmate.member.dto.LoginDto
@@ -26,6 +27,7 @@ class MemberService(
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
     private val jwtTokenProvider: JwtTokenProvider,
     private val signService: SignService,
+    private val memberRefreshTokenRepository: MemberRefreshTokenRepository,
 ) {
     /**
      * 회원가입
@@ -79,5 +81,10 @@ class MemberService(
         val member: Member = memberDtoRequest.toEntity()
         memberRepository.save(member)
         return "수정 완료되었습니다."
+    }
+
+    fun deleteRefToken(loginId: Long): String {
+        memberRefreshTokenRepository.deleteById(loginId)
+        return "로그아웃 되었습니다."
     }
 }

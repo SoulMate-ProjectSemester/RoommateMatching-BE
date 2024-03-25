@@ -2,21 +2,19 @@ package school.project.soulmate.stomp.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.NotBlank
-import school.project.soulmate.member.entity.Member
-import school.project.soulmate.stomp.entity.ChatMessage
-import school.project.soulmate.stomp.entity.ChatRoom
+import java.util.UUID
 
 data class ChatMessageDto(
     var id: Long? = null,
     @field:NotBlank
     @JsonProperty("userId")
-    var sender: ChatRoom,
+    var sender: Long,
     @field:NotBlank
     @JsonProperty("chatRoomId")
-    var chatRoom: Member,
+    var chatRoom: UUID,
     @field:NotBlank
     @JsonProperty("messageText")
     val content: String,
-) {
-    fun toEntity(): ChatMessage = ChatMessage(id, sender, chatRoom, content)
-}
+    @JsonProperty("messageType")
+    val messageType: String, // 메시지 타입 (예: "CHAT", "JOIN", "LEAVE" 등)
+)

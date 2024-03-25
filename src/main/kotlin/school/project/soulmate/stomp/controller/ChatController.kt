@@ -5,21 +5,27 @@ import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.simp.SimpMessageSendingOperations
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatMessageDto
-import school.project.soulmate.stomp.repository.ChatMessageRepository
+import school.project.soulmate.stomp.service.ChatMessageService
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping("/api/chat")
 class ChatController(
     val messagingTemplate: SimpMessageSendingOperations,
-    val chatMessageRepository: ChatMessageRepository,
+    val chatMessageService: ChatMessageService,
 ) {
     @MessageMapping("/message")
-    fun message(message: ChatMessageDto) {
-        // DTO를 엔터티로 변환하는 로직 필요
-        val chatMessage = message.toEntity()
-        chatMessageRepository.save(chatMessage) // 메시지 저장
+    fun message(message: ChatMessageDto): BaseResponse<Unit> {
+        var resultMsg = ""
+        if (message == null)
+            {
+                resultMsg = "잘못된 메시지 입니다."
+            } else {
+            resultMsg = chatMessageService.saveMessage(message)
+        }
         messagingTemplate.convertAndSend("/sub/chat/room/" + message.chatRoom, message)
+        return BaseResponse(message = resultMsg)
     }
 }

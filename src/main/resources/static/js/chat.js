@@ -75,7 +75,7 @@ function onConnected(){
     });
 
     // stompClient.send("/app/chat/message");
-    stompClient.send("/message");
+    stompClient.send("/pub/message");
 }
 
 function onError(error){
@@ -119,12 +119,12 @@ function sendMessage() {
     if(messageText && stompClient) {
         var chatMessage = {
             chatRoomId: roomId,
-            sender: myloginId, // 사용자 이름 또는 ID
-            content: messageText,
+            userId: myloginId, // 사용자 이름 또는 ID
+            messageText: messageText,
             messageType: "CHAT"
         };
         // stompClient.send("/app/chat/message", {}, JSON.stringify(chatMessage));
-        stompClient.send("/message", {}, JSON.stringify(chatMessage));
+        stompClient.send("/pub/message", {}, JSON.stringify(chatMessage));
         document.getElementById('messageInput').value = '';
     }
 }

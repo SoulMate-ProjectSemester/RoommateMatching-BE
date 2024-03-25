@@ -169,3 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//전 페이지로 돌아가는 함수, 히스토리를 백하는 함수
+function hisBack(){
+    window.history.back();
+}

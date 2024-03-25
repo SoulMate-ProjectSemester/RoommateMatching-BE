@@ -14,10 +14,35 @@ header {
 }
 
 .profile .back-arrow {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 15px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat-left{
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 10px 15px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+}
+
+.chat-profile{
+    margin-top: 3.3px;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile .friend-name {
-    margin-left: 10px;
     font-weight: bold;
 }
 

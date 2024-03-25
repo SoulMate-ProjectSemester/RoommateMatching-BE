@@ -1,5 +1,6 @@
 var stompClient = null;
 var myloginId;
+var myId;
 var roomId;
 
 const token = window.localStorage.getItem("token");
@@ -22,6 +23,7 @@ try {
 
         if(responseData=='SUCCESS'){
             // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
+            myId=response.data.data.id;
             myloginId=response.data.data.loginId;
         }
         showChatListInfo();
@@ -43,11 +45,13 @@ function showChatListInfo() {
         });
         //promise에서 내가 원하는 value 값 받기
         response.then(response => {
+            console.log(response);
             // Access the 'data' property from the resolved value
             if(response.data.length>0){
                 //룸 아이디와 생성날짜 가져오기
                 var index=response.data.length-1;
                 roomId=response.data[index].roomId;
+                console.log(typeof(roomId));
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -119,7 +123,7 @@ function sendMessage() {
     if(messageText && stompClient) {
         var chatMessage = {
             chatRoomId: roomId,
-            userId: myloginId, // 사용자 이름 또는 ID
+            userId: myId, // 사용자 이름 또는 ID
             messageText: messageText,
             messageType: "CHAT"
         };

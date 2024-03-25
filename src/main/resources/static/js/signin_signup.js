@@ -34,14 +34,15 @@ function login() {
             loginId: username,
             password: password
         });
-        console.log(response);
         //promise에서 내가 원하는 value 값 받기
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
+            console.log(response);
             if(responseData=='SUCCESS'){
-                window.location.href='http://localhost:8080';
                 window.localStorage.setItem('token',response.data.data.accessToken);
+                window.localStorage.setItem('refreshtoken',response.data.data.refreshToken);
+                window.location.href='http://localhost:8080';
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

@@ -26,7 +26,7 @@ class SecurityConfig(
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } // 세션을 사용하지 않음
             .authorizeHttpRequests {
                 @Suppress("ktlint:standard:max-line-length")
-                it.requestMatchers("/api/member/signup", "/api/member/login", "/api/member/info_edit").anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
+                it.requestMatchers("/api/member/signup", "/api/member/login", "/api/member/info_edit", "/api/member/chat_list", "/api/member/chat").anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
                     .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
                     .requestMatchers("/ws-stomp/**").permitAll()
                     .requestMatchers("/api/auth/refresh").permitAll()

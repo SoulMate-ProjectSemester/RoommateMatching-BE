@@ -42,6 +42,7 @@
 })(jQuery);
 
 const token = window.localStorage.getItem("token");
+// const refreshtoken = window.localStorage.getItem('refreshToken');
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -55,6 +56,7 @@ const instance = axios.create({
 
 try {
     const response=instance.get("/api/member/info");
+    console.log(response);
     response.then(response => {
         // Access the 'data' property from the resolved value
         const responseData = response.data.resultCode;
@@ -133,22 +135,10 @@ function saveChange(){
             roomName: messageTitle,
             createDate: getCurrentDate()
         });
-        //promise에서 내가 원하는 value 값 받기
-        // response.then(response => {
-        //     // Access the 'data' property from the resolved value
-        //     const responseData = response.data.resultCode;
-        //     if(responseData=='SUCCESS'){
-        //         window.location.href='http://localhost:8080';
-        //         window.localStorage.setItem('token',response.data.data.accessToken);
-        //     }
-        // }).catch(error => {
-        //     // Handle errors if the Promise is rejected
-        //     console.error('Error occurred:', error);
-        //     alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
-        // });
 
         //채팅방 생성 후, 제목 입력칸 초기화
         inputTitle.value=null;
+        console.log(response);
         window.location.href="http://localhost:8080/api/member/chat";
     }catch (error){
         console.error("로그인 중 에러:", error);

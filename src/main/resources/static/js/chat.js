@@ -1,3 +1,87 @@
+var stompClient = null;
+var myloginId;
+var roomId;
+
+const token = window.localStorage.getItem("token");
+
+const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 5000,
+    headers: {
+        "Cache-Control": "no-cache",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`,
+    },
+});
+
+try {
+    const response=instance.get("/api/member/info");
+    response.then(response => {
+        // Access the 'data' property from the resolved value
+        const responseData = response.data.resultCode;
+
+        if(responseData=='SUCCESS'){
+            // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
+            myloginId=response.data.data.loginId;
+        }
+        showChatListInfo();
+    }).catch(error => {
+        // Handle errors if the Promise is rejected
+        console.error('Error occurred:', error);
+        console.log('아이디 혹은 비밀번호를 다시한번 확인하세요.');
+    });
+}catch (error){
+    console.error("로그인 중 에러:", error);
+}
+
+function showChatListInfo() {
+    try {
+        const response=axios.get("http://localhost:8080/chat/rooms", {
+            params:{
+                loginId:myloginId
+            }
+        });
+        //promise에서 내가 원하는 value 값 받기
+        response.then(response => {
+            // Access the 'data' property from the resolved value
+            if(response.data.length>0){
+                //룸 아이디와 생성날짜 가져오기
+                var index=response.data.length-1;
+                roomId=response.data[index].roomId;
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            alert('채팅방 리스트 조회 에러(roomId)');
+        });
+        //채팅방 생성 후, 제목 입력칸 초기화
+    }catch (error){
+        console.error("채팅방 리스트 조회 에러(roomId):", error);
+    }
+}
+
+connect();
+
+function connect(){
+    var socket = new SockJS('/ws-stomp');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, onConnected, onError);
+}
+
+function onConnected(){
+    stompClient.subscribe(`/sub/chat/room/${roomId}`, function (message) {
+        // 나중에 메시지 수신 시 동작 구현 필요
+        console.log(JSON.parse(message.body).content);
+    });
+
+    // stompClient.send("/app/chat/message");
+    stompClient.send("/message");
+}
+
+function onError(error){
+    alert('웹 소켓 서버에 연결할 수 없습니다. 페이지를 새로고침 해보세요!');
+}
+
 function sendMessage() {
     var chatRoom = document.getElementById('chatRoom');
     var messageInput = document.getElementById('messageInput');
@@ -28,8 +112,21 @@ function sendMessage() {
 
     // 채팅방에 메시지 추가
     chatRoom.appendChild(messageElement);
+    chatRoom.scrollTop = chatRoom.scrollHeight;
     // 입력 필드 초기화
     messageInput.value = '';
+
+    if(messageText && stompClient) {
+        var chatMessage = {
+            chatRoomId: roomId,
+            sender: myloginId, // 사용자 이름 또는 ID
+            content: messageText,
+            messageType: "CHAT"
+        };
+        // stompClient.send("/app/chat/message", {}, JSON.stringify(chatMessage));
+        stompClient.send("/message", {}, JSON.stringify(chatMessage));
+        document.getElementById('messageInput').value = '';
+    }
 }
 
 function formatAMPM(date) {
@@ -62,6 +159,7 @@ function formatDate() {
     return monthNames[monthIndex] + ' ' + day + ', ' + year + ', ' + formattedTime;
 }
 
+//채팅 입력 엔터처리
 document.addEventListener('DOMContentLoaded', function() {
     var input = document.getElementById('messageInput');
     input.addEventListener('keydown', function(event) {
@@ -71,7 +169,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded',()=>{
-        var chatRoom = document.getElementById('chatRoom');
-        chatRoom.scrollTop = chatRoom.scrollHeight;
-})

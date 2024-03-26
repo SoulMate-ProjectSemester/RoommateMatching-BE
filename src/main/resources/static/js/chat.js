@@ -73,12 +73,7 @@ function connect(){
 }
 
 function onConnected(){
-    stompClient.subscribe(`/sub/chat/room/${roomId}`, function (message) {
-        // 나중에 메시지 수신 시 동작 구현 필요
-        console.log(JSON.parse(message.body).content);
-    });
-
-    // stompClient.send("/app/chat/message");
+    stompClient.subscribe(`/sub/chat/room/${roomId}`, onMessageReceived);
     stompClient.send("/pub/message");
 }
 
@@ -87,38 +82,38 @@ function onError(error){
 }
 
 function sendMessage() {
-    var chatRoom = document.getElementById('chatRoom');
+    // var chatRoom = document.getElementById('chatRoom');
     var messageInput = document.getElementById('messageInput');
     var messageText = messageInput.value;
     if (messageText.trim() === '') {
         // 메시지가 비어있는 경우 아무것도 하지 않음
         return;
     }
-
-    // 새로운 메시지 요소 생성
-    var messageElement = document.createElement('div');
-    messageElement.classList.add('my-message');
-
-    // 메시지 내용
-    var content = document.createElement('div');
-    content.classList.add('content');
-    content.textContent = messageText;
-
-    // 시간 표시
-    var timestamp = document.createElement('div');
-    timestamp.classList.add('timestamp');
-    var now = new Date();
-    timestamp.textContent = formatDate();
-
-    // 요소 구성
-    messageElement.appendChild(content);
-    messageElement.appendChild(timestamp);
-
-    // 채팅방에 메시지 추가
-    chatRoom.appendChild(messageElement);
-    chatRoom.scrollTop = chatRoom.scrollHeight;
-    // 입력 필드 초기화
-    messageInput.value = '';
+    //
+    // // 새로운 메시지 요소 생성
+    // var messageElement = document.createElement('div');
+    // messageElement.classList.add('my-message');
+    //
+    // // 메시지 내용
+    // var content = document.createElement('div');
+    // content.classList.add('content');
+    // content.textContent = messageText;
+    //
+    // // 시간 표시
+    // var timestamp = document.createElement('div');
+    // timestamp.classList.add('timestamp');
+    // var now = new Date();
+    // timestamp.textContent = formatDate();
+    //
+    // // 요소 구성
+    // messageElement.appendChild(content);
+    // messageElement.appendChild(timestamp);
+    //
+    // // 채팅방에 메시지 추가
+    // chatRoom.appendChild(messageElement);
+    // chatRoom.scrollTop = chatRoom.scrollHeight;
+    // // 입력 필드 초기화
+    // messageInput.value = '';
 
     if(messageText && stompClient) {
         var chatMessage = {
@@ -131,6 +126,68 @@ function sendMessage() {
         stompClient.send("/pub/message", {}, JSON.stringify(chatMessage));
         document.getElementById('messageInput').value = '';
     }
+}
+
+//메세지를 수신 시, 처리 동작
+function onMessageReceived(payload){
+    console.log(payload);
+
+    var ParseBody = JSON.parse(payload.body);
+    var message=ParseBody.messageText;
+    var userId=ParseBody.userId;
+
+    if(myId==userId){
+        var chatRoom = document.getElementById('chatRoom');
+
+        // 새로운 메시지 요소 생성
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('my-message');
+
+        // 메시지 내용
+        var content = document.createElement('div');
+        content.classList.add('content');
+        content.textContent = message;
+
+        // 시간 표시
+        var timestamp = document.createElement('div');
+        timestamp.classList.add('timestamp');
+        var now = new Date();
+        timestamp.textContent = formatDate();
+
+        // 요소 구성
+        messageElement.appendChild(content);
+        messageElement.appendChild(timestamp);
+
+        // 채팅방에 메시지 추가
+        chatRoom.appendChild(messageElement);
+    }else{
+        var chatRoom = document.getElementById('chatRoom');
+
+        // 새로운 메시지 요소 생성
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('another_message');
+
+        // 메시지 내용
+        var content = document.createElement('div');
+        content.classList.add('content');
+        content.textContent = message;
+
+        // 시간 표시
+        var timestamp = document.createElement('div');
+        timestamp.classList.add('timestamp');
+        var now = new Date();
+        timestamp.textContent = formatDate();
+
+        // 요소 구성
+        messageElement.appendChild(content);
+        messageElement.appendChild(timestamp);
+
+        // 채팅방에 메시지 추가
+        chatRoom.appendChild(messageElement);
+    }
+
+    chatRoom.scrollTop = chatRoom.scrollHeight;
+
 }
 
 function formatAMPM(date) {

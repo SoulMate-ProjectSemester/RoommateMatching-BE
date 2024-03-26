@@ -66,6 +66,7 @@ try {
             var major = response.data.data.major;
             //loginId를 전역변수로 선언하여 어디서든 사용할 수 있도록 함.(var 선언만 안하면 됨)
             loginId=response.data.data.loginId;
+            myId=response.data.data.id;
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
             document.getElementById("myProfileMajor").innerHTML = major;
@@ -82,6 +83,29 @@ try {
 
 function logout(){
     if(confirm("정말 로그아웃 하시겠습니까?")==true){
+        try {
+            const response=instance.delete("/api/member/logout",{
+                params:{
+                    loginId:myId
+                }
+            });
+            console.log(response);
+            response.then(response => {
+                // Access the 'data' property from the resolved value
+                const responseData = response.data.resultCode;
+                if(responseData=='SUCCESS'){
+                    var return_message = response.data.data.message;
+                    console.log(return_message);
+                }
+            }).catch(error => {
+                // Handle errors if the Promise is rejected
+                console.error('Error occurred:', error);
+                console.log('로그아웃 실패(response 오류)');
+            });
+
+        }catch (error){
+            console.error("로그아웃 실패 : ", error);
+        }
         window.location.href='http://localhost:8080/api/member/login';
         window.localStorage.setItem('token', "");
     }

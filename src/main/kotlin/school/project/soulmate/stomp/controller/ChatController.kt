@@ -1,7 +1,9 @@
 package school.project.soulmate.stomp.controller
 
 import lombok.RequiredArgsConstructor
+import org.springframework.messaging.handler.annotation.DestinationVariable
 import org.springframework.messaging.handler.annotation.MessageMapping
+import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.messaging.simp.SimpMessageSendingOperations
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -20,15 +22,14 @@ class ChatController(
     val messagingTemplate: SimpMessageSendingOperations,
     val chatMessageService: ChatMessageService,
 ) {
-    @MessageMapping("/message")
-    fun message(message: ChatMessageDto): BaseResponse<Unit> {
-        var resultMsg =
-            if (message == null) {
-                "잘못된 메시지 입니다."
-            } else {
-                chatMessageService.saveMessage(message)
-            }
-        messagingTemplate.convertAndSend("/sub/chat/room/" + message.chatRoom, message)
+    @MessageMapping("/{roomId}") // request: /pub/{roomId}
+    @SendTo("/sub/{roomId}") // subscribe 채팅방으로 메세지 전송
+    fun message(
+        @DestinationVariable roomId: UUID,
+        message: ChatMessageDto,
+    ): BaseResponse<Unit> {
+        var resultMsg = chatMessageService.saveMessage(roomId, message)
+        messagingTemplate.convertAndSend("/sub/$roomId", message)
         return BaseResponse(message = resultMsg)
     }
 

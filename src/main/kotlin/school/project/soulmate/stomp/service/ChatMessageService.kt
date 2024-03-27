@@ -22,8 +22,11 @@ class ChatMessageService(
     val memberRepository: MemberRepository,
 ) {
     @Transactional
-    fun saveMessage(message: ChatMessageDto): String {
-        val findChatRoom: ChatRoom = chatRoomRepository.findByIdOrNull(message.chatRoom) ?: throw InvalidInputException("채팅방이 존재하지 않습니다.")
+    fun saveMessage(
+        roomId: UUID,
+        message: ChatMessageDto,
+    ): String {
+        val findChatRoom: ChatRoom = chatRoomRepository.findByIdOrNull(roomId) ?: throw InvalidInputException("채팅방이 존재하지 않습니다.")
         val findSender: Member = memberRepository.findByIdOrNull(message.sender) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
         val chatMessageEntity = ChatMessage(message.id, findChatRoom, findSender, message.content, LocalDateTime.now())
         chatMessageRepository.save(chatMessageEntity)

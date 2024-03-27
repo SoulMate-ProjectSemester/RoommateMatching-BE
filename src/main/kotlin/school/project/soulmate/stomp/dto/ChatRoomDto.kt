@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package school.project.soulmate.stomp.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty

@@ -1,5 +1,3 @@
-@file:Suppress("ktlint:standard:no-wildcard-imports")
-
 package school.project.soulmate.stomp.service
 
 import jakarta.transaction.Transactional

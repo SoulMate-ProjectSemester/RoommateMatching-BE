@@ -3,10 +3,12 @@
 package school.project.soulmate.stomp.service
 
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomMemberDto
+import school.project.soulmate.stomp.dto.QuitRoomDto
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
@@ -45,6 +47,22 @@ class ChatRoomService(
         val chatRoomMembers = chatRoomMemberRepository.findAllByMember(findMember)
         return chatRoomMembers.map { member ->
             ChatRoomMemberDto(roomId = member.chatRoom.roomId!!)
+        }
+    }
+
+    @Transactional
+    fun quitRoom(quitRoomDto: QuitRoomDto): String {
+        val findMember = memberRepository.findByIdOrNull(quitRoomDto.loginId)
+        val findRoom = chatRoomRepository.findByIdOrNull(quitRoomDto.roomId)
+        if (findRoom == null)
+            {
+                return "잘못된 방입니다"
+            } else if (findMember == null)
+            {
+                return "잘못된 유저입니다"
+            } else {
+            chatRoomMemberRepository.deleteByChatRoomAndMember(findRoom, findMember)
+            return "정상적으로 방을 나갔습니다."
         }
     }
 }

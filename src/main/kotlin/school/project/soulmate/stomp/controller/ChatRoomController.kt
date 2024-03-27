@@ -5,16 +5,17 @@ import org.springframework.web.bind.annotation.*
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomMemberDto
+import school.project.soulmate.stomp.dto.QuitRoomDto
 import school.project.soulmate.stomp.service.ChatRoomService
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/chat")
+@RequestMapping("/api/room")
 class ChatRoomController(
     val chatRoomService: ChatRoomService,
 ) {
     // 채팅방 생성
-    @PostMapping("/room")
+    @PostMapping("/new")
     fun createRoom(
         @RequestBody chatRoomDto: ChatRoomDto,
     ): BaseResponse<Unit> {
@@ -28,5 +29,14 @@ class ChatRoomController(
         @RequestParam("loginId") loginId: String,
     ): List<ChatRoomMemberDto>? {
         return chatRoomService.findRooms(loginId)
+    }
+
+    // 채팅방 나가기
+    @DeleteMapping("/quit")
+    fun quitRoom(
+        @RequestBody quitRoomDto: QuitRoomDto,
+    ): BaseResponse<Unit>  {
+        val resultMsg = chatRoomService.quitRoom(quitRoomDto)
+        return BaseResponse(message = resultMsg)
     }
 }

@@ -18,3 +18,13 @@ data class ChatMessageDto(
     @JsonProperty("messageType")
     val messageType: String, // 메시지 타입 (예: "CHAT", "JOIN", "LEAVE" 등)
 )
+
+data class ChatMessageResponseDto(
+    var id: Long? = null,
+    @field:NotBlank
+    @JsonProperty("userId")
+    var sender: Long,
+    @field:NotBlank
+    @JsonProperty("messageText")
+    val content: String,
+)

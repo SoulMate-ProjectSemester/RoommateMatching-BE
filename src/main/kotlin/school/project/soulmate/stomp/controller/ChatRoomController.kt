@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomMemberDto
-import school.project.soulmate.stomp.dto.QuitRoomDto
+import school.project.soulmate.stomp.dto.LeaveRoomDto
 import school.project.soulmate.stomp.service.ChatRoomService
 
 @RequiredArgsConstructor
@@ -34,9 +34,9 @@ class ChatRoomController(
     // 채팅방 나가기
     @DeleteMapping("/quit")
     fun quitRoom(
-        @RequestBody quitRoomDto: QuitRoomDto,
-    ): BaseResponse<Unit>  {
-        val resultMsg = chatRoomService.quitRoom(quitRoomDto)
+        @RequestBody leaveRoomDto: LeaveRoomDto,
+    ): BaseResponse<Unit> {
+        val resultMsg = chatRoomService.leaveChatRoom(leaveRoomDto)
         return BaseResponse(message = resultMsg)
     }
 }

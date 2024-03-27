@@ -21,7 +21,7 @@ data class ChatRoomDto(
     val createDate: LocalDate,
 )
 
-data class QuitRoomDto(
+data class LeaveRoomDto(
     @field:NotBlank
     @JsonProperty("loginId")
     val loginId: Long,

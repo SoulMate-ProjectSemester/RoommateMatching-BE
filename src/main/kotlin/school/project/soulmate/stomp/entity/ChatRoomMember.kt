@@ -1,6 +1,5 @@
 package school.project.soulmate.stomp.entity
 
-import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -16,7 +15,7 @@ class ChatRoomMember(
     @ManyToOne
     @JoinColumn(name = "member_id")
     val member: Member,
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne
     @JoinColumn(name = "chat_room_id")
     val chatRoom: ChatRoom,
 )

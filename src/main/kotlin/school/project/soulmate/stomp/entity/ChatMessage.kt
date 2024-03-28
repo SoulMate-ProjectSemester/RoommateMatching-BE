@@ -12,10 +12,10 @@ import java.time.LocalDateTime
 class ChatMessage(
     @Id @GeneratedValue
     val id: Long? = null,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_room_id")
     val chatRoom: ChatRoom,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
     val sender: Member,
     @Column(nullable = false)

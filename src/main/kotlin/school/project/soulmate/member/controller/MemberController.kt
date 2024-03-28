@@ -83,22 +83,12 @@ class MemberController(
         return modelAndView
     }
 
-    @GetMapping("/chat")
-    fun chat():ModelAndView{
-        val modelAndView=ModelAndView()
-        modelAndView.viewName="chat"
-
-        val memberDtoRequest: MemberDtoRequest?=null
-        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
-        return modelAndView
-    }
-
     @GetMapping("/chat_list")
-    fun chatList():ModelAndView{
-        val modelAndView=ModelAndView()
-        modelAndView.viewName="ChatList"
+    fun chatList(): ModelAndView  {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "ChatList"
 
-        val memberDtoRequest: MemberDtoRequest?=null
+        val memberDtoRequest: MemberDtoRequest? = null
         modelAndView.addObject("memberDtoRequest", memberDtoRequest)
         return modelAndView
     }
@@ -113,8 +103,4 @@ class MemberController(
         val resultMsg: String = memberService.deleteRefToken(loginId)
         return BaseResponse(message = resultMsg)
     }
-
 }
-
-
-

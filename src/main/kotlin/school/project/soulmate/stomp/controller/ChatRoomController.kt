@@ -2,11 +2,13 @@ package school.project.soulmate.stomp.controller
 
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomMemberDto
 import school.project.soulmate.stomp.dto.LeaveRoomDto
 import school.project.soulmate.stomp.service.ChatRoomService
+import java.util.*
 
 @RequiredArgsConstructor
 @RestController
@@ -21,6 +23,16 @@ class ChatRoomController(
     ): BaseResponse<Unit> {
         val resultMsg = chatRoomService.createChatRoom(chatRoomDto)
         return BaseResponse(message = resultMsg)
+    }
+
+    // 채팅방 화면
+    @GetMapping("/{roomId}")
+    fun chat(
+        @PathVariable roomId: UUID,
+    ): ModelAndView {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "chat"
+        return modelAndView
     }
 
     // 채팅방 조회

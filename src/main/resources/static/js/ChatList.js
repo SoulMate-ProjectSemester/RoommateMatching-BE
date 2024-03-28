@@ -104,7 +104,7 @@ function getCurrentDate() {
 }
 function ShowChatList(){
     try {
-        const response=axios.get("http://localhost:8080/chat/rooms", {
+        const response=axios.get("http://localhost:8080/api/room/rooms", {
             params:{
                 loginId:myloginId
             }

@@ -153,7 +153,7 @@ function saveChange(){
     }
     // Send POST request using axios
     try {
-        const response=instance.post("/chat/room",{
+        const response=instance.post("/api/room/new",{
             loginId: loginId,
             userId: "vkflco08",
             roomName: messageTitle,

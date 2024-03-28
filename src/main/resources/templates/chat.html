@@ -16,7 +16,7 @@
             <div class="tweets-count">2 People</div>
         </div>
     </div>
-    <div class="chat-left">Left</div>
+    <div class="chat-left" id="LeftBtn">Left</div>
 </header>
 
 
@@ -37,6 +37,24 @@
     <input type="text" placeholder="Start a new message" id="messageInput">
     <button class="send" onclick="sendMessage()">Send</button>
 </footer>
+
+
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" id="modalContentBox">
+        <div>
+            <span class="close" id="closeXbtn">&times;</span>
+        </div>
+        <h3 style="color: black;">채팅방 나가기</h3>
+        <span style="color:black;">채팅방에서 나가면 대화내역이 모두 사라집니다. </span>
+        <br>
+        <span style="color:black;">정말로 나가시겠습니까?</span>
+        <div class="submitBtn">
+            <input type="submit" id="closeBtn" value="NO"></input>
+            <input type="submit" id="saveBtn" value="YES" onclick="ChatRoomLeft()"></input>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>

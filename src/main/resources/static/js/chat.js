@@ -38,7 +38,7 @@ try {
 
 function showChatListInfo() {
     try {
-        const response=axios.get("http://localhost:8080/chat/rooms", {
+        const response=axios.get("http://localhost:8080/api/room/rooms", {
             params:{
                 loginId:myloginId
             }
@@ -73,8 +73,8 @@ function connect(){
 }
 
 function onConnected(){
-    stompClient.subscribe(`/sub/chat/room/${roomId}`, onMessageReceived);
-    stompClient.send("/pub/message");
+    stompClient.subscribe(`/sub/${roomId}`, onMessageReceived);
+    stompClient.send(`/pub/${roomId}`);
 }
 
 function onError(error){
@@ -117,13 +117,12 @@ function sendMessage() {
 
     if(messageText && stompClient) {
         var chatMessage = {
-            chatRoomId: roomId,
             userId: myId, // 사용자 이름 또는 ID
             messageText: messageText,
-            messageType: "CHAT"
+            // messageType: "CHAT"
         };
         // stompClient.send("/app/chat/message", {}, JSON.stringify(chatMessage));
-        stompClient.send("/pub/message", {}, JSON.stringify(chatMessage));
+        stompClient.send(`/pub/${roomId}`, {}, JSON.stringify(chatMessage));
         document.getElementById('messageInput').value = '';
     }
 }
@@ -235,4 +234,61 @@ function hisBack(){
     window.history.back();
     stompClient.unsubscribe();
     stompClient.disconnect();
+}
+
+// 모달창 띄우기
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("LeftBtn");
+
+// Get the element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var closeBtn = document.getElementById("closeBtn");
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x) or the Close button, close the modal
+span.onclick = closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// 모달창 띄우기 끝
+
+//채팅방 나가는 함수(채팅내역 모두 삭제)
+function ChatRoomLeft(){
+    try {
+        const response=axios.delete("http://localhost:8080/api/room/quit", {
+            data:{
+                loginId: myId,
+                roomId: roomId
+            }
+        });
+        response.then(response => {
+            console.log(response);
+            // Access the 'data' property from the resolved value
+            const responseData = response.data.resultCode;
+            //채팅방 삭제가 성공하였을 경우
+            if(responseData=='SUCCESS'){
+                // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
+                location.href="http://localhost:8080/api/member/chat_list";
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            alert('채팅방 삭제 실패');
+        });
+    }catch (error){
+        console.error("채팅방 삭제 요청 실패 : ", error);
+    }
 }

@@ -3,7 +3,6 @@ package school.project.soulmate.stomp.controller
 import lombok.RequiredArgsConstructor
 import org.springframework.messaging.handler.annotation.DestinationVariable
 import org.springframework.messaging.handler.annotation.MessageMapping
-import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.messaging.simp.SimpMessageSendingOperations
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -23,14 +22,13 @@ class ChatController(
     val chatMessageService: ChatMessageService,
 ) {
     @MessageMapping("/{roomId}") // request: /pub/{roomId}
-    @SendTo("/sub/{roomId}") // subscribe 채팅방으로 메세지 전송
     fun message(
         @DestinationVariable roomId: UUID,
         message: ChatMessageDto,
-    ): BaseResponse<Unit> {
-        var resultMsg = chatMessageService.saveMessage(roomId, message)
+    ): ChatMessageDto {
+        chatMessageService.saveMessage(roomId, message)
         messagingTemplate.convertAndSend("/sub/$roomId", message)
-        return BaseResponse(message = resultMsg)
+        return message
     }
 
     @GetMapping("/messages")

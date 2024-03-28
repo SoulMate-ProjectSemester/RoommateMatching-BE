@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatMessageDto
-import school.project.soulmate.stomp.dto.ChatMessageResponseDto
 import school.project.soulmate.stomp.service.ChatMessageService
 import java.util.*
 
@@ -34,7 +33,7 @@ class ChatController(
     @GetMapping("/messages")
     fun getMessages(
         @RequestParam("roomId") roomId: UUID,
-    ): BaseResponse<List<ChatMessageResponseDto>> {
+    ): BaseResponse<List<ChatMessageDto>> {
         var resultMsg = chatMessageService.loadMessages(roomId)
         return BaseResponse(data = resultMsg)
     }

@@ -12,13 +12,3 @@ data class ChatMessageDto(
     @JsonProperty("messageText")
     val content: String,
 )
-
-data class ChatMessageResponseDto(
-    var id: Long? = null,
-    @field:NotBlank
-    @JsonProperty("userId")
-    var sender: Long,
-    @field:NotBlank
-    @JsonProperty("messageText")
-    val content: String,
-)

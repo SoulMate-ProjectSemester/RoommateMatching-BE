@@ -7,7 +7,6 @@ import school.project.soulmate.common.exception.InvalidInputException
 import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.stomp.dto.ChatMessageDto
-import school.project.soulmate.stomp.dto.ChatMessageResponseDto
 import school.project.soulmate.stomp.entity.ChatMessage
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.repository.ChatMessageRepository
@@ -33,11 +32,11 @@ class ChatMessageService(
         return "메시지가 저장되었습니다."
     }
 
-    fun loadMessages(chatRoom: UUID): List<ChatMessageResponseDto> {
+    fun loadMessages(chatRoom: UUID): List<ChatMessageDto> {
         val findRoom: ChatRoom = chatRoomRepository.findByIdOrNull(chatRoom) ?: throw InvalidInputException("채팅방이 존재하지 않습니다.")
         val messages: List<ChatMessage> = chatMessageRepository.findAllByChatRoom(findRoom)
         return messages.map { messages ->
-            ChatMessageResponseDto(
+            ChatMessageDto(
                 id = messages.id,
                 sender = messages.sender.id!!, // Member 엔티티에서 ID를 가져옵니다.
                 content = messages.content,

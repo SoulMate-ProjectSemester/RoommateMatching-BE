@@ -7,6 +7,7 @@ import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomMemberDto
 import school.project.soulmate.stomp.dto.LeaveRoomDto
+import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.service.ChatRoomService
 import java.util.*
 
@@ -20,9 +21,9 @@ class ChatRoomController(
     @PostMapping("/new")
     fun createRoom(
         @RequestBody chatRoomDto: ChatRoomDto,
-    ): BaseResponse<Unit> {
-        val resultMsg = chatRoomService.createChatRoom(chatRoomDto)
-        return BaseResponse(message = resultMsg)
+    ): BaseResponse<ChatRoom> {
+        val newChatRoom = chatRoomService.createChatRoom(chatRoomDto)
+        return BaseResponse(data = newChatRoom)
     }
 
     // 채팅방 화면

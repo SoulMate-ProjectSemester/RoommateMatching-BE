@@ -20,7 +20,7 @@ class ChatRoomService(
     val chatRoomMemberRepository: ChatRoomMemberRepository,
 ) {
     @Transactional
-    fun createChatRoom(chatRoomDto: ChatRoomDto): String {
+    fun createChatRoom(chatRoomDto: ChatRoomDto): ChatRoom {
         // 사용자 조회
         val loginMember = memberRepository.findByLoginId(chatRoomDto.loginId)
         val userMember = memberRepository.findByLoginId(chatRoomDto.userId)
@@ -38,7 +38,7 @@ class ChatRoomService(
         val userChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = userMember!!)
         chatRoomMemberRepository.saveAll(listOf(loginChatRoomMember, userChatRoomMember))
 
-        return "채팅방이 생성되었습니다"
+        return chatRoom
     }
 
     fun findRooms(loginId: String): List<ChatRoomMemberDto>? {

@@ -1,7 +1,10 @@
 var stompClient = null;
 var myloginId;
 var myId;
-var roomId;
+
+const path = window.location.pathname; // 현재 페이지의 경로를 가져옵니다.
+const pathSegments = path.split('/'); // '/'를 기준으로 경로를 분할합니다.
+const roomId = pathSegments[pathSegments.length - 1]; // URL의 마지막 부분을 추출합니다.
 
 const token = window.localStorage.getItem("token");
 
@@ -26,7 +29,6 @@ try {
             myId=response.data.data.id;
             myloginId=response.data.data.loginId;
         }
-        showChatListInfo();
     }).catch(error => {
         // Handle errors if the Promise is rejected
         console.error('Error occurred:', error);
@@ -34,34 +36,6 @@ try {
     });
 }catch (error){
     console.error("로그인 중 에러:", error);
-}
-
-function showChatListInfo() {
-    try {
-        const response=axios.get("http://localhost:8080/api/room/rooms", {
-            params:{
-                loginId:myloginId
-            }
-        });
-        //promise에서 내가 원하는 value 값 받기
-        response.then(response => {
-            console.log(response);
-            // Access the 'data' property from the resolved value
-            if(response.data.length>0){
-                //룸 아이디와 생성날짜 가져오기
-                var index=response.data.length-1;
-                roomId=response.data[index].roomId;
-                console.log(typeof(roomId));
-            }
-        }).catch(error => {
-            // Handle errors if the Promise is rejected
-            console.error('Error occurred:', error);
-            alert('채팅방 리스트 조회 에러(roomId)');
-        });
-        //채팅방 생성 후, 제목 입력칸 초기화
-    }catch (error){
-        console.error("채팅방 리스트 조회 에러(roomId):", error);
-    }
 }
 
 connect();
@@ -231,9 +205,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //전 페이지로 돌아가는 함수, 히스토리를 백하는 함수
 function hisBack(){
-    window.history.back();
     stompClient.unsubscribe();
     stompClient.disconnect();
+    window.history.back();
 }
 
 // 모달창 띄우기

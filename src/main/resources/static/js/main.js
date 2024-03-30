@@ -144,6 +144,8 @@ window.onclick = function(event) {
     }
 }
 
+var roomId = null;
+
 function saveChange(){
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
@@ -163,7 +165,18 @@ function saveChange(){
         //채팅방 생성 후, 제목 입력칸 초기화
         inputTitle.value=null;
         console.log(response);
-        window.location.href="http://localhost:8080/api/member/chat";
+        response.then(response => {
+            // Access the 'data' property from the resolved value
+            const responseData = response.data.resultCode;
+            if(responseData=='SUCCESS'){
+                roomId = response.data.data.roomId;
+                location.href=`http://localhost:8080/api/room/${roomId}`;
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            console.log('roomId 가져오기 실패');
+        });
     }catch (error){
         console.error("로그인 중 에러:", error);
     }

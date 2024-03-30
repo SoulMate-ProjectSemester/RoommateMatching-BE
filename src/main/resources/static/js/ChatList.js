@@ -138,7 +138,7 @@ function ShowChatList(){
                         <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
                       </div>
                       <p>조승빈</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/member/chat">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
                     </div>
                   `;
                     // 생성된 div를 문서에 추가
@@ -159,15 +159,6 @@ function ShowChatList(){
     }catch (error){
         console.error("로그인 중 에러:", error);
     }
-
-// var hasChatRoom = true; // 채팅방의 존재 여부
-//
-// if (hasChatRoom) {
-//     // 채팅방 컨텐츠를 담을 div 요소 생성
-//
-//
-//
-// }
 }
 
 

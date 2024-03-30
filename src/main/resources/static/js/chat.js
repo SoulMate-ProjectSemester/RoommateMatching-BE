@@ -2,6 +2,7 @@ var stompClient = null;
 var myloginId;
 var myId;
 
+//roomId를 path variable로 가져오는 과정
 const path = window.location.pathname; // 현재 페이지의 경로를 가져옵니다.
 const pathSegments = path.split('/'); // '/'를 기준으로 경로를 분할합니다.
 const roomId = pathSegments[pathSegments.length - 1]; // URL의 마지막 부분을 추출합니다.
@@ -63,31 +64,6 @@ function sendMessage() {
         // 메시지가 비어있는 경우 아무것도 하지 않음
         return;
     }
-    //
-    // // 새로운 메시지 요소 생성
-    // var messageElement = document.createElement('div');
-    // messageElement.classList.add('my-message');
-    //
-    // // 메시지 내용
-    // var content = document.createElement('div');
-    // content.classList.add('content');
-    // content.textContent = messageText;
-    //
-    // // 시간 표시
-    // var timestamp = document.createElement('div');
-    // timestamp.classList.add('timestamp');
-    // var now = new Date();
-    // timestamp.textContent = formatDate();
-    //
-    // // 요소 구성
-    // messageElement.appendChild(content);
-    // messageElement.appendChild(timestamp);
-    //
-    // // 채팅방에 메시지 추가
-    // chatRoom.appendChild(messageElement);
-    // chatRoom.scrollTop = chatRoom.scrollHeight;
-    // // 입력 필드 초기화
-    // messageInput.value = '';
 
     if(messageText && stompClient) {
         var chatMessage = {

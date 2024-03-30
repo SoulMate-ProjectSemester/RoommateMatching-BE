@@ -1,0 +1,84 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #333;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: #1c1c1e;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal p {
+    font-size: 0.9rem;
+}
+
+.topics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.topic {
+    padding: 10px 15px;
+    border: 1px solid #666;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+    color: #f2f2f2;
+    font-size: 0.9rem;
+    background: #2c2c2e;
+
+    border: 2px solid #5e5e60;
+}
+
+.topic:hover {
+    background-color: #48484a;
+}
+
+.topic.active {
+    border-color: #ff375f;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #0a84ff;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box; /* Make sure padding and border are included in the width */
+    background-color: #ff375f;
+}
+
+.submit-btn:hover {
+    background-color: #005ecb;
+    background-color: #e63657;
+}

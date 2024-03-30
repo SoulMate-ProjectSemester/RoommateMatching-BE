@@ -73,6 +73,7 @@ class MemberController(
         return BaseResponse(message = resultMsg)
     }
 
+    //정보수정
     @GetMapping("/info_edit")
     fun info(): ModelAndView {
         val modelAndView = ModelAndView()
@@ -83,6 +84,7 @@ class MemberController(
         return modelAndView
     }
 
+    //채팅방 리스트 보기
     @GetMapping("/chat_list")
     fun chatList(): ModelAndView  {
         val modelAndView = ModelAndView()
@@ -102,5 +104,15 @@ class MemberController(
     ): BaseResponse<Unit> {
         val resultMsg: String = memberService.deleteRefToken(loginId)
         return BaseResponse(message = resultMsg)
+    }
+
+    @GetMapping("/keyword")
+    fun keywordSelect() :ModelAndView {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "keywordSelect"
+
+        val memberDtoRequest: MemberDtoRequest? = null
+        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
+        return modelAndView
     }
 }

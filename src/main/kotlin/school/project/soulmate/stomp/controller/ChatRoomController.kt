@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatRoomDto
-import school.project.soulmate.stomp.dto.ChatRoomMemberDto
+import school.project.soulmate.stomp.dto.ChatRoomInfoDto
 import school.project.soulmate.stomp.dto.LeaveRoomDto
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.service.ChatRoomService
@@ -40,8 +40,8 @@ class ChatRoomController(
     @GetMapping("/rooms")
     fun rooms(
         @RequestParam("loginId") loginId: String,
-    ): List<ChatRoomMemberDto>? {
-        return chatRoomService.findRooms(loginId)
+    ): BaseResponse<List<ChatRoomInfoDto>> {
+        return BaseResponse(data = chatRoomService.findRooms(loginId))
     }
 
     // 채팅방 나가기

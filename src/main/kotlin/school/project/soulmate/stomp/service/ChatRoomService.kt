@@ -5,9 +5,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.common.exception.InvalidInputException
 import school.project.soulmate.member.repository.MemberRepository
-import school.project.soulmate.stomp.dto.ChatRoomDto
-import school.project.soulmate.stomp.dto.ChatRoomMemberDto
-import school.project.soulmate.stomp.dto.LeaveRoomDto
+import school.project.soulmate.stomp.dto.*
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
@@ -41,11 +39,22 @@ class ChatRoomService(
         return chatRoom
     }
 
-    fun findRooms(loginId: String): List<ChatRoomMemberDto>? {
+    fun findRooms(loginId: String): List<ChatRoomInfoDto> {
         val findMember = memberRepository.findByLoginId(loginId)
         val chatRoomMembers = chatRoomMemberRepository.findAllByMember(findMember)
-        return chatRoomMembers.map { member ->
-            ChatRoomMemberDto(roomId = member.chatRoom.roomId!!)
+
+        return chatRoomMembers.map { chatRoomMember ->
+            val members =
+                chatRoomMember.chatRoom.chatRoomMembers.map { member ->
+                    MemberInfoDto(memberId = member.member.id!!, memberName = member.member.name)
+                }.toList()
+
+            ChatRoomInfoDto(
+                roomId = chatRoomMember.chatRoom.roomId!!,
+                roomName = chatRoomMember.chatRoom.roomName,
+                createDate = chatRoomMember.chatRoom.createDate,
+                members = members,
+            )
         }
     }
 

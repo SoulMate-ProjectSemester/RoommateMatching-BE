@@ -1,14 +1,15 @@
 package school.project.soulmate.stomp.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import jakarta.validation.constraints.NotBlank
+import lombok.Getter
+import lombok.Setter
 
+@Getter
+@Setter
 data class ChatMessageDto(
     var id: Long? = null,
-    @field:NotBlank
     @JsonProperty("userId")
     var sender: Long,
-    @field:NotBlank
     @JsonProperty("messageText")
     val content: String,
 )

@@ -31,3 +31,15 @@ data class LeaveRoomDto(
     @JsonProperty("roomId")
     val roomId: UUID,
 )
+
+data class ChatRoomInfoDto(
+    val roomId: UUID,
+    val roomName: String?,
+    val createDate: LocalDate,
+    val members: List<MemberInfoDto>, // 방에 포함된 멤버들의 정보를 담을 리스트
+)
+
+data class MemberInfoDto(
+    val memberId: Long,
+    val memberName: String, // 멤버의 식별 정보와 이름 등 추가 정보 포함 가능
+)

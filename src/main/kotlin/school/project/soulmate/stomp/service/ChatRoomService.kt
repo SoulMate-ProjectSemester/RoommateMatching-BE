@@ -5,7 +5,10 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.common.exception.InvalidInputException
 import school.project.soulmate.member.repository.MemberRepository
-import school.project.soulmate.stomp.dto.*
+import school.project.soulmate.stomp.dto.ChatRoomDto
+import school.project.soulmate.stomp.dto.ChatRoomInfoDto
+import school.project.soulmate.stomp.dto.LeaveRoomDto
+import school.project.soulmate.stomp.dto.MemberInfoDto
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository

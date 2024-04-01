@@ -1,6 +1,11 @@
 package school.project.soulmate.common.authority
 
-import io.jsonwebtoken.*
+import io.jsonwebtoken.Claims
+import io.jsonwebtoken.ExpiredJwtException
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.MalformedJwtException
+import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.UnsupportedJwtException
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
@@ -14,7 +19,8 @@ import school.project.soulmate.common.dto.CustomUser
 import java.util.Date
 
 const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 30 // 30분
-//const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 2 // 20초
+
+// const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 2 // 20초
 const val REFRESH_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 24 // 24시간
 
 @Component

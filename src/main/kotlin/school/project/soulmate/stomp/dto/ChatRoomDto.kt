@@ -1,12 +1,10 @@
-@file:Suppress("ktlint:standard:no-wildcard-imports")
-
 package school.project.soulmate.stomp.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.NotBlank
 import lombok.Getter
 import java.time.LocalDate
-import java.util.*
+import java.util.UUID
 
 @Getter
 data class ChatRoomDto(

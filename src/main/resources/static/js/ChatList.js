@@ -111,7 +111,6 @@ function ShowChatList(){
         });
         //promise에서 내가 원하는 value 값 받기
         response.then(response => {
-            console.log(response);
             // Access the 'data' property from the resolved value
             if(response.data.data.length>0 && response.data.resultCode=="SUCCESS"){
                 //'no-content' 요소 숨기기
@@ -121,7 +120,8 @@ function ShowChatList(){
                     //룸 아이디와 생성날짜 가져오기
                     var roomId=response.data.data[i].roomId;
                     var createDate=response.data.data[i].createDate;
-
+                    var roomName=response.data.data[i].roomName;
+                    var userName=response.data.data[i].members[0].memberName;
                     var chatRoomDiv = document.createElement('div');
                     chatRoomDiv.className = 'row blog-item px-3 pb-5';
 
@@ -131,13 +131,13 @@ function ShowChatList(){
                       <img class="img-fluid mb-4 mb-md-0" src="/img/blog-1.jpg" alt="Image">
                     </div>
                     <div class="col-md-7">
-                      <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">상대방 이름</h3>
+                      <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${roomName}</h3>
                       <div class="d-flex mb-3">
                         <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
                         <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${roomId}</small>
                         <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
                       </div>
-                      <p>조승빈</p>
+                      <p>${userName}</p>
                       <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
                     </div>
                   `;

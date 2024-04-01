@@ -336,6 +336,15 @@ function getChatRoomInfo(){
                 let roomName=response.data.data.roomName;
                 document.getElementById("room-name").innerHTML=roomName;
                 document.getElementById("people-count").innerHTML=response.data.data.members.length +" people";
+
+                for(let i=0;i<response.data.data.members.length;i++){
+                    var partlist=document.createElement('li');
+                    partlist.className="participant-li";
+                    var partul=document.getElementById("participant-ul");
+                    var memberName=response.data.data.members[i].memberName;
+                    partlist.innerHTML=memberName;
+                    partul.appendChild(partlist);
+                }
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -346,3 +355,22 @@ function getChatRoomInfo(){
         console.log("채팅방 정보 요청/응답 실패")
     }
 }
+
+
+var participantDiv=null;
+//채팅방 헤더의 people을 클릭하면, 참여자 리스트(모달)를 보여주는 함수
+function showParticipantsList(){
+    participantDiv=document.getElementById("participantsList");
+    participantDiv.style.display = 'block';
+}
+
+
+// 참여자 리스트 이외의 영역을 누르면 참여자 리스트가 사라짐
+document.addEventListener('click', function(event) {
+    var isClickInsideParticipantsList = document.getElementById("participantsList").contains(event.target);
+    var isClickOnPeopleCount = document.getElementById("people-count").contains(event.target);
+
+    if (!isClickInsideParticipantsList && !isClickOnPeopleCount) {
+        document.getElementById("participantsList").style.display = "none";
+    }
+});

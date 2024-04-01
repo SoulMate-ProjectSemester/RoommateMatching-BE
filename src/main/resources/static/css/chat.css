@@ -242,3 +242,24 @@ footer button.send {
     height: 80vh;
 }
 /*모달창 css 끝*/
+
+/*채팅방 헤더의 people 클릭시, 참여자들을 나타내는 모달 css*/
+#participantsList {
+    position: absolute;
+    background: #2c2c2e;
+    color: white;
+    list-style: none;
+    padding: 10px;
+    border-radius: 10px;
+    left: 60px; /* 왼쪽 공백 위치 조절 */
+    top: 60px; /* 위쪽 공백 위치조절 */
+}
+
+#participant-ul{
+    text-align: center;
+}
+
+.participant-li{
+    display: block;
+    list-style-type: none;
+}

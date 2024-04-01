@@ -13,24 +13,23 @@
         <div class="back-arrow" onclick="hisBack()">Back</div>
         <div class="chat-profile">
             <div class="room-name" id="room-name"></div>
-            <div class="people-count" id="people-count"></div>
+            <div class="people-count" id="people-count" onclick="showParticipantsList()"></div>
         </div>
     </div>
     <div class="chat-left" id="LeftBtn">Left</div>
 </header>
 
+<div>
+    <div id="participantsList" style="display: none;">
+        <ul id="participant-ul">
+
+        </ul>
+    </div>
+</div>
+
 
 <section class="messages" id="chatRoom">
-    <!-- test message -->
-<!--    <div class="message">-->
-<!--        <div class="content">안녕하세요. 박규원이라고 합니다. 취미가 동일한 룸메이트를 찾고있습니다!</div>-->
-<!--        <div class="timestamp">Mar 19, 2024, 8:15 PM</div>-->
-<!--    </div>-->
-<!--    <div class="another_message">-->
-<!--        <div class="content">반갑습니다. 조승빈이라고 합니다. 넷플릭스 보는 것을 좋아합니다!</div>-->
-<!--        <div class="timestamp">Mar 19, 2024, 8:16 PM</div>-->
-<!--    </div>-->
-
+<!--채팅 메세지들이 동적으로 들어가는 공간-->
 </section>
 
 <footer>

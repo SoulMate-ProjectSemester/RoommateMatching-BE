@@ -80,7 +80,6 @@ class MemberController(
         return BaseResponse(message = resultMsg)
     }
 
-    // 정보수정
     @GetMapping("/info_edit")
     fun info(): ModelAndView {
         val modelAndView = ModelAndView()

@@ -24,7 +24,9 @@ import java.util.UUID
 class ChatRoomController(
     val chatRoomService: ChatRoomService,
 ) {
-    // 채팅방 생성
+    /**
+     * 채팅방 생성
+     */
     @PostMapping("/new")
     fun createRoom(
         @RequestBody chatRoomDto: ChatRoomDto,
@@ -33,18 +35,31 @@ class ChatRoomController(
         return BaseResponse(data = newChatRoom)
     }
 
-    // 채팅방 화면
+    /**
+     * 채팅 화면
+     */
     @GetMapping("/{roomId}")
     fun chat(
         @PathVariable roomId: UUID,
     ): ModelAndView {
         val modelAndView = ModelAndView()
         modelAndView.viewName = "chat"
-        modelAndView.addObject("ChatRoom", chatRoomService.findRoom(roomId))
         return modelAndView
     }
 
-    // 채팅방 조회
+    /**
+     * 단일 채팅방 조회
+     */
+    @GetMapping("/search/{roomId}")
+    fun chatRoom(
+        @PathVariable roomId: UUID,
+    ): BaseResponse<ChatRoomInfoDto>  {
+        return BaseResponse(data = chatRoomService.findRoom(roomId))
+    }
+
+    /**
+     * 모든 채팅방 조회
+     */
     @GetMapping("/rooms")
     fun rooms(
         @RequestParam("loginId") loginId: String,
@@ -52,7 +67,9 @@ class ChatRoomController(
         return BaseResponse(data = chatRoomService.findRooms(loginId))
     }
 
-    // 채팅방 나가기
+    /**
+     * 채팅방 나가기
+     */
     @DeleteMapping("/quit")
     fun quitRoom(
         @RequestBody leaveRoomDto: LeaveRoomDto,

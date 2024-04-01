@@ -13,7 +13,7 @@ import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
 import school.project.soulmate.stomp.repository.ChatRoomRepository
-import java.util.*
+import java.util.UUID
 
 @Service
 class ChatRoomService(

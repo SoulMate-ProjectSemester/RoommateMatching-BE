@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.stomp.dto.ChatMessageDto
 import school.project.soulmate.stomp.service.ChatMessageService
-import java.util.*
+import java.util.UUID
 
 @RequiredArgsConstructor
 @RestController
@@ -27,6 +27,10 @@ class ChatController(
         messagingTemplate.convertAndSend("/sub/$roomId", message)
         return message
     }
+
+    /**
+     * 메시지 가져오기
+     */
 
     @GetMapping("/api/chat/messages")
     fun getMessages(

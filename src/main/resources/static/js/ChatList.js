@@ -113,14 +113,14 @@ function ShowChatList(){
         response.then(response => {
             console.log(response);
             // Access the 'data' property from the resolved value
-            if(response.data.length>0){
+            if(response.data.data.length>0 && response.data.resultCode=="SUCCESS"){
                 //'no-content' 요소 숨기기
                 var noContentDiv = document.querySelector('.no-content');
                 noContentDiv.style.display = 'none';
-                for(let i=0;i<response.data.length;i++){
+                for(let i=0;i<response.data.data.length;i++){
                     //룸 아이디와 생성날짜 가져오기
-                    var roomId=response.data[i].roomId;
-                    var createDate=response.data[i].createDate;
+                    var roomId=response.data.data[i].roomId;
+                    var createDate=response.data.data[i].createDate;
 
                     var chatRoomDiv = document.createElement('div');
                     chatRoomDiv.className = 'row blog-item px-3 pb-5';
@@ -160,6 +160,4 @@ function ShowChatList(){
         console.error("로그인 중 에러:", error);
     }
 }
-
-
 

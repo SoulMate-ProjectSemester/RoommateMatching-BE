@@ -26,7 +26,7 @@ try {
         const responseData = response.data.resultCode;
 
         if(responseData=='SUCCESS'){
-            // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
+            // 로그인 아이디, pk를 어디에서든 사용하기 위해 전역변수로 선언
             myId=response.data.data.id;
             myloginId=response.data.data.loginId;
         }
@@ -240,5 +240,83 @@ function ChatRoomLeft(){
         });
     }catch (error){
         console.error("채팅방 삭제 요청 실패 : ", error);
+    }
+}
+
+getOldMessages();
+
+function getOldMessages(){
+    try{
+        const response=axios.get("http://localhost:8080/api/chat/messages",{
+            params:{
+                roomId:roomId
+            }
+        });
+        console.log(response);
+        response.then(response => {
+            // Access the 'data' property from the resolved value
+            const responseData = response.data.resultCode;
+            //채팅내역 불러오기가 성공하였을 경우
+            if(responseData=='SUCCESS' && response.data.data.length>0){
+                for(let i=0;i<response.data.data.length;i++){
+                    if(response.data.data[i].userId==myId) {
+                        var chatRoom = document.getElementById('chatRoom');
+
+                        // 새로운 메시지 요소 생성
+                        var messageElement = document.createElement('div');
+                        messageElement.classList.add('my-message');
+
+                        // 메시지 내용
+                        var content = document.createElement('div');
+                        content.classList.add('content');
+                        content.textContent = response.data.data[i].messageText;
+
+                        // 시간 표시
+                        // var timestamp = document.createElement('div');
+                        // timestamp.classList.add('timestamp');
+                        // var now = new Date();
+                        // timestamp.textContent = formatDate();
+
+                        // 요소 구성
+                        messageElement.appendChild(content);
+                        // messageElement.appendChild(timestamp);
+
+                        // 채팅방에 메시지 추가
+                        chatRoom.appendChild(messageElement);
+                    }else{
+                        var chatRoom = document.getElementById('chatRoom');
+
+                        // 새로운 메시지 요소 생성
+                        var messageElement = document.createElement('div');
+                        messageElement.classList.add('another_message');
+
+                        // 메시지 내용
+                        var content = document.createElement('div');
+                        content.classList.add('content');
+                        content.textContent = response.data.data[i].messageText;
+
+                        // 시간 표시
+                        // var timestamp = document.createElement('div');
+                        // timestamp.classList.add('timestamp');
+                        // var now = new Date();
+                        // timestamp.textContent = formatDate();
+
+                        // 요소 구성
+                        messageElement.appendChild(content);
+                        // messageElement.appendChild(timestamp);
+
+                        // 채팅방에 메시지 추가
+                        chatRoom.appendChild(messageElement);
+                    }
+                }
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            alert('채팅방 내역 불러오기 오류');
+        });
+
+    }catch (error){
+        console.log("이전 채팅내역 불러오기 응답 받기 실패")
     }
 }

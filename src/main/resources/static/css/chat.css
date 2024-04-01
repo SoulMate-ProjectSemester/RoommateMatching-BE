@@ -42,11 +42,11 @@ header {
     align-items: center;
 }
 
-.profile .friend-name {
+.profile .room-name {
     font-weight: bold;
 }
 
-.profile .tweets-count {
+.profile .people-count {
     font-size: 0.8em;
     color: #757575;
     margin-left: auto;

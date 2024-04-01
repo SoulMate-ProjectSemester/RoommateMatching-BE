@@ -244,7 +244,7 @@ function ChatRoomLeft(){
 }
 
 getOldMessages();
-
+//이전 채팅방의 채팅 내역을 불러오는 함수
 function getOldMessages(){
     try{
         const response=axios.get("http://localhost:8080/api/chat/messages",{
@@ -258,7 +258,9 @@ function getOldMessages(){
             const responseData = response.data.resultCode;
             //채팅내역 불러오기가 성공하였을 경우
             if(responseData=='SUCCESS' && response.data.data.length>0){
+                //채팅내역을 제일 오래된 순서부터 순차적으로 가져옴
                 for(let i=0;i<response.data.data.length;i++){
+                    //유저아이디가 같은건 파란색(나), 유저아이디가 다른건 회색(상대방)
                     if(response.data.data[i].userId==myId) {
                         var chatRoom = document.getElementById('chatRoom');
 
@@ -318,5 +320,29 @@ function getOldMessages(){
 
     }catch (error){
         console.log("이전 채팅내역 불러오기 응답 받기 실패")
+    }
+}
+
+getChatRoomInfo();
+
+//채팅방의 정보를 가져오는 함수 (채팅방에 속한 사람들, 채팅방 제목 등등..)
+function getChatRoomInfo(){
+    try{
+        const response=axios.get(`http://localhost:8080/api/room/search/${roomId}`);
+        response.then(response => {
+            const responseData = response.data.resultCode;
+            //채팅방 정보 불러오기가 성공하였을 경우
+            if(response.data.resultCode=="SUCCESS"){
+                let roomName=response.data.data.roomName;
+                document.getElementById("room-name").innerHTML=roomName;
+                document.getElementById("people-count").innerHTML=response.data.data.members.length +" people";
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('Error occurred:', error);
+            alert('채팅방 정보 응답 정보 불러오기 실패');
+        });
+    }catch (error){
+        console.log("채팅방 정보 요청/응답 실패")
     }
 }

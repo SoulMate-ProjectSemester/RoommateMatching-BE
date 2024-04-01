@@ -13,6 +13,7 @@ import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
 import school.project.soulmate.stomp.repository.ChatRoomRepository
+import java.util.*
 
 @Service
 class ChatRoomService(
@@ -40,6 +41,21 @@ class ChatRoomService(
         chatRoomMemberRepository.saveAll(listOf(loginChatRoomMember, userChatRoomMember))
 
         return chatRoom
+    }
+
+    fun findRoom(roomId: UUID): ChatRoomInfoDto {
+        val findRoom = chatRoomRepository.findByRoomId(roomId)
+        val chatRoomMembers = chatRoomMemberRepository.findAllByChatRoom(findRoom)
+        val members =
+            chatRoomMembers.map { member ->
+                MemberInfoDto(memberId = member.member.id!!, memberName = member.member.name)
+            }.toList()
+        return ChatRoomInfoDto(
+            roomId = roomId,
+            roomName = findRoom.roomName,
+            createDate = findRoom.createDate,
+            members = members,
+        )
     }
 
     fun findRooms(loginId: String): List<ChatRoomInfoDto> {

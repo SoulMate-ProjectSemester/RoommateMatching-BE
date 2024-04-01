@@ -40,6 +40,7 @@ class ChatRoomController(
     ): ModelAndView {
         val modelAndView = ModelAndView()
         modelAndView.viewName = "chat"
+        modelAndView.addObject("ChatRoom", chatRoomService.findRoom(roomId))
         return modelAndView
     }
 

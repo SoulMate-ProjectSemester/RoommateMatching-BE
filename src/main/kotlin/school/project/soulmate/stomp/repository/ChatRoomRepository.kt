@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import school.project.soulmate.stomp.entity.ChatRoom
 import java.util.UUID
 
-interface ChatRoomRepository : JpaRepository<ChatRoom, UUID>
+interface ChatRoomRepository : JpaRepository<ChatRoom, UUID> {
+    fun findByRoomId(roomId: UUID): ChatRoom
+}

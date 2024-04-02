@@ -7,11 +7,13 @@ import school.project.soulmate.common.exception.InvalidInputException
 import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.stomp.dto.ChatMessageDto
+import school.project.soulmate.stomp.dto.ChatMessageDtoResponse
 import school.project.soulmate.stomp.entity.ChatMessage
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.repository.ChatMessageRepository
 import school.project.soulmate.stomp.repository.ChatRoomRepository
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 @Service
@@ -32,14 +34,17 @@ class ChatMessageService(
         return "메시지가 저장되었습니다."
     }
 
-    fun loadMessages(chatRoom: UUID): List<ChatMessageDto> {
+    fun loadMessages(chatRoom: UUID): List<ChatMessageDtoResponse> {
         val findRoom: ChatRoom = chatRoomRepository.findByIdOrNull(chatRoom) ?: throw InvalidInputException("채팅방이 존재하지 않습니다.")
         val messages: List<ChatMessage> = chatMessageRepository.findAllByChatRoom(findRoom)
+        // 원하는 날짜와 시간 형식을 정의
+        val formatter = DateTimeFormatter.ofPattern("MMM d, yyyy, h:mm a")
         return messages.map { messages ->
-            ChatMessageDto(
+            ChatMessageDtoResponse(
                 id = messages.id,
                 sender = messages.sender.id!!, // Member 엔티티에서 ID를 가져옵니다.
                 content = messages.content,
+                timestamp = messages.timestamp.format(formatter),
             )
         }
     }

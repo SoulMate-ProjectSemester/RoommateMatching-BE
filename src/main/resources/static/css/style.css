@@ -9963,3 +9963,19 @@ a.text-dark:hover, a.text-dark:focus {
     align-items: center;
     height: 80vh;
 }
+
+/*프로필 수정페이지 내가 선택한 키워드 디자인*/
+.topics-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.topic {
+    padding: 5px 10px;
+    user-select: none; /* Prevent text selection */
+    color: #f2f2f2;
+    font-size: 0.9rem;
+    background: #ff375f;
+}
+

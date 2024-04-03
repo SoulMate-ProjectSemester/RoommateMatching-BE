@@ -274,14 +274,13 @@ function getOldMessages(){
                         content.textContent = response.data.data[i].messageText;
 
                         // 시간 표시
-                        // var timestamp = document.createElement('div');
-                        // timestamp.classList.add('timestamp');
-                        // var now = new Date();
-                        // timestamp.textContent = formatDate();
+                        var timestamp = document.createElement('div');
+                        timestamp.classList.add('timestamp');
+                        timestamp.textContent = response.data.data[i].timestamp;
 
                         // 요소 구성
                         messageElement.appendChild(content);
-                        // messageElement.appendChild(timestamp);
+                        messageElement.appendChild(timestamp);
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
@@ -298,14 +297,13 @@ function getOldMessages(){
                         content.textContent = response.data.data[i].messageText;
 
                         // 시간 표시
-                        // var timestamp = document.createElement('div');
-                        // timestamp.classList.add('timestamp');
-                        // var now = new Date();
-                        // timestamp.textContent = formatDate();
+                        var timestamp = document.createElement('div');
+                        timestamp.classList.add('timestamp');
+                        timestamp.textContent = response.data.data[i].timestamp;
 
                         // 요소 구성
                         messageElement.appendChild(content);
-                        // messageElement.appendChild(timestamp);
+                        messageElement.appendChild(timestamp);
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);

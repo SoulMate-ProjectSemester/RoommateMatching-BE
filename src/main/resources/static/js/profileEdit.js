@@ -91,3 +91,29 @@ function logout(){
     window.location.href="http://localhost:8080/api/member/login";
     window.localStorage.setItem('token', "");
 }
+
+//내가 선택한 키워드 동적으로 추가
+try {
+    //키워드들이 동적으로 들어갈 div container
+    var container = document.querySelector('.topics-container');
+    const response=instance.get("/api/keyword/keywords");
+    response.then(response => {
+        //응답을 성공적으로 받았다면,
+        const responseData = response.data.resultCode;
+        if(responseData=='SUCCESS'){
+            for(let i=0;i<response.data.data.keywordSet.length;i++){
+                let keywordValue=response.data.data.keywordSet[i];
+                var topicDiv = document.createElement('div');
+                topicDiv.className = 'topic';
+                topicDiv.innerHTML=keywordValue;
+                container.appendChild(topicDiv);
+            }
+        }
+    }).catch(error => {
+        // Handle errors if the Promise is rejected
+        console.error('키워드 불러오기 응답 실패:', error);
+    });
+
+}catch (error){
+    console.error("키워드 불러오기 요청 실패:", error);
+}

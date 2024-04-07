@@ -30,11 +30,11 @@ class KeywordService(
 
     fun findKeyword(memberId: Long): KeywordDtoResponse {
         val findMember: Member = memberRepository.findByIdOrNull(memberId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
-        val keyword: Keyword = keywordRepository.findByMember(findMember) ?: throw InvalidInputException("유저의 키워드가 존재하지 않습니다.")
+        val keyword: Keyword? = keywordRepository.findByMember(findMember)
 
         return KeywordDtoResponse(
             member = findMember.id!!,
-            keywordSet = keyword.keywordSet,
+            keywordSet = keyword?.keywordSet,
         )
     }
 

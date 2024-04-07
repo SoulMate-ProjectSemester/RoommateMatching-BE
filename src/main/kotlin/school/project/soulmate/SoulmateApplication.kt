@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class SoulmateApplication
 
 fun main(args: Array<String>) {
-	runApplication<SoulmateApplication>(*args)
+    runApplication<SoulmateApplication>(*args)
 }

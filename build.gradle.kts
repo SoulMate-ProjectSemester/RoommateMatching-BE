@@ -32,7 +32,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("com.h2database:h2")
+    implementation("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -46,9 +46,6 @@ dependencies {
 
     // STOMP
     implementation("org.springframework.boot:spring-boot-starter-websocket")
-
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation("com.google.code.gson:gson:2.8.6")
 }
 
 tasks.withType<KotlinCompile> {

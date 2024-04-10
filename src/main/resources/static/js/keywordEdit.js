@@ -24,12 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
             //응답을 성공적으로 받았다면,
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
-                for(let i=0;i<response.data.data.keywordSet.length;i++){
-                    let keywordValue=response.data.data.keywordSet[i];
-                    keywordValueArr.push(keywordValue);
-                    console.log(keywordValueArr);
-                }
+                keywordValueArr=response.data.data.keywordSet;
             }
+
+            // Iterate over each keyword in the array
+            keywordValueArr.forEach((keyword) => {
+                // Find the topic element that matches the keyword and add the 'active' class
+                topics.forEach((topic) => {
+                    if (topic.textContent === keyword) {
+                        topic.classList.add('active');
+                        selectedCount++; // Increment the selectedCount for each found and activated topic
+                    }
+                });
+            });
+            submitButton.textContent = `수정하기 (${selectedCount}/10)`;
         }).catch(error => {
             // Handle errors if the Promise is rejected
             console.error('키워드 불러오기 응답 실패:', error);
@@ -38,30 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }catch (error){
         console.error("키워드 불러오기 요청 실패:", error);
     }
-
-    //키워드 선택 처리 해주는 로직들 (현재 안됨)
-    topics.forEach(topic => {
-        // 배열에 있는 각 키워드에 대해 'active' 클래스를 추가
-        if (keywordValueArr.includes(topic.textContent)) {
-            topic.classList.add('active');
-            selectedCount++; // 이미 선택된 키워드의 수를 카운트에 반영
-        }
-
-        // 주제 클릭 이벤트 리스너
-        // topic.addEventListener('click', function() {
-        //     this.classList.toggle('active');
-        //
-        //     if(this.classList.contains('active')) {
-        //         selectedCount++;
-        //     } else {
-        //         selectedCount--;
-        //     }
-        //
-        //     submitButton.textContent = `저장하기 (${selectedCount}/10)`;
-        // });
-
-    })
-
 
     //키워드마다 클릭처리를 해줌
     topics.forEach(topic => {
@@ -79,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // 버튼의 텍스트 업데이트
-            submitButton.textContent = `저장하기 (${selectedCount}/10)`;
+            submitButton.textContent = `수정하기 (${selectedCount}/10)`;
         });
     });
 
@@ -88,32 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
             // 선택된 키워드의 수가 최소 요구 사항을 충족하지 않는 경우 경고
             alert(`최소 3개의 키워드를 선택해야 합니다.\n현재 선택된 키워드 수: ${selectedCount}`);
         } else {
-            // 선택된 주제를 가져와서 배열로 변환한 뒤, 각 주제의 텍스트 내용을 추출합니다.
+            // 선택된 키워드를 가져와서 배열로 변환한 뒤, 각 주제의 텍스트 내용을 추출합니다.
             const selectedTopics = document.querySelectorAll('.topic.active');
             const selectedTopicNames = Array.from(selectedTopics).map(topic => topic.textContent);
 
-            // 선택된 키워드를 서버로 전송하는 코드를 여기에 추가할 수 있습니다.
-            // 예: 서버에 데이터 전송하는 함수 sendSelectedTopics(selectedTopicNames);
+            // 선택된 키워드를 서버로 전송하여 키워드를 수정하는 로직
+            const response_put=instance.put("/api/keyword/keywords",{
+                keywordSet: selectedTopicNames
+            });
+            response_put.then(response => {
+                //응답을 성공적으로 받았다면,
+                const responseData = response.data.resultCode;
+                if(responseData=='SUCCESS'){
+                    console.log(response.data.message);
+                    window.location.href="http://localhost:8080/api/member/info_edit";
+                }
+            }).catch(error => {
+                // Handle errors if the Promise is rejected
+                console.error('키워드 수정 실패:', error);
+            });
 
-            try {
-                const response=instance.post("/api/keyword/new",{
-                    keywordSet: selectedTopicNames
-                });
-                response.then(response => {
-                    // Access the 'data' property from the resolved value
-                    const responseData = response.data.resultCode;
-
-                    if(responseData=='SUCCESS'){
-                        // 로그인 아이디, pk를 어디에서든 사용하기 위해 전역변수로 선언
-                        console.log('keyword 저장 성공')
-                    }
-                }).catch(error => {
-                    // Handle errors if the Promise is rejected
-                    console.error('키워드 저장 응답 받기 실패:', error);
-                });
-            }catch (error){
-                console.error("키워드 저장 요청 실패:", error);
-            }
         }
     });
 });

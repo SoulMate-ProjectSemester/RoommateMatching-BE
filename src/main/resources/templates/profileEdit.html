@@ -143,8 +143,8 @@
                             <p class="help-block text-danger"></p>
                         </div>
                         <div style="margin-top: 50px;">
-                            <button class="btn btn-primary" type="submit" id="sendMessageButton">수정하기</button>
-                            <button class="btn btn-primary" type="submit" id="sendMessageButton">취소하기</button>
+                            <button class="btn btn-primary" type="submit" id="myBtn">키워드 수정하기</button>
+<!--                            <button class="btn btn-primary" type="submit" id="sendMessageButton">취소하기</button>-->
                         </div>
                     </form>
                 </div>
@@ -161,6 +161,22 @@
         </div>
         <!-- Footer End -->
     </div>
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content" id="modalContentBox">
+            <div>
+                <span class="close" id="closeXbtn">&times;</span>
+            </div>
+            <h4>키워드 수정</h4>
+            <span style="color:black;">키워드를 수정하시겠습니까? </span>
+            <div class="submitBtn">
+                <input type="submit" id="closeBtn" value="아니오"></input>
+                <input type="submit" id="saveBtn" value="네" onclick="toKeywordPage()"></input>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Back to Top -->

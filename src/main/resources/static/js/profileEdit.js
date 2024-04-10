@@ -42,6 +42,7 @@
 })(jQuery);
 
 const token = window.localStorage.getItem("token");
+let myId;
 
 const instance = axios.create({
     baseURL: "http://localhost:8080",
@@ -66,6 +67,7 @@ try {
             var birthDate=response.data.data.birthDate;
             var loginId=response.data.data.loginId;
             var studentNumber=response.data.data.studentNumber;
+            myId=response.data.data.id;
 
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
@@ -87,9 +89,38 @@ try {
     console.error("로그인 중 에러:", error);
 }
 
+
+//logout 함수
 function logout(){
-    window.location.href="http://localhost:8080/api/member/login";
-    window.localStorage.setItem('token', "");
+    if(confirm("정말 로그아웃 하시겠습니까?")==true){
+        try {
+            const response=instance.delete("/api/member/logout",{
+                params:{
+                    loginId:myId
+                }
+            });
+            console.log(response);
+            response.then(response => {
+                // Access the 'data' property from the resolved value
+                const responseData = response.data.resultCode;
+                if(responseData=='SUCCESS'){
+                    var return_message = response.data.data.message;
+                    console.log(return_message);
+                }
+            }).catch(error => {
+                // Handle errors if the Promise is rejected
+                console.error('Error occurred:', error);
+                console.log('로그아웃 실패(response 오류)');
+            });
+
+        }catch (error){
+            console.error("로그아웃 실패 : ", error);
+        }
+        window.location.href='http://localhost:8080/api/member/login';
+        window.localStorage.setItem('token', "");
+    }
+    else
+        return false;
 }
 
 //내가 선택한 키워드 동적으로 추가

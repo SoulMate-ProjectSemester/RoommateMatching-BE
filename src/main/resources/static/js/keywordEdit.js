@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const topics = document.querySelectorAll('.topic');
     const submitButton = document.querySelector('.submit-btn');
     let selectedCount = 0; // 선택된 주제의 수를 추적하는 변수
+    let keywordValueArr=[];
 
     // 요청을 보내기 위한 초기 instance 설정
     const token = window.localStorage.getItem("token");
@@ -16,16 +17,61 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+    //내가 기존에 선택했던 키워드 선택 표시 해둠.
+    try {
+        const response=instance.get("/api/keyword/keywords");
+        response.then(response => {
+            //응답을 성공적으로 받았다면,
+            const responseData = response.data.resultCode;
+            if(responseData=='SUCCESS'){
+                for(let i=0;i<response.data.data.keywordSet.length;i++){
+                    let keywordValue=response.data.data.keywordSet[i];
+                    keywordValueArr.push(keywordValue);
+                    console.log(keywordValueArr);
+                }
+            }
+        }).catch(error => {
+            // Handle errors if the Promise is rejected
+            console.error('키워드 불러오기 응답 실패:', error);
+        });
+
+    }catch (error){
+        console.error("키워드 불러오기 요청 실패:", error);
+    }
+
+    //키워드 선택 처리 해주는 로직들 (현재 안됨)
+    topics.forEach(topic => {
+        // 배열에 있는 각 키워드에 대해 'active' 클래스를 추가
+        if (keywordValueArr.includes(topic.textContent)) {
+            topic.classList.add('active');
+            selectedCount++; // 이미 선택된 키워드의 수를 카운트에 반영
+        }
+
+        // 주제 클릭 이벤트 리스너
+        // topic.addEventListener('click', function() {
+        //     this.classList.toggle('active');
+        //
+        //     if(this.classList.contains('active')) {
+        //         selectedCount++;
+        //     } else {
+        //         selectedCount--;
+        //     }
+        //
+        //     submitButton.textContent = `저장하기 (${selectedCount}/10)`;
+        // });
+
+    })
+
 
     //키워드마다 클릭처리를 해줌
     topics.forEach(topic => {
         topic.addEventListener('click', function() {
             // 이미 활성화된 주제를 클릭한 경우 선택을 취소
-            if (this.classList.contains('active')) {
-                this.classList.remove('active');
+            if (topic.classList.contains('active')) {
+                topic.classList.remove('active');
                 selectedCount--;
             } else if (selectedCount < 10) { // 활성화되지 않은 주제를 클릭하고 선택된 주제의 수가 10개 미만인 경우
-                this.classList.add('active');
+                topic.classList.add('active');
                 selectedCount++;
             } else {
                 // 선택된 주제가 이미 10개인 경우 경고 메시지를 표시
@@ -37,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    //키워드 저장하기 버튼을 눌렀을때, 키워드가 저장되고 페이지가 넘어가는 로직
     submitButton.addEventListener('click', () => {
         if (selectedCount < 3) {
             // 선택된 키워드의 수가 최소 요구 사항을 충족하지 않는 경우 경고
@@ -57,9 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 response.then(response => {
                     // Access the 'data' property from the resolved value
                     const responseData = response.data.resultCode;
+
                     if(responseData=='SUCCESS'){
-                        //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        window.location.href="http://localhost:8080";
+                        // 로그인 아이디, pk를 어디에서든 사용하기 위해 전역변수로 선언
+                        console.log('keyword 저장 성공')
                     }
                 }).catch(error => {
                     // Handle errors if the Promise is rejected

@@ -109,10 +109,20 @@ class MemberController(
         return BaseResponse(message = resultMsg)
     }
 
+    //keyword 입력페이지를 위한 임시 controller
     @GetMapping("/keyword")
     fun keywordSelect(): ModelAndView {
         val modelAndView = ModelAndView()
         modelAndView.viewName = "keywordSelect"
         return modelAndView
     }
+
+    //keyword 수정페이지를 위한 임시 controller
+    @GetMapping("/keyword_edit")
+    fun keywordEdit():ModelAndView{
+        val modelAndView=ModelAndView()
+        modelAndView.viewName="keywordEdit"
+        return modelAndView
+    }
+
 }

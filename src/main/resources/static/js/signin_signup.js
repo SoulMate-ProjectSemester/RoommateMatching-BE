@@ -39,10 +39,44 @@ function login() {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             console.log(response);
-            if(responseData=='SUCCESS'){
+            //로그인 성공시 처리되어야 할 로직
+            if(responseData=="SUCCESS"){
                 window.localStorage.setItem('token',response.data.data.accessToken);
                 window.localStorage.setItem('refreshtoken',response.data.data.refreshToken);
-                window.location.href='http://localhost:8080';
+                const token=response.data.data.accessToken;
+
+                //set axios instance again with bearer token for 키워드 불러와서 최초가입자 여부 파악
+                const instance = axios.create({
+                    baseURL: "http://localhost:8080",
+                    timeout: 5000,
+                    headers: {
+                        "Cache-Control": "no-cache",
+                        "Access-Control-Allow-Origin": "*",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                try{
+                    const response=instance.get("/api/keyword/keywords");
+                    response.then(response=>{
+                        console.log(response.data.data.keywordSet);
+                        const keywordSetLength=response.data.data.keywordSet;
+                        //로그인을 성공했고, 키워드 입력을 미리 한사람 (기존 가입자), null이 아닌경우
+                        if(keywordSetLength===null){
+                            window.location.href="http://localhost:8080/api/member/keyword";
+                        }
+                        //로그인을 성공했지만, 키워드 입력을 하지 않은 최초로그인, null인 경우
+                        else{
+                            //키워드 입력페이지로 이동
+                            window.location.href='http://localhost:8080';
+                        }
+                    }).catch(error=>{
+                        console.log('error occurred:',error);
+                        console.log('Keyword 불러오기 응답 실패');
+                    })
+                }catch (error){
+                    console.log("keyword 불러오기 에러");
+                }
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

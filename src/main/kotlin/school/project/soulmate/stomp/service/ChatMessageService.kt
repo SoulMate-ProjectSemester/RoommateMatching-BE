@@ -36,15 +36,15 @@ class ChatMessageService(
 
     fun loadMessages(chatRoom: UUID): List<ChatMessageDtoResponse> {
         val findRoom: ChatRoom = chatRoomRepository.findByIdOrNull(chatRoom) ?: throw InvalidInputException("채팅방이 존재하지 않습니다.")
-        val messages: List<ChatMessage> = chatMessageRepository.findAllByChatRoom(findRoom)
+        val roomMessages: List<ChatMessage> = chatMessageRepository.findAllByChatRoom(findRoom)
         // 원하는 날짜와 시간 형식을 정의
         val formatter = DateTimeFormatter.ofPattern("MMM d, yyyy, h:mm a")
-        return messages.map { messages ->
+        return roomMessages.map { message ->
             ChatMessageDtoResponse(
-                id = messages.id,
-                sender = messages.sender.id!!, // Member 엔티티에서 ID를 가져옵니다.
-                content = messages.content,
-                timestamp = messages.timestamp.format(formatter),
+                id = message.id,
+                sender = message.sender.id!!, // Member 엔티티에서 ID를 가져옵니다.
+                content = message.content,
+                timestamp = message.timestamp.format(formatter),
             )
         }
     }

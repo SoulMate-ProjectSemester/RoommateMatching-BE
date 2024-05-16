@@ -189,7 +189,7 @@ function ShowChatList(){
 function MyAnalyze(){
     const instance = axios.create({
         baseURL: "http://localhost:8181",
-        timeout: 5000,
+        timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",
             "Content-Type": "application/json",

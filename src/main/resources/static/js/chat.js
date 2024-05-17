@@ -372,3 +372,26 @@ document.addEventListener('click', function(event) {
         document.getElementById("participantsList").style.display = "none";
     }
 });
+
+function ChatAnalyze(){
+    const instance = axios.create({
+        baseURL: "http://localhost:8181",
+        timeout: 500000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+
+    const response = instance.post("/room",{
+        roomId: roomId
+    });
+    response.then(response => {
+        console.log(response);
+        // console.log(response.data.response);
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}

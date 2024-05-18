@@ -42,7 +42,7 @@
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <a class="btn btn-lg btn-block btn-primary ai-analyze" style="margin-top: 10px;">AI로 내 성향 분석하기</a>
+            <a class="btn btn-lg btn-block btn-primary ai-analyze" style="margin-top: 10px;" onclick="MyAnalyze()">AI로 내 성향 분석하기</a>
             <a class="btn btn-lg btn-block btn-primary mt-auto" onclick="logout()">log out</a>
         </div>
         <div class="sidebar-icon d-flex flex-column h-100 justify-content-center text-right">
@@ -84,9 +84,10 @@
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <h2 class="mb-3 text-white font-weight-bold">AI 내 성향 분석 결과</h2>
                             <div class="d-flex text-white">
-                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
+                                <p id="ai-analyze-text1">여기에 내 성향 분석 결과가 나타납니다</p>
+                                <br>
+                                <p id="ai-analyze-text2">옆의 AI 내 성향 분석 결과 버튼을 눌러주세요!🌟</p>
+                                <span id="ai-analyze"></span>
                             </div>
                             <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
                         </div>
@@ -190,5 +191,18 @@
 
 <!-- Template Javascript -->
 <script type="text/javascript" src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
+
+<body class="prev_loading">
+<div id="loading" class="loading">
+    <div id="spinner" style="top:446.8px; left:930px">
+        <p>AI로 내 성향을 분석중입니다!</p>
+        <p>조금만 기다려 주세요😆</p>
+        <!-- 로딩 점 보일 span -->
+        <span></span><span></span><span></span>
+    </div>
+</div>
+</body>
+
 </html>

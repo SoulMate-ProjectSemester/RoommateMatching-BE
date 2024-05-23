@@ -124,5 +124,4 @@ class MemberController(
         modelAndView.viewName="keywordEdit"
         return modelAndView
     }
-
 }

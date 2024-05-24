@@ -1,6 +1,8 @@
 package school.project.soulmate.member.service
 
 import jakarta.transaction.Transactional
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -14,10 +16,12 @@ import school.project.soulmate.common.status.ROLE
 import school.project.soulmate.member.dto.LoginDto
 import school.project.soulmate.member.dto.MemberDtoRequest
 import school.project.soulmate.member.dto.MemberDtoResponse
+import school.project.soulmate.member.dto.MemberListDto
 import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.entity.MemberRole
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.member.repository.MemberRoleRepository
+import java.util.*
 
 @Transactional
 @Service
@@ -71,8 +75,8 @@ class MemberService(
     /**
      * 내정보 조회
      */
-    fun searchMyInfo(id: Long): MemberDtoResponse {
-        val member: Member = memberRepository.findByIdOrNull(id) ?: throw InvalidInputException("id", "회원번호($id)가 존재하지 않습니다.")
+    fun searchMyInfo(userId: Long): MemberDtoResponse {
+        val member: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("id", "회원번호($userId)가 존재하지 않습니다.")
         return member.toDto()
     }
 
@@ -94,4 +98,25 @@ class MemberService(
         memberRefreshTokenRepository.deleteById(loginId)
         return "로그아웃 되었습니다."
     }
+
+    /**
+     * 친구추천
+     */
+    @Transactional
+    fun findFriendsList(userId: Long): List<MemberListDto> {
+        val pageable: Pageable = PageRequest.of(0, 10)  // 첫 번째 페이지에서 10개의 항목을 요청
+        val findMember: Member = memberRepository.findById(userId).orElseThrow {
+            IllegalArgumentException("Member not found")
+        }
+        val members: List<Member> = memberRepository.findRandomMemberSameGender(findMember.gender, findMember.id!!, pageable)
+        return members.map { member ->
+            MemberListDto(
+                id = member.id!!,
+                name = member.name,
+                studentNumber = member.studentNumber,
+                major = member.major
+            )
+        }
+    }
+
 }

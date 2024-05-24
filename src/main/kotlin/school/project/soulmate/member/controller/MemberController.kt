@@ -17,6 +17,8 @@ import school.project.soulmate.common.dto.CustomUser
 import school.project.soulmate.member.dto.LoginDto
 import school.project.soulmate.member.dto.MemberDtoRequest
 import school.project.soulmate.member.dto.MemberDtoResponse
+import school.project.soulmate.member.dto.MemberListDto
+import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.service.MemberService
 
 @RestController
@@ -109,6 +111,10 @@ class MemberController(
         return BaseResponse(message = resultMsg)
     }
 
+    /**
+     * 키워드
+     */
+
     //keyword 입력페이지를 위한 임시 controller
     @GetMapping("/keyword")
     fun keywordSelect(): ModelAndView {
@@ -125,4 +131,14 @@ class MemberController(
         return modelAndView
     }
 
+    /**
+     * 친구추천
+     */
+    @GetMapping("/user_list")
+    fun userList(): BaseResponse<List<MemberListDto>> {
+        val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
+
+        val resultMsg: List<MemberListDto> = memberService.findFriendsList(userId)
+        return BaseResponse(data = resultMsg)
+    }
 }

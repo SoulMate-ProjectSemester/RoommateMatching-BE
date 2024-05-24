@@ -153,7 +153,7 @@ footer button.send {
 
 
 /* The Modal (background) */
-#myModal {
+#myModal, #myModal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     /*div.sidebar 가 z-index: 9로 설정되어 있어서 모달창 z-index는 10으로 설정*/
@@ -170,7 +170,7 @@ footer button.send {
 
 /* Modal Content/Box */
 /*모달창 css*/
-#modalContentBox {
+#modalContentBox, #modalContentBox2 {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -191,6 +191,13 @@ footer button.send {
     font-weight: bold;
 }
 
+.modal-content2 .close2{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .close:hover,
 .close:focus {
     color: #000;
@@ -199,7 +206,7 @@ footer button.send {
 }
 
 /* The buttons */
-#closeBtn, #saveBtn {
+#closeBtn, #saveBtn, #closeBtn2, #saveBtn2 {
     border: none;
     color: white;
     padding: 10px 20px;
@@ -213,24 +220,24 @@ footer button.send {
     float: right;
 }
 
-#closeBtn {
+#closeBtn, #closeBtn2 {
     background-color: white;
     color: black;
     border: 2px solid #f44336;
 }
 
-#closeBtn:hover {
+#closeBtn:hover ,#closeBtn2:hover {
     background-color: #f44336;
     color: white;
 }
 
-#saveBtn {
+#saveBtn, #saveBtn2 {
     background-color: white;
     color: black;
     border: 2px solid #008CBA;
 }
 
-#saveBtn:hover {
+#saveBtn:hover, #saveBtn2:hover {
     background-color: #008CBA;
     color: white;
 }
@@ -262,4 +269,50 @@ footer button.send {
 .participant-li{
     display: block;
     list-style-type: none;
+}
+
+body.prev_loading {
+    overflow:hidden;
+}
+
+.loading{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.95);
+    display:none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 9999;
+}
+
+#spinner{
+    position:absolute;
+}
+
+.loading span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 50%;
+    animation: loading 1s 0s linear infinite;
+    margin-right: 5px;
+}
+
+.loading span:nth-child(1) { animation-delay: 0s;  background-color: red;}
+.loading span:nth-child(2) { animation-delay: 0.2s; background-color: orange;}
+.loading span:nth-child(3) { animation-delay: 0.4s; background-color: yellowgreen;}
+
+@keyframes loading {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }

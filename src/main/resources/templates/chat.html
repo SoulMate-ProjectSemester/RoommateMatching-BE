@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="/css/chat.css">
 </head>
 
-<body>
+<body class="prev_loading">
+
+<div id="loading" class="loading">
+    <div id="spinner" style="top:446.8px; left:930px">
+        <!-- 로딩 점 보일 span -->
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
 <header>
     <div class="profile" style="display: flex">
         <div class="back-arrow" onclick="hisBack()">Back</div>
@@ -56,10 +64,23 @@
     </div>
 </div>
 
+<div id="myModal2" class="modal2">
+    <!-- Modal content -->
+    <div class="modal-content2" id="modalContentBox2">
+        <div>
+            <span class="close2" id="closeXbtn2">&times;</span>
+        </div>
+        <h3 style="color: black;">AI 채팅분석 결과</h3>
+        <span style="color: black;" id="analyze-result"> </span>
+        <br>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="/js/chat.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
 

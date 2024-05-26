@@ -130,8 +130,6 @@ class MemberController(
         modelAndView.viewName="keywordEdit"
         return modelAndView
     }
-<<<<<<< HEAD
-=======
 
     /**
      * 친구추천
@@ -143,5 +141,4 @@ class MemberController(
         val resultMsg: List<MemberListDto> = memberService.findFriendsList(userId)
         return BaseResponse(data = resultMsg)
     }
->>>>>>> chat
 }

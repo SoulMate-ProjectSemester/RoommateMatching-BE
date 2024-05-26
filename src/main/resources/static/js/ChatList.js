@@ -127,6 +127,8 @@ function getCurrentDate() {
     // 최종적으로 'YYYY-MM-DD' 형식의 문자열을 반환합니다.
     return `${year}-${month}-${day}`;
 }
+
+//채팅방들을 동적으로 표시해주는 함수
 function ShowChatList(){
     try {
         const response=axios.get("http://localhost:8080/api/room/rooms", {

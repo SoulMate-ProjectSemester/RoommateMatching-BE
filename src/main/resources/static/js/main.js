@@ -113,39 +113,95 @@ function logout(){
         return false;
 }
 
+showMates();
+
+function showMates(){
+    const instance = axios.create({
+        baseURL: "http://localhost:8080",
+        timeout: 5000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: `Bearer ${token}`,
+        },
+        responseType: "json",
+    })
+
+    const response=instance.get("/api/member/user_list");
+    response.then(response=>{
+        console.log(response);
+        const result=response.data.resultCode;
+        if(result=="SUCCESS" && response.data.data.length>0){
+            var blogContainer = document.getElementById('blog-container');
+
+            for(let i=0;i<response.data.data.length;i++) {
+                var mateName = response.data.data[i].name;
+                var mateMajor = response.data.data[i].major;
+                var blogDiv = document.createElement('div');
+
+                blogDiv.innerHTML = `
+                        <div class="row blog-item px-3 pb-5">
+                            <div class="col-md-5">
+                                <img class="img-fluid mb-4 mb-md-0" src="img/blog-1.jpg" alt="Image">
+                            </div>
+                            <div class="col-md-7">
+                                <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${mateName}</h3>
+                                <div class="d-flex mb-3">
+                                    <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                                </div>
+                                <p>${mateName}</p>
+                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat()"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                `;
+
+                blogContainer.appendChild(blogDiv);
+            }
+        }
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}
+
 function move(){
     window.location.href="http://localhost:8080/api/member/info_edit";
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
+function startChat(){
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("myBtn");
 
 // Get the element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var closeBtn = document.getElementById("closeBtn");
+    var span = document.getElementsByClassName("close")[0];
+    var closeBtn = document.getElementById("closeBtn");
 
 // When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
 // When the user clicks on <span> (x) or the Close button, close the modal
-span.onclick = closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+    span.onclick = closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
 
+
 var roomId = null;
 
+//채팅방 이름 입력후 채팅방 생성하는 함수
 function saveChange(){
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
@@ -194,6 +250,7 @@ function getCurrentDate() {
     return `${year}-${month}-${day}`;
 }
 
+//AI로 내 성향 분석
 function MyAnalyze(){
     showLoading();
 

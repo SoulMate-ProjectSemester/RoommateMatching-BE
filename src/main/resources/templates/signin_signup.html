@@ -18,7 +18,7 @@
 <div class="cont">
     <div class="form sign-in">
         <h2>Log in</h2>
-        <form>
+        <form onsubmit="login(); return false;">
             <label>
                 <span>아이디</span>
                 <input type="text" id="username" name="loginId" required autofocus />
@@ -28,7 +28,7 @@
                 <input type="password" id="password" name="password"/>
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <button type="button" class="submit" id="submit" onclick="login()" >로그인</button>
+            <button type="submit" class="submit" id="submit">로그인</button>
         </form>
 
     </div>

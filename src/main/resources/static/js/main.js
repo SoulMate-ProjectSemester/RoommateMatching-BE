@@ -113,39 +113,95 @@ function logout(){
         return false;
 }
 
+showMates();
+
+function showMates(){
+    const instance = axios.create({
+        baseURL: "http://localhost:8080",
+        timeout: 5000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Access-Control-Allow-Origin": "*",
+            Authorization: `Bearer ${token}`,
+        },
+        responseType: "json",
+    })
+
+    const response=instance.get("/api/member/user_list");
+    response.then(response=>{
+        console.log(response);
+        const result=response.data.resultCode;
+        if(result=="SUCCESS" && response.data.data.length>0){
+            var blogContainer = document.getElementById('blog-container');
+
+            for(let i=0;i<response.data.data.length;i++) {
+                var mateName = response.data.data[i].name;
+                var mateMajor = response.data.data[i].major;
+                var blogDiv = document.createElement('div');
+
+                blogDiv.innerHTML = `
+                        <div class="row blog-item px-3 pb-5">
+                            <div class="col-md-5">
+                                <img class="img-fluid mb-4 mb-md-0" src="img/blog-1.jpg" alt="Image">
+                            </div>
+                            <div class="col-md-7">
+                                <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${mateName}</h3>
+                                <div class="d-flex mb-3">
+                                    <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                                </div>
+                                <p>${mateName}</p>
+                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat()"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                `;
+
+                blogContainer.appendChild(blogDiv);
+            }
+        }
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}
+
 function move(){
     window.location.href="http://localhost:8080/api/member/info_edit";
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
+function startChat(){
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("myBtn");
 
 // Get the element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var closeBtn = document.getElementById("closeBtn");
+    var span = document.getElementsByClassName("close")[0];
+    var closeBtn = document.getElementById("closeBtn");
 
 // When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
 // When the user clicks on <span> (x) or the Close button, close the modal
-span.onclick = closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+    span.onclick = closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
 
+
 var roomId = null;
 
+//채팅방 이름 입력후 채팅방 생성하는 함수
 function saveChange(){
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
@@ -194,8 +250,81 @@ function getCurrentDate() {
     return `${year}-${month}-${day}`;
 }
 
+//AI로 내 성향 분석
+function MyAnalyze(){
+    showLoading();
+
+    const instance = axios.create({
+        baseURL: "http://localhost:8181",
+        timeout: 500000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+
+    const response = instance.post("/chat",{
+        userId: 1,
+        message: "나는 어떤 사람이야?"
+    });
+    response.then(response => {
+        console.log(response);
+        // console.log(response.data.response);
+        const element=document.getElementById('ai-analyze');
+        element.innerText=response.data.response;
+        const elementId1=document.getElementById('ai-analyze-text1');
+        elementId1.style.display='none';
+        const elementId2=document.getElementById('ai-analyze-text2');
+        elementId2.style.display='none';
+        if(element.innerText)
+            closeLoading();
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
 
 
+}
+
+// 로딩 열기
+function showLoading() {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    // 현재 스크롤 위치 가져오기
+    var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
+    var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+    // 화면 중앙 좌표 계산
+    var centerX = (scrollX + screenWidth / 2) - 30;
+    var centerY = (scrollY + screenHeight / 2) - 12.7;
+
+    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+    document.querySelector("#loading").style.height = "100%";
+    //body 스크롤 막기
+    document.querySelector('body').classList.add('prev_loading');
+
+    $('#loading').show();
+}
+
+// 로딩 닫기
+function closeLoading() {
+    document.querySelector('body').classList.remove('prev_loading');
+    $('#loading').hide();
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    // 현재 스크롤 위치 가져오기
+    var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
+    var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+    // 화면 중앙 좌표 계산
+    var centerX = (scrollX + screenWidth / 2) - 30;
+    var centerY = (scrollY + screenHeight / 2) - 12.7;
+    document.querySelector("#loading").style.height = "100%";
+    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+}
 
 
 

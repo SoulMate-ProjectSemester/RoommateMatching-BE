@@ -36,12 +36,13 @@
                 <p id="content-space"></p>
                 <p class="mb-4" id="myProfileMajor"></p>
             </div>
-            <div class="d-flex justify-content-center mb-5">
+            <div class="d-flex justify-content-center">
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-outline-primary mr-2" href="#"><i class="fab fa-instagram"></i></a>
             </div>
+            <a class="btn btn-lg btn-block btn-primary ai-analyze" style="margin-top: 10px;" onclick="MyAnalyze()">AI로 내 성향 분석하기</a>
             <a class="btn btn-lg btn-block btn-primary mt-auto" onclick="logout()">log out</a>
         </div>
         <div class="sidebar-icon d-flex flex-column h-100 justify-content-center text-right">
@@ -60,13 +61,13 @@
                     <div class="navbar-nav m-auto">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="http://localhost:8080/api/member/chat_list" class="nav-item nav-link">Chat</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                            </div>
-                        </div>
+<!--                        <div class="nav-item dropdown">-->
+<!--                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>-->
+<!--                            <div class="dropdown-menu">-->
+<!--                                <a href="blog.html" class="dropdown-item">Blog Grid</a>-->
+<!--                                <a href="single.html" class="dropdown-item">Blog Detail</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <a class="nav-item nav-link" onclick="move()">Contact</a>
                     </div>
                 </div>
@@ -81,39 +82,39 @@
                     <div class="carousel-item active">
                         <img class="w-100" src="img/carousel-1.jpg" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <h2 class="mb-3 text-white font-weight-bold">Lorem ipsum dolor sit amet</h2>
+                            <h2 class="mb-3 text-white font-weight-bold">AI 내 성향 분석 결과</h2>
                             <div class="d-flex text-white">
-                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
+                                <p id="ai-analyze-text1">여기에 내 성향 분석 결과가 나타납니다</p>
                             </div>
+                            <p id="ai-analyze-text2">옆의 AI 내 성향 분석 결과 버튼을 눌러주세요!🌟</p>
+                            <span id="ai-analyze"></span>
                             <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <h2 class="text-white font-weight-bold">Lorem ipsum dolor sit amet</h2>
-                            <div class="d-flex">
-                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
-                            </div>
-                            <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="img/carousel-3.jpg" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <h2 class="text-white font-weight-bold">Lorem ipsum dolor sit amet</h2>
-                            <div class="d-flex">
-                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
-                            </div>
-                            <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
-                        </div>
-                    </div>
+<!--                    <div class="carousel-item">-->
+<!--                        <img class="w-100" src="img/carousel-2.jpg" alt="Image">-->
+<!--                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">-->
+<!--                            <h2 class="text-white font-weight-bold">Lorem ipsum dolor sit amet</h2>-->
+<!--                            <div class="d-flex">-->
+<!--                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>-->
+<!--                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>-->
+<!--                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>-->
+<!--                            </div>-->
+<!--                            <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="carousel-item">-->
+<!--                        <img class="w-100" src="img/carousel-3.jpg" alt="Image">-->
+<!--                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">-->
+<!--                            <h2 class="text-white font-weight-bold">Lorem ipsum dolor sit amet</h2>-->
+<!--                            <div class="d-flex">-->
+<!--                                <small class="mr-2"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>-->
+<!--                                <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>-->
+<!--                                <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>-->
+<!--                            </div>-->
+<!--                            <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <a class="carousel-control-prev" href="#blog-carousel" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -127,22 +128,22 @@
 
 
         <!-- Blog List Start -->
-        <div class="container bg-white pt-5">
-            <div class="row blog-item px-3 pb-5">
-                <div class="col-md-5">
-                    <img class="img-fluid mb-4 mb-md-0" src="img/blog-1.jpg" alt="Image">
-                </div>
-                <div class="col-md-7">
-                    <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">조승빈</h3>
-                    <div class="d-flex mb-3">
-                        <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
-                    </div>
-                    <p>조승빈</p>
-                    <a class="btn btn-link p-0" id="myBtn">테스트 채팅 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </div>
+        <div class="container bg-white pt-5" id="blog-container">
+<!--            <div class="row blog-item px-3 pb-5">-->
+<!--                <div class="col-md-5">-->
+<!--                    <img class="img-fluid mb-4 mb-md-0" src="img/blog-1.jpg" alt="Image">-->
+<!--                </div>-->
+<!--                <div class="col-md-7">-->
+<!--                    <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">조승빈</h3>-->
+<!--                    <div class="d-flex mb-3">-->
+<!--                        <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>-->
+<!--                        <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>-->
+<!--                        <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>-->
+<!--                    </div>-->
+<!--                    <p>조승빈</p>-->
+<!--                    <a class="btn btn-link p-0" id="myBtn">테스트 채팅 <i class="fa fa-angle-right"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <!-- Blog List End -->
 
@@ -189,5 +190,18 @@
 
 <!-- Template Javascript -->
 <script type="text/javascript" src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
+
+<body class="prev_loading">
+<div id="loading" class="loading">
+    <div id="spinner" style="top:446.8px; left:930px">
+        <p>AI로 내 성향을 분석중입니다!</p>
+        <p>조금만 기다려 주세요😆</p>
+        <!-- 로딩 점 보일 span -->
+        <span></span><span></span><span></span>
+    </div>
+</div>
+</body>
+
 </html>

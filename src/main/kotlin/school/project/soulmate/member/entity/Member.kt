@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
+import lombok.Getter
 import school.project.soulmate.common.status.Gender
 import school.project.soulmate.common.status.ROLE
 import school.project.soulmate.member.dto.MemberDtoResponse
@@ -22,6 +23,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Entity
+@Getter
 @Table(
     uniqueConstraints = [UniqueConstraint(name = "uk_member_login_id", columnNames = ["loginId"])],
 )

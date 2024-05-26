@@ -127,6 +127,8 @@ function getCurrentDate() {
     // 최종적으로 'YYYY-MM-DD' 형식의 문자열을 반환합니다.
     return `${year}-${month}-${day}`;
 }
+
+//채팅방들을 동적으로 표시해주는 함수
 function ShowChatList(){
     try {
         const response=axios.get("http://localhost:8080/api/room/rooms", {
@@ -185,4 +187,29 @@ function ShowChatList(){
         console.error("로그인 중 에러:", error);
     }
 }
+
+function MyAnalyze(){
+    const instance = axios.create({
+        baseURL: "http://localhost:8181",
+        timeout: 500000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+
+    const response = instance.post("/chat",{
+        userId: 1,
+        message: "나는 어떤 사람이야?"
+    });
+    response.then(response => {
+        console.log(response);
+        // console.log(response.data.response);
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}
+
 

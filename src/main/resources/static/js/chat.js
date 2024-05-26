@@ -188,13 +188,16 @@ function hisBack(){
 
 // 모달창 띄우기
 var modal = document.getElementById("myModal");
+var modal2 = document.getElementById('myModal2');
 
 // Get the button that opens the modal
 var btn = document.getElementById("LeftBtn");
 
 // Get the element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+
 var closeBtn = document.getElementById("closeBtn");
+var closeXBtn=document.getElementById("closeXbtn2");
 
 // When the user clicks the button, open the modal
 btn.onclick = function() {
@@ -206,10 +209,20 @@ span.onclick = closeBtn.onclick = function() {
     modal.style.display = "none";
 }
 
+closeXBtn.onclick = function() {
+    modal2.style.display = "none";
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+}
+
+window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal2.style.display = "none";
     }
 }
 
@@ -372,3 +385,71 @@ document.addEventListener('click', function(event) {
         document.getElementById("participantsList").style.display = "none";
     }
 });
+
+function ChatAnalyze(){
+    //로딩창 띄워주는 함수
+    showLoading();
+    const instance = axios.create({
+        baseURL: "http://localhost:8181",
+        timeout: 500000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+
+    const response = instance.post("/room",{
+        roomId: roomId
+    });
+    response.then(response => {
+        console.log(response);
+        // console.log(response.data.response);
+        closeLoading();
+        modal2.style.display='block';
+        const result=document.getElementById('analyze-result');
+        result.innerText=response.data.response;$
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}
+
+// 로딩 열기$
+function showLoading() {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    // 현재 스크롤 위치 가져오기
+    var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
+    var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+    // 화면 중앙 좌표 계산
+    var centerX = (scrollX + screenWidth / 2) - 30;
+    var centerY = (scrollY + screenHeight / 2) - 12.7;
+
+    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+    document.querySelector("#loading").style.height = "100%";
+    //body 스크롤 막기
+    document.querySelector('body').classList.add('prev_loading');
+
+    $('#loading').show();
+}
+
+// 로딩 닫기
+function closeLoading() {
+    document.querySelector('body').classList.remove('prev_loading');
+    $('#loading').hide();
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    // 현재 스크롤 위치 가져오기
+    var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
+    var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+    // 화면 중앙 좌표 계산
+    var centerX = (scrollX + screenWidth / 2) - 30;
+    var centerY = (scrollY + screenHeight / 2) - 12.7;
+    document.querySelector("#loading").style.height = "100%";
+    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+}

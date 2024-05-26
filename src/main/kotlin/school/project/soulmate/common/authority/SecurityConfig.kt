@@ -10,8 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+
 
 @Configuration
 @EnableWebSecurity
@@ -42,12 +44,20 @@ class SecurityConfig(
                     .requestMatchers("/api/auth/refresh").permitAll()
                     .anyRequest().permitAll() // 나머지 url은 접근 가능
             }
-            .addFilterBefore( // 필터 순서 설정. 앞에 필터가 실행되야 뒤에 있는 필터가 실행된다
+            // 로그인 인증하지 않은 사용자 URL 리디렉션
+            .exceptionHandling {it.authenticationEntryPoint(customAuthenticationEntryPoint())}
+            .addFilterBefore(
+                // 필터 순서 설정. 앞에 필터가 실행되야 뒤에 있는 필터가 실행된다
                 JwtAuthenticationFilter(jwtTokenProvider),
                 UsernamePasswordAuthenticationFilter::class.java,
             )
 
         return http.build()
+    }
+
+    @Bean
+    fun customAuthenticationEntryPoint(): AuthenticationEntryPoint {
+        return CustomAuthenticationEntryPoint()
     }
 
     @Bean

@@ -38,11 +38,11 @@ class SecurityConfig(
                     //키워드 수정페이지 개발을 위해 임시 추가
                     "api/member/keyword_edit"
                 ).anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
+                    .requestMatchers("/api/member").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
                     .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
                     .requestMatchers("/api/keyword/**").hasRole("MEMBER")
                     .requestMatchers("/ws-stomp/**").permitAll()
                     .requestMatchers("/api/auth/refresh").permitAll()
-                    .anyRequest().permitAll() // 나머지 url은 접근 가능
             }
             // 로그인 인증하지 않은 사용자 URL 리디렉션
             .exceptionHandling {it.authenticationEntryPoint(customAuthenticationEntryPoint())}

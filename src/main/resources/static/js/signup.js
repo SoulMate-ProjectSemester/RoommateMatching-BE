@@ -19,7 +19,7 @@ async function signup() {
 
     // set axios instance
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://43.201.214.57",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",

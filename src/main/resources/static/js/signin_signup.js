@@ -2,7 +2,7 @@ document.querySelector('.img__btn').addEventListener('click', function() {
     document.querySelector('.cont').classList.toggle('s--signup');
 });
 
-function login() {
+async function login() {
     // Get input values
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
@@ -18,7 +18,7 @@ function login() {
 
     //set axios instance
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://43.201.214.57",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",

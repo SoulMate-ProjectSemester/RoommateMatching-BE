@@ -54,10 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response=instance.post("/api/keyword/new",{
                     keywordSet: selectedTopicNames
                 });
-                if(response.resultCode == "SUCCESS"){
+                console.log(response);
+                if(response.data.resultCode == "SUCCESS"){
                     //키워드 저장 성공시, 메인페이지로 넘어가는 로직
                     // window.location.href="http://soulmate.pe.kr/api/member/main";
-                    //window.location.href="http://soulmate.pe.kr/api/member/main";
+                    window.location.href="http://soulmate.pe.kr/api/member/main";
                 }
                 else console.error('키워드 저장 응답 받기 실패:', error);
             }catch (error){

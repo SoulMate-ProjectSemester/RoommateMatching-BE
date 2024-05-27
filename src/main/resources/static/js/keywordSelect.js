@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 Authorization: `Bearer ${token}`
                             }
                         });
-                        document.getElementById('content').innerHTML = responseHtml.data;
+                        window.location.href="http://soulmate.pe.kr/api/member/main";
                     }
                 }).catch(error => {
                     // Handle errors if the Promise is rejected

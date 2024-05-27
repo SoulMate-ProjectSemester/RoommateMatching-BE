@@ -45,7 +45,7 @@ const token = window.localStorage.getItem("token");
 // const refreshtoken = window.localStorage.getItem('refreshToken');
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -106,7 +106,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='http://localhost:8080/api/member/login';
+        window.location.href='http://soulmate.pe.kr/api/member/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -117,7 +117,7 @@ showMates();
 
 function showMates(){
     const instance = axios.create({
-        baseURL: "http://localhost:8080",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -166,7 +166,7 @@ function showMates(){
 }
 
 function move(){
-    window.location.href="http://localhost:8080/api/member/info_edit";
+    window.location.href="http://soulmate.pe.kr/api/member/info_edit";
 }
 
 function startChat(){
@@ -226,7 +226,7 @@ function saveChange(){
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
                 roomId = response.data.data.roomId;
-                location.href=`http://localhost:8080/api/room/${roomId}`;
+                location.href=`http://soulmate.pe.kr/api/room/${roomId}`;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -255,7 +255,7 @@ function MyAnalyze(){
     showLoading();
 
     const instance = axios.create({
-        baseURL: "http://localhost:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

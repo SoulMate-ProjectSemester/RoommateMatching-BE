@@ -45,7 +45,7 @@ const token = window.localStorage.getItem("token");
 let myId;
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -116,7 +116,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='http://localhost:8080/api/member/login';
+        window.location.href='http://soulmate.pe.kr/api/member/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -177,5 +177,5 @@ window.onclick = function(event) {
 }
 
 function toKeywordPage(){
-    window.location.href='http://localhost:8080/api/member/keyword_edit';
+    window.location.href='http://soulmate.pe.kr/api/member/keyword_edit';
 }

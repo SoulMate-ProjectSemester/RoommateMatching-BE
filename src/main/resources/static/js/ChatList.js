@@ -44,7 +44,7 @@
 const token = window.localStorage.getItem("token");
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -106,7 +106,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='http://localhost:8080/api/member/login';
+        window.location.href='http://soulmate.pe.kr/api/member/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -114,7 +114,7 @@ function logout(){
 }
 
 function move(){
-    window.location.href="http://localhost:8080/api/member/info_edit";
+    window.location.href="http://soulmate.pe.kr/api/member/info_edit";
 }
 
 function getCurrentDate() {
@@ -131,7 +131,7 @@ function getCurrentDate() {
 //채팅방들을 동적으로 표시해주는 함수
 function ShowChatList(){
     try {
-        const response=axios.get("http://localhost:8080/api/room/rooms", {
+        const response=axios.get("http://soulmate.pe.kr/api/room/rooms", {
             params:{
                 loginId:myloginId
             }
@@ -165,7 +165,7 @@ function ShowChatList(){
                         <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
                       </div>
                       <p>${userName}</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <a class="btn btn-link p-0" id="myBtn" href="http://soulmate.pe.kr/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
                     </div>
                   `;
                     // 생성된 div를 문서에 추가
@@ -190,7 +190,7 @@ function ShowChatList(){
 
 function MyAnalyze(){
     const instance = axios.create({
-        baseURL: "http://localhost:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

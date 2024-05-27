@@ -10,7 +10,7 @@ const roomId = pathSegments[pathSegments.length - 1]; // URL의 마지막 부분
 const token = window.localStorage.getItem("token");
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -231,7 +231,7 @@ window.onclick = function(event) {
 //채팅방 나가는 함수(채팅내역 모두 삭제)
 function ChatRoomLeft(){
     try {
-        const response=axios.delete("http://localhost:8080/api/room/quit", {
+        const response=axios.delete("http://soulmate.pe.kr/api/room/quit", {
             data:{
                 loginId: myId,
                 roomId: roomId
@@ -244,7 +244,7 @@ function ChatRoomLeft(){
             //채팅방 삭제가 성공하였을 경우
             if(responseData=='SUCCESS'){
                 // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
-                location.href="http://localhost:8080/api/member/chat_list";
+                location.href="http://soulmate.pe.kr/api/member/chat_list";
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -260,7 +260,7 @@ getOldMessages();
 //이전 채팅방의 채팅 내역을 불러오는 함수
 function getOldMessages(){
     try{
-        const response=axios.get("http://localhost:8080/api/chat/messages",{
+        const response=axios.get("http://soulmate.pe.kr/api/chat/messages",{
             params:{
                 roomId:roomId
             }
@@ -339,7 +339,7 @@ getChatRoomInfo();
 //채팅방의 정보를 가져오는 함수 (채팅방에 속한 사람들, 채팅방 제목 등등..)
 function getChatRoomInfo(){
     try{
-        const response=axios.get(`http://localhost:8080/api/room/search/${roomId}`);
+        const response=axios.get(`http://soulmate.pe.kr/api/room/search/${roomId}`);
         response.then(response => {
             const responseData = response.data.resultCode;
             //채팅방 정보 불러오기가 성공하였을 경우
@@ -390,7 +390,7 @@ function ChatAnalyze(){
     //로딩창 띄워주는 함수
     showLoading();
     const instance = axios.create({
-        baseURL: "http://localhost:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

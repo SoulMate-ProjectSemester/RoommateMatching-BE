@@ -59,6 +59,14 @@ class MemberController(
         return BaseResponse(data = tokenInfo)
     }
 
+    @GetMapping("/main")
+    fun mainPage(): ModelAndView{
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "main"
+
+        return modelAndView
+    }
+
     /**
      * 내 정보 보기
      */

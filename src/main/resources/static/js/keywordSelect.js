@@ -59,8 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const responseData = response.data.resultCode;
                     if(responseData=='SUCCESS'){
                         //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        window.location.href="http://soulmate.pe.kr/api/member/main";
-                        //instance.get("/api/member/main");
+                        // window.location.href="http://soulmate.pe.kr/api/member/main";
+                        const responseHtml=instance.get("/api/member/main", {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        });
+                        document.getElementById('content').innerHTML = responseHtml.data;
                     }
                 }).catch(error => {
                     // Handle errors if the Promise is rejected

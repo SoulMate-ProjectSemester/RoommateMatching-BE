@@ -35,7 +35,9 @@ class SecurityConfig(
                     //키워드 입력페이지 개발을 위해 임시 추가
                     "/api/member/keyword",
                     //키워드 수정페이지 개발을 위해 임시 추가
-                    "api/member/keyword_edit"
+                    "api/member/keyword_edit",
+                    "api/keyword/keywords",
+                    "api/keyword/new",
                 ).anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
                     .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
                     .requestMatchers("/api/keyword/**").hasRole("MEMBER")

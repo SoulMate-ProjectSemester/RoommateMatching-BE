@@ -54,23 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response=instance.post("/api/keyword/new",{
                     keywordSet: selectedTopicNames
                 });
-                response.then(response => {
-                    // Access the 'data' property from the resolved value
-                    const responseData = response.data.resultCode;
-                    if(responseData=='SUCCESS'){
-                        //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        // window.location.href="http://soulmate.pe.kr/api/member/main";
-                        const responseHtml=instance.get("/api/member/main", {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        });
-                        window.location.href="http://soulmate.pe.kr/api/member/main";
-                    }
-                }).catch(error => {
-                    // Handle errors if the Promise is rejected
-                    console.error('키워드 저장 응답 받기 실패:', error);
-                });
+                if(response.data.resultCode=='SUCCESS'){
+                    //키워드 저장 성공시, 메인페이지로 넘어가는 로직
+                    // window.location.href="http://soulmate.pe.kr/api/member/main";
+                    window.location.href="http://soulmate.pe.kr/api/member/main";
+                }
+                else console.error('키워드 저장 응답 받기 실패:', error);
             }catch (error){
                 console.error("키워드 저장 요청 실패:", error);
             }

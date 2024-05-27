@@ -1,6 +1,5 @@
 package school.project.soulmate.common.authority
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.core.AuthenticationException
@@ -15,9 +14,10 @@ class CustomAuthenticationEntryPoint : AuthenticationEntryPoint {
         response: HttpServletResponse,
         authException: AuthenticationException?
     ) {
-        response.contentType = "application/json"
-        response.status = HttpServletResponse.SC_UNAUTHORIZED
-        val responseBody = mapOf("error" to "Unauthorized", "message" to authException?.message)
-        ObjectMapper().writeValue(response.outputStream, responseBody)
+        // 리디렉션 URL 설정
+        val redirectUrl = "/api/member/login"
+
+        // 클라이언트로 리디렉션
+        response.sendRedirect(redirectUrl)
     }
 }

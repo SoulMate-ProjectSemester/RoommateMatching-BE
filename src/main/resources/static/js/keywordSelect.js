@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     keywordSet: selectedTopicNames
                 });
                 console.log(response);
-                if(response.data.resultCode == "SUCCESS"){
+                const result = response.data.resultCode;
+                if(result == "SUCCESS"){
                     //키워드 저장 성공시, 메인페이지로 넘어가는 로직
                     // window.location.href="http://soulmate.pe.kr/api/member/main";
                     window.location.href="http://soulmate.pe.kr/api/member/main";

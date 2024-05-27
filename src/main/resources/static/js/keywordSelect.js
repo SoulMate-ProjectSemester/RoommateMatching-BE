@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = window.localStorage.getItem("token");
 
     const instance = axios.create({
-        baseURL: "http://localhost:8080",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const responseData = response.data.resultCode;
                     if(responseData=='SUCCESS'){
                         //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        window.location.href="http://localhost:8080";
+                        window.location.href="http://soulmate.pe.kr";
                     }
                 }).catch(error => {
                     // Handle errors if the Promise is rejected

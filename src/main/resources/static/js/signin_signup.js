@@ -18,7 +18,7 @@ async function login() {
 
     //set axios instance
     const instance = axios.create({
-        baseURL: "http://43.201.214.57",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -47,7 +47,7 @@ async function login() {
 
                 //set axios instance again with bearer token for 키워드 불러와서 최초가입자 여부 파악
                 const instance = axios.create({
-                    baseURL: "http://43.201.214.57",
+                    baseURL: "http://soulmate.pe.kr",
                     timeout: 5000,
                     headers: {
                         "Cache-Control": "no-cache",
@@ -63,12 +63,12 @@ async function login() {
                         const keywordSetLength=response.data.data.keywordSet;
                         //로그인을 성공했고, 키워드 입력을 미리 한사람 (기존 가입자), null이 아닌경우
                         if(keywordSetLength===null){
-                            window.location.href="http://43.201.214.57/api/member/keyword";
+                            window.location.href="http://soulmate.pe.kr/api/member/keyword";
                         }
                         //로그인을 성공했지만, 키워드 입력을 하지 않은 최초로그인, null인 경우
                         else{
                             //키워드 입력페이지로 이동
-                            window.location.href='http://43.201.214.57';
+                            window.location.href='http://soulmate.pe.kr';
                         }
                     }).catch(error=>{
                         console.log('error occurred:',error);

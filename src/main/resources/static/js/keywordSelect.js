@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const responseData = response.data.resultCode;
                     if(responseData=='SUCCESS'){
                         //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        window.location.href="http://soulmate.pe.kr";
+                        // window.location.href="http://soulmate.pe.kr";
+                        instance.get("/api/member/main");
                     }
                 }).catch(error => {
                     // Handle errors if the Promise is rejected

@@ -51,17 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // 예: 서버에 데이터 전송하는 함수 sendSelectedTopics(selectedTopicNames);
 
             try {
-                const response=instance.post("/api/keyword/new",{
+                const response = instance.post("/api/keyword/new",{
                     keywordSet: selectedTopicNames
                 });
-                console.log(response);
-                const result = response.data.resultCode;
-                if(result == "SUCCESS"){
-                    //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                    // window.location.href="http://soulmate.pe.kr/api/member/main";
-                    window.location.href="http://soulmate.pe.kr/api/member/main";
-                }
-                else console.error('키워드 저장 응답 받기 실패:', error);
+                response.then(response => {
+                    console.log(response);
+                    const result = response.data.resultCode;
+                    if(result == "SUCCESS"){
+                        //키워드 저장 성공시, 메인페이지로 넘어가는 로직
+                        // window.location.href="http://soulmate.pe.kr/api/member/main";
+                        window.location.href="http://soulmate.pe.kr/api/member/main";
+                    }
+                    else console.error('키워드 저장 응답 받기 실패:', error);
+                })
             }catch (error){
                 console.error("키워드 저장 요청 실패:", error);
             }

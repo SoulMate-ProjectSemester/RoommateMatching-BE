@@ -62,7 +62,7 @@ class MemberController(
     @GetMapping("/main")
     fun mainPage(): ModelAndView{
         val modelAndView = ModelAndView()
-        modelAndView.viewName = "main"
+        modelAndView.viewName = "index"
 
         return modelAndView
     }

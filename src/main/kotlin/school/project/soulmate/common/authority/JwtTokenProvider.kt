@@ -1,11 +1,6 @@
 package school.project.soulmate.common.authority
 
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.ExpiredJwtException
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.MalformedJwtException
-import io.jsonwebtoken.SignatureAlgorithm
-import io.jsonwebtoken.UnsupportedJwtException
+import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
@@ -17,10 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import school.project.soulmate.common.dto.CustomUser
 import java.util.Date
+import org.slf4j.LoggerFactory
 
 const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 30 // 30분
 
-// const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 2 // 20초
 const val REFRESH_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 24 // 24시간
 
 @Component
@@ -28,6 +23,7 @@ class JwtTokenProvider {
     @Value("\${jwt.secret}")
     lateinit var secretKey: String
 
+    private val logger = LoggerFactory.getLogger(JwtTokenProvider::class.java)
     private val key by lazy { Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey)) }
 
     /**
@@ -57,7 +53,6 @@ class JwtTokenProvider {
     /**
      * Refresh token 생성
      */
-
     fun createRefreshToken(authentication: Authentication): String {
         val authorities: String =
             authentication
@@ -79,7 +74,6 @@ class JwtTokenProvider {
     /**
      * Token 정보 추출
      */
-
     fun getAuthentication(token: String): Authentication {
         val claims: Claims = getClaims(token)
 
@@ -107,14 +101,14 @@ class JwtTokenProvider {
             return true
         } catch (e: Exception) {
             when (e) {
-                is SecurityException -> {}
-                is MalformedJwtException -> {}
-                is ExpiredJwtException -> {}
-                is UnsupportedJwtException -> {}
-                is IllegalArgumentException -> {}
-                else -> {}
+                is SecurityException -> logger.error("Invalid JWT signature.")
+                is MalformedJwtException -> logger.error("Invalid JWT token.")
+                is ExpiredJwtException -> logger.error("Expired JWT token.")
+                is UnsupportedJwtException -> logger.error("Unsupported JWT token.")
+                is IllegalArgumentException -> logger.error("JWT claims string is empty.")
+                else -> logger.error("JWT token validation failed.")
             }
-            println(e.message)
+            logger.error("Error validating JWT token: ${e.message}")
         }
         return false
     }
@@ -130,7 +124,7 @@ class JwtTokenProvider {
      * 토큰 만료 확인
      */
     fun isTokenExpired(token: String): Boolean {
-        val claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).body
+        val claims = getClaims(token)
         return claims.expiration.before(Date())
     }
 }

@@ -68,7 +68,7 @@ async function login() {
                         //로그인을 성공했고, 키워드 입력을 미리 한사람 (기존 가입자), null이 아닌경우
                         else{
                             //키워드 입력페이지로 이동
-                            window.location.href='http://soulmate.pe.kr';
+                            window.location.href='http://soulmate.pe.kr/api/member/main';
                         }
                     }).catch(error=>{
                         console.log('error occurred:',error);

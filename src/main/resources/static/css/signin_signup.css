@@ -8,7 +8,7 @@
 
 body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    background: #ededed;
+    background: rgba(0, 0, 10, 0.05);
 }
 
 input,
@@ -258,7 +258,7 @@ input {
 .submit {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #d4af7a;
+    background: #2A4B7C;
     text-transform: uppercase;
 }
 

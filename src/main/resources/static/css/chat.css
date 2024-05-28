@@ -1,6 +1,5 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1A1A1A;
     color: white;
     margin: 0;
     padding: 0;
@@ -10,7 +9,8 @@ header {
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #2F2F2F;
+    /*border-bottom: 1px solid #2F2F2F;*/
+    background-color: rgba(0, 0, 0, 0.05)
 }
 
 .profile .back-arrow {
@@ -44,6 +44,7 @@ header {
 
 .profile .room-name {
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .profile .people-count {
@@ -80,7 +81,7 @@ header {
 }
 
 .another_message{
-    background-color: #2F2F2F;
+    background-color: #1DA1F2;
     padding: 10px;
     border-radius: 20px 20px 20px 0;
     margin-bottom: 10px;
@@ -127,17 +128,17 @@ footer {
     bottom: 0; /* 하단에 배치 */
     width: 100%; /* 화면 너비에 맞춤 */
     padding: 10px;
-    border-top: 1px solid #2F2F2F;
-    background-color: #1A1A1A; /* 배경색 지정 */
+    /*border-top: 1px solid #2F2F2F;*/
+    background-color: rgba(0, 0, 0, 0.1); /* 배경색 지정 */
 }
 
 footer input {
     flex: 1;
     padding: 10px;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.15);
     border: none;
     border-radius: 20px;
-    color: white;
+    color: black;
 }
 
 footer button.send {

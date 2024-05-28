@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse
 import jakarta.servlet.http.HttpServletRequest
+import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.util.StringUtils
 import org.springframework.web.filter.GenericFilterBean
@@ -11,6 +12,9 @@ import org.springframework.web.filter.GenericFilterBean
 class JwtAuthenticationFilter(
     private val jwtTokenProvider: JwtTokenProvider,
 ) : GenericFilterBean() {
+
+    private val logger = LoggerFactory.getLogger(JwtAuthenticationFilter::class.java)
+
     override fun doFilter(
         request: ServletRequest?,
         response: ServletResponse?,
@@ -18,11 +22,13 @@ class JwtAuthenticationFilter(
     ) {
         val token = resolveToken(request as HttpServletRequest)
 
-        if (token != null && jwtTokenProvider.validateToken(token))
-            {
-                val authentication = jwtTokenProvider.getAuthentication(token)
-                SecurityContextHolder.getContext().authentication = authentication
-            }
+        if (token != null && jwtTokenProvider.validateToken(token)) {
+            val authentication = jwtTokenProvider.getAuthentication(token)
+            logger.info("Authenticated user: ${authentication.name}, authorities: ${authentication.authorities}")
+            SecurityContextHolder.getContext().authentication = authentication
+        } else {
+            logger.info("No JWT token found in request headers")
+        }
 
         chain?.doFilter(request, response)
     }

@@ -59,6 +59,9 @@ class MemberService(
         val authenticationToken = UsernamePasswordAuthenticationToken(loginDto.loginId, loginDto.password)
         val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
 
+        // 권한 출력
+        println("User Authorities: ${authentication.authorities}")
+
         val accessToken = jwtTokenProvider.createAccessToken(authentication)
         val refreshToken = jwtTokenProvider.createRefreshToken(authentication)
 

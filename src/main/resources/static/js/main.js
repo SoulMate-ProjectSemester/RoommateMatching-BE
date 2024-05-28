@@ -44,6 +44,8 @@
 const token = window.localStorage.getItem("token");
 // const refreshtoken = window.localStorage.getItem('refreshToken');
 
+console.log("Loaded Token:", token); // 로드된 토큰을 로그로 확인
+
 const instance = axios.create({
     baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
@@ -53,6 +55,8 @@ const instance = axios.create({
         "Authorization": `Bearer ${token}`,
     },
 });
+
+console.log("Axios Headers:", instance.defaults.headers); // 설정된 헤더를 로그로 확인
 
 try {
     const response=instance.get("/api/member/info");

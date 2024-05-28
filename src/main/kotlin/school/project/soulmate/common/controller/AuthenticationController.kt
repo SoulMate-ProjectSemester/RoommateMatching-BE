@@ -13,7 +13,6 @@ import school.project.soulmate.common.dto.TokenDtoRequest
 import school.project.soulmate.common.service.SignService
 import java.util.stream.Collectors
 
-
 @RestController
 @RequestMapping("/api/auth")
 class AuthenticationController(

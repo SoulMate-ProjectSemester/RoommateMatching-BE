@@ -21,15 +21,18 @@ class JwtAuthenticationFilter(
         chain: FilterChain?,
     ) {
         val token = resolveToken(request as HttpServletRequest)
-
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            val authentication = jwtTokenProvider.getAuthentication(token)
-            logger.info("Authenticated user: ${authentication.name}, authorities: ${authentication.authorities}")
-            SecurityContextHolder.getContext().authentication = authentication
+        if(token != null){
+            logger.info("JWT Token found: $token")
+            if(jwtTokenProvider.validateToken(token)){
+                val authentication = jwtTokenProvider.getAuthentication(token)
+                logger.info("Authenticated user: ${authentication.name}, authorities: ${authentication.authorities}")
+                SecurityContextHolder.getContext().authentication = authentication
+            } else {
+                logger.info("Invalid JWT token")
+            }
         } else {
             logger.info("No JWT token found in request headers")
         }
-
         chain?.doFilter(request, response)
     }
 

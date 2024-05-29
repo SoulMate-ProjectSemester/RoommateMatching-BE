@@ -20,6 +20,7 @@
 
 
     // Skills
+    //waypoint가 함수가 아니라는 typeerror가 있어서 잠시 주석처리 합니다.
     // $('.skills').waypoint(function () {
     //     $('.progress .progress-bar').each(function () {
     //         $(this).css("width", $(this).attr("aria-valuenow") + '%');
@@ -170,7 +171,7 @@ function showMates(){
 }
 
 function move(){
-    window.location.href="http://soulmate.pe.kr/api/member/info_edit";
+    location.href="/api/member/info_edit";
 }
 
 function startChat(){

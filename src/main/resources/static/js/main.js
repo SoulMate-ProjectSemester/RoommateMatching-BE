@@ -52,7 +52,7 @@ const instance = axios.create({
     headers: {
         "Cache-Control": "no-cache",
         "Access-Control-Allow-Origin": "*",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
     },
 });
 

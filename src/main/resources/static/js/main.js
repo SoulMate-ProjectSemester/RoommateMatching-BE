@@ -47,7 +47,7 @@ const token = window.localStorage.getItem("token");
 console.log("Loaded Token:", token); // 로드된 토큰을 로그로 확인
 
 const instance = axios.create({
-    baseURL: "43.201.214.57",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -60,10 +60,10 @@ console.log("Axios Headers:", instance.defaults.headers); // 설정된 헤더를
 
 try {
     const response=instance.get("/api/member/info");
-    console.log(response);
     response.then(response => {
         // Access the 'data' property from the resolved value
         const responseData = response.data.resultCode;
+        console.log(response);
 
         if(responseData=='SUCCESS'){
             var name = response.data.data.name;
@@ -121,7 +121,7 @@ showMates();
 
 function showMates(){
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",

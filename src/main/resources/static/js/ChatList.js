@@ -76,7 +76,6 @@ try {
     }).catch(error => {
         // Handle errors if the Promise is rejected
         console.error('Error occurred:', error);
-        console.log('아이디 혹은 비밀번호를 다시한번 확인하세요.');
     });
 
 }catch (error){
@@ -176,12 +175,13 @@ function ShowChatList(){
 
                 }
 
+            }else{
+                console.log('there is no chat-list');
             }
 
         }).catch(error => {
             // Handle errors if the Promise is rejected
             console.error('Error occurred:', error);
-            alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
         });
 
         //채팅방 생성 후, 제목 입력칸 초기화

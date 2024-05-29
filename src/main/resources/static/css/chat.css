@@ -81,7 +81,7 @@ header {
 }
 
 .another_message{
-    background-color: #1DA1F2;
+    background-color: rgba(0,0,0,0.4);
     padding: 10px;
     border-radius: 20px 20px 20px 0;
     margin-bottom: 10px;

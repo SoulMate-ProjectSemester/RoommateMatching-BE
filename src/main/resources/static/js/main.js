@@ -225,8 +225,8 @@ function saveChange(){
 
         //채팅방 생성 후, 제목 입력칸 초기화
         inputTitle.value=null;
-        console.log(response);
         response.then(response => {
+            console.log(response);
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
@@ -239,7 +239,7 @@ function saveChange(){
             console.log('roomId 가져오기 실패');
         });
     }catch (error){
-        console.error("로그인 중 에러:", error);
+        console.error("채팅방 생성 중 에러:", error);
     }
 
 }

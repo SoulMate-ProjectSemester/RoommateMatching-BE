@@ -31,7 +31,7 @@ class KeywordController(
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
         if (resultMsg == "키워드가 저장되었습니다"){
             val modelAndView = ModelAndView()
-            modelAndView.viewName = "redirect:/api/member/main"
+            modelAndView.viewName = "redirect:http://localhost8080/api/member/main"
             return modelAndView
         } else{
           throw IllegalArgumentException()

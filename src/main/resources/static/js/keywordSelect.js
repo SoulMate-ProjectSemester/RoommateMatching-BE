@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(response);
                     // 응답 상태 코드를 통해 성공 여부 확인
                     if (response.status === 200) {
-                        // 리디렉션 처리
                         console.log('키워드 저장 성공');
                     } else {
                         alert('키워드 저장에 실패했습니다.');

@@ -50,25 +50,48 @@ document.addEventListener('DOMContentLoaded', () => {
             // 선택된 키워드를 서버로 전송하는 코드를 여기에 추가할 수 있습니다.
             // 예: 서버에 데이터 전송하는 함수 sendSelectedTopics(selectedTopicNames);
 
-            // 선택된 키워드를 서버로 전송
-            try {
-                const response = instance.post("/api/keyword/new", {
-                    keywordSet: selectedTopicNames
-                });
+            //선택된 키워드를 서버로 전송
+            //axios 요청
+            // try {
+            //     const response = instance.post("/api/keyword/new", {
+            //         keywordSet: selectedTopicNames
+            //     });
+            //
+            //     response.then(response=>{
+            //         console.log(response);
+            //         // 응답 상태 코드를 통해 성공 여부 확인
+            //         if (response.status === 200) {
+            //             //리다이렉트
+            //             console.log('키워드 저장 성공');
+            //         } else {
+            //             alert('키워드 저장에 실패했습니다.');
+            //         }
+            //     });
+            // } catch (error) {
+            //     console.error('키워드 저장 요청 실패:', error);
+            //     alert('키워드 저장 요청 중 오류가 발생했습니다.');
+            // }
 
-                response.then(response=>{
-                    console.log(response);
-                    // 응답 상태 코드를 통해 성공 여부 확인
-                    if (response.status === 200) {
-                        console.log('키워드 저장 성공');
-                    } else {
-                        alert('키워드 저장에 실패했습니다.');
-                    }
-                });
-            } catch (error) {
-                console.error('키워드 저장 요청 실패:', error);
-                alert('키워드 저장 요청 중 오류가 발생했습니다.');
-            }
+            //ajax 요청
+            $.ajax({
+                url: "http://localhost:8080/api/keyword/new",
+                type: "POST",
+                data: JSON.stringify({ keywordSet: selectedTopicNames }),
+                contentType: "application/json; charset=utf-8",
+                headers: {
+                    "Cache-Control": "no-cache",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`,
+                },
+                success: function(response) {
+                    location.href="http://localhost:8080";
+                },
+                error: function(xhr, status, error) {
+                    console.error('키워드 저장 요청 실패:', error);
+                    alert('키워드 저장 요청 중 오류가 발생했습니다.');
+                }
+            });
+
         }
     });
 });

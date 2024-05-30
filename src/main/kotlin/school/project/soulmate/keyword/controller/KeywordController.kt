@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.common.dto.CustomUser
 import school.project.soulmate.keyword.dto.KeywordDto
@@ -25,10 +26,13 @@ class KeywordController(
     @PostMapping("/new")
     fun saveKeyword(
         @RequestBody @Valid keywordDto: KeywordDto,
-    ): BaseResponse<Unit> {
+    ): ModelAndView {
         val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
-        return BaseResponse(message = resultMsg)
+
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "redirect:/api/member/main"
+        return modelAndView
     }
 
     /**

@@ -60,6 +60,17 @@ class MemberController(
     }
 
     /**
+     * 메인 페이지
+     */
+
+    @GetMapping("/main")
+    fun mainPage(): ModelAndView {
+        val modelAndView = ModelAndView()
+        modelAndView.viewName = "index"
+        return modelAndView
+    }
+
+    /**
      * 내 정보 보기
      */
     @GetMapping("/info")

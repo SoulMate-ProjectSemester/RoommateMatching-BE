@@ -1,5 +1,6 @@
 package school.project.soulmate.keyword.controller
 
+import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,15 +27,15 @@ class KeywordController(
     @PostMapping("/new")
     fun saveKeyword(
         @RequestBody @Valid keywordDto: KeywordDto,
-    ): ModelAndView {
+        response: HttpServletResponse
+    ): BaseResponse<Unit> {
         val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
-        if (resultMsg == "키워드가 저장되었습니다"){
-            val modelAndView = ModelAndView()
-            modelAndView.viewName = "redirect:/api/member/main"
-            return modelAndView
-        } else{
-          throw IllegalArgumentException()
+        if (resultMsg == "키워드가 저장되었습니다") {
+            response.sendRedirect("/api/member/main")
+            return BaseResponse(message = "키워드가 저장되었습니다")
+        } else {
+            throw IllegalArgumentException("키워드 저장에 실패했습니다")
         }
     }
 

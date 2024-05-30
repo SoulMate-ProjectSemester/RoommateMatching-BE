@@ -50,23 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
             // 선택된 키워드를 서버로 전송하는 코드를 여기에 추가할 수 있습니다.
             // 예: 서버에 데이터 전송하는 함수 sendSelectedTopics(selectedTopicNames);
 
+            // 선택된 키워드를 서버로 전송
             try {
-                const response=instance.post("/api/keyword/new",{
+                const response = instance.post("/api/keyword/new", {
                     keywordSet: selectedTopicNames
                 });
-                response.then(response => {
-                    // Access the 'data' property from the resolved value
-                    const responseData = response.data.resultCode;
-                    if(responseData=='SUCCESS'){
-                        //키워드 저장 성공시, 메인페이지로 넘어가는 로직
-                        window.location.href="http://localhost:8080";
-                    }
-                }).catch(error => {
-                    // Handle errors if the Promise is rejected
-                    console.error('키워드 저장 응답 받기 실패:', error);
-                });
-            }catch (error){
-                console.error("키워드 저장 요청 실패:", error);
+
+                // 응답 상태 코드를 통해 성공 여부 확인
+                if (response.status === 200) {
+                    // 리디렉션 처리
+                    console.log('키워드 저장 성공');
+                } else {
+                    alert('키워드 저장에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('키워드 저장 요청 실패:', error);
+                alert('키워드 저장 요청 중 오류가 발생했습니다.');
             }
         }
     });

@@ -29,10 +29,13 @@ class KeywordController(
     ): ModelAndView {
         val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
-
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "redirect:/api/member/main"
-        return modelAndView
+        if (resultMsg == "키워드가 저장되었습니다"){
+            val modelAndView = ModelAndView()
+            modelAndView.viewName = "redirect:/api/member/main"
+            return modelAndView
+        } else{
+          throw IllegalArgumentException()
+        }
     }
 
     /**

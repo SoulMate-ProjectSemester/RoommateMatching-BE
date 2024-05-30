@@ -156,7 +156,7 @@ function ShowChatList(){
                     // HTML 내용을 문자열로 추가
                     chatRoomDiv.innerHTML = `
                     <div class="col-md-5">
-                      <img class="img-fluid mb-4 mb-md-0" src="/img/blog-1.jpg" alt="Image">
+                      <img class="img-fluid mb-4 mb-md-0" src="/images/blog-1.jpg" alt="Image">
                     </div>
                     <div class="col-md-7">
                       <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${roomName}</h3>

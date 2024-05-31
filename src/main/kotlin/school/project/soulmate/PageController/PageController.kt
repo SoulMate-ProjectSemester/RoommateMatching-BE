@@ -24,8 +24,6 @@ class PageController {
      */
     @GetMapping("/info_edit")
     fun info(model: Model): String {
-        val memberDtoRequest: MemberDtoRequest? = null
-        model.addAttribute("memberDtoRequest", memberDtoRequest)
         return "profileEdit"
     }
 

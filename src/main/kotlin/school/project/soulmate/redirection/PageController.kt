@@ -3,8 +3,11 @@ package school.project.soulmate.redirection
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.member.dto.MemberDtoRequest
+import java.util.*
 
 @Controller
 @RequestMapping("/api/page")
@@ -46,5 +49,15 @@ class PageController {
     @GetMapping("/keyword_edit")
     fun keywordEdit(): String {
         return "keywordEdit"
+    }
+
+    /**
+     * 채팅 화면
+     */
+    @GetMapping("/{roomId}")
+    fun chat(
+        @PathVariable roomId: UUID,
+    ): String {
+        return "chat"
     }
 }

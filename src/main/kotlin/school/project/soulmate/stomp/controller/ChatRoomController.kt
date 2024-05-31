@@ -36,18 +36,6 @@ class ChatRoomController(
     }
 
     /**
-     * 채팅 화면
-     */
-    @GetMapping("/{roomId}")
-    fun chat(
-        @PathVariable roomId: UUID,
-    ): ModelAndView {
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "chat"
-        return modelAndView
-    }
-
-    /**
      * 단일 채팅방 조회
      */
     @GetMapping("/search/{roomId}")

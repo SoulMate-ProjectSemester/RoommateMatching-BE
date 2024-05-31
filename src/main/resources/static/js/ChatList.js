@@ -46,7 +46,7 @@
 const token = window.localStorage.getItem("token");
 
 const instance = axios.create({
-    baseURL: "http://soulmate.pe.kr",
+    baseURL: "43.201.214.57",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -107,7 +107,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='http://soulmate.pe.kr/api/member/login';
+        window.location.href='43.201.214.57/api/page/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -115,7 +115,7 @@ function logout(){
 }
 
 function move(){
-    window.location.href="/api/member/info_edit";
+    window.location.href="/api/page/info_edit";
 }
 
 function getCurrentDate() {
@@ -132,7 +132,7 @@ function getCurrentDate() {
 //채팅방들을 동적으로 표시해주는 함수
 function ShowChatList(){
     try {
-        const response=axios.get("http://soulmate.pe.kr/api/room/rooms", {
+        const response=instance.get("/api/room/rooms", {
             params:{
                 loginId:myloginId
             }
@@ -192,7 +192,7 @@ function ShowChatList(){
 
 function MyAnalyze(){
     const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr:8181",
+        baseURL: "43.201.214.57:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

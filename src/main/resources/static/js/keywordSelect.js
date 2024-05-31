@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = window.localStorage.getItem("token");
 
     const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr",
+        baseURL: "43.201.214.57",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(result == "SUCCESS"){
                         //키워드 저장 성공시, 메인페이지로 넘어가는 로직
                         // window.location.href="http://soulmate.pe.kr/api/member/main";
-                        window.location.href="http://soulmate.pe.kr/api/member/main";
+                        window.location.href="http://soulmate.pe.kr/api/page/main";
                     }
                     else console.error('키워드 저장 응답 받기 실패:', error);
                 })

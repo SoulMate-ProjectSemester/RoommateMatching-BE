@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = window.localStorage.getItem("token");
 
     const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr",
+        baseURL: "43.201.214.57",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const responseData = response.data.resultCode;
                 if(responseData=='SUCCESS'){
                     console.log(response.data.message);
-                    window.location.href="http://soulmate.pe.kr/api/member/info_edit";
+                    window.location.href="http://soulmate.pe.kr/api/page/info_edit";
                 }
             }).catch(error => {
                 // Handle errors if the Promise is rejected

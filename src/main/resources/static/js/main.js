@@ -48,7 +48,7 @@ const token = window.localStorage.getItem("token");
 console.log("Loaded Token:", token); // 로드된 토큰을 로그로 확인
 
 const instance = axios.create({
-    baseURL: "http://soulmate.pe.kr",
+    baseURL: "43.201.214.57",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -111,7 +111,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='http://soulmate.pe.kr/api/member/login';
+        window.location.href='http://soulmate.pe.kr/api/page/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -122,7 +122,7 @@ showMates();
 
 function showMates(){
     const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr",
+        baseURL: "43.201.214.57",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -171,7 +171,7 @@ function showMates(){
 }
 
 function move(){
-    location.href="/api/member/info_edit";
+    location.href="/api/page/info_edit";
 }
 
 function startChat(){
@@ -231,7 +231,7 @@ function saveChange(){
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
                 roomId = response.data.data.roomId;
-                location.href=`http://soulmate.pe.kr/api/room/${roomId}`;
+                location.href=`http://soulmate.pe.kr/api/page/${roomId}`;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -260,7 +260,7 @@ function MyAnalyze(){
     showLoading();
 
     const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr:8181",
+        baseURL: "43.201.214.57:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

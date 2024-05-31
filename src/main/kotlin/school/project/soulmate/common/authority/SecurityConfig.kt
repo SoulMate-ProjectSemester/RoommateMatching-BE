@@ -32,8 +32,12 @@ class SecurityConfig(
                     "/api/member/login",
                     "/api/auth/refresh",
                 ).anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
-                    .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
-                    .requestMatchers("/api/keyword/**").hasRole("MEMBER")
+                    .requestMatchers(
+                        "/api/member/**",
+                        "/api/keyword/**",
+                        "/api/room/**",
+                        "/api/chat/**",
+                        ).hasRole("MEMBER")
                     .requestMatchers("/ws-stomp/**").permitAll()
                     .requestMatchers("/api/page/**").permitAll()
             }

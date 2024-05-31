@@ -117,7 +117,7 @@ function logout(){
         }catch (error){
             console.error("로그아웃 실패 : ", error);
         }
-        window.location.href='43.201.214.57/api/page/login';
+        window.location.href='/api/page/login';
         window.localStorage.setItem('token', "");
     }
     else
@@ -178,5 +178,5 @@ window.onclick = function(event) {
 }
 
 function toKeywordPage(){
-    window.location.href='43.201.214.57/api/page/keyword_edit';
+    window.location.href='/api/page/keyword_edit';
 }

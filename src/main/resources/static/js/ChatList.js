@@ -20,11 +20,12 @@
 
 
     // Skills
-    $('.skills').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, {offset: '80%'});
+    // waypoint 함수 type error 로 주석처리합니다
+    // $('.skills').waypoint(function () {
+    //     $('.progress .progress-bar').each(function () {
+    //         $(this).css("width", $(this).attr("aria-valuenow") + '%');
+    //     });
+    // }, {offset: '80%'});
 
 
     // Back to top button
@@ -114,7 +115,7 @@ function logout(){
 }
 
 function move(){
-    window.location.href="http://localhost:8080/api/member/info_edit";
+    window.location.href="http://localhost:8080/api/page/info_edit";
 }
 
 function getCurrentDate() {
@@ -131,7 +132,7 @@ function getCurrentDate() {
 //채팅방들을 동적으로 표시해주는 함수
 function ShowChatList(){
     try {
-        const response=axios.get("http://localhost:8080/api/room/rooms", {
+        const response=instance.get("/api/room/rooms", {
             params:{
                 loginId:myloginId
             }
@@ -165,7 +166,7 @@ function ShowChatList(){
                         <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
                       </div>
                       <p>${userName}</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/page/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
                     </div>
                   `;
                     // 생성된 div를 문서에 추가

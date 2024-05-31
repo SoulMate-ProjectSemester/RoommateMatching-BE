@@ -231,7 +231,7 @@ window.onclick = function(event) {
 //채팅방 나가는 함수(채팅내역 모두 삭제)
 function ChatRoomLeft(){
     try {
-        const response=axios.delete("http://localhost:8080/api/room/quit", {
+        const response=instance.delete("/api/room/quit", {
             data:{
                 loginId: myId,
                 roomId: roomId
@@ -244,7 +244,7 @@ function ChatRoomLeft(){
             //채팅방 삭제가 성공하였을 경우
             if(responseData=='SUCCESS'){
                 // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
-                location.href="http://localhost:8080/api/member/chat_list";
+                location.href="http://localhost:8080/api/page/chat_list";
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -260,12 +260,11 @@ getOldMessages();
 //이전 채팅방의 채팅 내역을 불러오는 함수
 function getOldMessages(){
     try{
-        const response=axios.get("http://localhost:8080/api/chat/messages",{
+        const response=instance.get("/api/chat/messages",{
             params:{
                 roomId:roomId
             }
         });
-        console.log(response);
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;

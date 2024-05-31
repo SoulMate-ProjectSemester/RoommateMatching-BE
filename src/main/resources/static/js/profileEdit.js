@@ -20,11 +20,12 @@
 
 
     // Skills
-    $('.skills').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, {offset: '80%'});
+    // waypoint 함수 type error 로 주석처리합니다
+    // $('.skills').waypoint(function () {
+    //     $('.progress .progress-bar').each(function () {
+    //         $(this).css("width", $(this).attr("aria-valuenow") + '%');
+    //     });
+    // }, {offset: '80%'});
 
 
     // Back to top button
@@ -136,7 +137,7 @@ try {
                 let keywordValue=response.data.data.keywordSet[i];
                 var topicDiv = document.createElement('div');
                 topicDiv.className = 'topic';
-                topicDiv.innerHTML=keywordValue;
+                topicDiv.innerHTML = keywordValue;
                 container.appendChild(topicDiv);
             }
         }
@@ -149,33 +150,57 @@ try {
     console.error("키워드 불러오기 요청 실패:", error);
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// 특정 버튼을 누르면 모달창이 뜸
-var btn = document.getElementById("myBtn");
-
-// Get the element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-var closeBtn = document.getElementById("closeBtn");
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
+function showModal(event){
+    //모달창을 띄울때 왜 그런지는 모르겠지만 새로고침이 발생하여 새로고침을 막는 코드를 추가합니다.
+    event.preventDefault();
+    // Get the modal
+    var modal = document.getElementById("myModal");
     modal.style.display = "block";
-}
 
-// When the user clicks on <span> (x) or the Close button, close the modal
-span.onclick = closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+    // Get the element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var closeBtn = document.getElementById("closeBtn");
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+    // When the user clicks on <span> (x) or the Close button, close the modal
+    span.onclick = closeBtn.onclick = function() {
         modal.style.display = "none";
+    }
+
+    //When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
 
+// Get the modal
+// var modal = document.getElementById("myModal");
+//
+// // 특정 버튼을 누르면 모달창이 뜸
+// var btn = document.getElementById("myBtn");
+//
+// // Get the element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+// var closeBtn = document.getElementById("closeBtn");
+//
+// // When the user clicks the button, open the modal
+// btn.onclick = function() {
+//     modal.style.display = "block";
+// }
+//
+// // When the user clicks on <span> (x) or the Close button, close the modal
+// span.onclick = closeBtn.onclick = function() {
+//     modal.style.display = "none";
+// }
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
 function toKeywordPage(){
-    window.location.href='http://localhost:8080/api/member/keyword_edit';
+    window.location.href='http://localhost:8080/api/page/keyword_edit';
 }

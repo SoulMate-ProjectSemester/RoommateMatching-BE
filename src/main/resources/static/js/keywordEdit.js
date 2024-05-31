@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const responseData = response.data.resultCode;
                 if(responseData=='SUCCESS'){
                     console.log(response.data.message);
-                    window.location.href="http://localhost:8080/api/member/info_edit";
+                    window.location.href="http://localhost:8080/api/page/info_edit";
                 }
             }).catch(error => {
                 // Handle errors if the Promise is rejected

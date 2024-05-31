@@ -84,9 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     Authorization: `Bearer ${token}`,
                 },
                 success: function(response) {
-                    document.open();
-                    document.write(response);
-                    document.close();
+                    console.log(response);
+                    location.href="/api/page/main";
                 },
                 error: function(xhr, status, error) {
                     console.error('키워드 저장 요청 실패:', error);

@@ -63,12 +63,12 @@ function login() {
                         const keywordSetLength=response.data.data.keywordSet;
                         //로그인을 성공했고, 키워드 입력을 미리 한사람 (기존 가입자), null이 아닌경우
                         if(keywordSetLength===null){
-                            window.location.href="http://localhost:8080/api/member/keyword";
+                            window.location.href="http://localhost:8080/api/page/keyword";
                         }
                         //로그인을 성공했지만, 키워드 입력을 하지 않은 최초로그인, null인 경우
                         else{
                             //키워드 입력페이지로 이동
-                            window.location.href='http://localhost:8080';
+                            window.location.href='http://localhost:8080/api/page/main';
                         }
                     }).catch(error=>{
                         console.log('error occurred:',error);

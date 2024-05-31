@@ -20,11 +20,12 @@
 
 
     // Skills
-    $('.skills').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, {offset: '80%'});
+    //waypoint 함수 type error 로 주석처리합니다.
+    // $('.skills').waypoint(function () {
+    //     $('.progress .progress-bar').each(function () {
+    //         $(this).css("width", $(this).attr("aria-valuenow") + '%');
+    //     });
+    // }, {offset: '80%'});
 
 
     // Back to top button
@@ -166,7 +167,7 @@ function showMates(){
 }
 
 function move(){
-    window.location.href="http://localhost:8080/api/member/info_edit";
+    window.location.href="http://localhost:8080/api/page/info_edit";
 }
 
 function startChat(){
@@ -226,7 +227,7 @@ function saveChange(){
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
                 roomId = response.data.data.roomId;
-                location.href=`http://localhost:8080/api/room/${roomId}`;
+                location.href=`http://localhost:8080/api/page/${roomId}`;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

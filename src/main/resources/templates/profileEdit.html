@@ -59,15 +59,15 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav m-auto">
-                        <a href="http://localhost:8080" class="nav-item nav-link">Home</a>
-                        <a href="http://localhost:8080/api/member/chat_list" class="nav-item nav-link">Chat</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item">Blog Grid</a>
-                                <a class="dropdown-item">Blog Detail</a>
-                            </div>
-                        </div>
+                        <a href="http://localhost:8080/api/page/main" class="nav-item nav-link">Home</a>
+                        <a href="http://localhost:8080/api/page/chat_list" class="nav-item nav-link">Chat</a>
+<!--                        <div class="nav-item dropdown">-->
+<!--                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>-->
+<!--                            <div class="dropdown-menu">-->
+<!--                                <a class="dropdown-item">Blog Grid</a>-->
+<!--                                <a class="dropdown-item">Blog Detail</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <a class="nav-item nav-link active">Contact</a>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                             <p class="help-block text-danger"></p>
                         </div>
                         <div style="margin-top: 50px;">
-                            <button class="btn btn-primary" type="submit" id="myBtn">키워드 수정하기</button>
+                            <button class="btn btn-primary" id="myBtn" onclick="showModal(event)">키워드 수정하기</button>
 <!--                            <button class="btn btn-primary" type="submit" id="sendMessageButton">취소하기</button>-->
                         </div>
                     </form>
@@ -163,21 +163,22 @@
         <!-- Footer End -->
     </div>
 
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content" id="modalContentBox">
-            <div>
-                <span class="close" id="closeXbtn">&times;</span>
-            </div>
-            <h4>키워드 수정</h4>
-            <span style="color:black;">키워드를 수정하시겠습니까? </span>
-            <div class="submitBtn">
-                <input type="submit" id="closeBtn" value="아니오"></input>
-                <input type="submit" id="saveBtn" value="네" onclick="toKeywordPage()"></input>
-            </div>
+
+</div>
+
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" id="modalContentBox">
+        <div>
+            <span class="close" id="closeXbtn">&times;</span>
+        </div>
+        <h4>키워드 수정</h4>
+        <span style="color:black;">키워드를 수정하시겠습니까? </span>
+        <div class="submitBtn">
+            <input type="submit" id="closeBtn" value="아니오"></input>
+            <input type="submit" id="saveBtn" value="네" onclick="toKeywordPage()"></input>
         </div>
     </div>
-
 </div>
 
 <!-- Back to Top -->

@@ -1,4 +1,4 @@
-package school.project.soulmate.redirection
+package school.project.soulmate.page
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -24,8 +24,6 @@ class PageController {
      */
     @GetMapping("/info_edit")
     fun info(model: Model): String {
-        val memberDtoRequest: MemberDtoRequest? = null
-        model.addAttribute("memberDtoRequest", memberDtoRequest)
         return "profileEdit"
     }
 

@@ -57,9 +57,4 @@ class PageController {
     ): String {
         return "chat"
     }
-
-    @GetMapping("/login")
-    fun signin_signup(): String {
-        return "signin_signup"
-    }
 }

@@ -46,7 +46,7 @@
 const token = window.localStorage.getItem("token");
 
 const instance = axios.create({
-    baseURL: "43.201.214.57",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -192,7 +192,7 @@ function ShowChatList(){
 
 function MyAnalyze(){
     const instance = axios.create({
-        baseURL: "43.201.214.57:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

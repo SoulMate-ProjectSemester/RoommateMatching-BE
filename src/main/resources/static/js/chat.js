@@ -390,7 +390,7 @@ function ChatAnalyze(){
     //로딩창 띄워주는 함수
     showLoading();
     const instance = axios.create({
-        baseURL: "43.201.214.57:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

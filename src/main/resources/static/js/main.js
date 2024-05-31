@@ -48,7 +48,7 @@ const token = window.localStorage.getItem("token");
 console.log("Loaded Token:", token); // 로드된 토큰을 로그로 확인
 
 const instance = axios.create({
-    baseURL: "43.201.214.57",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",
@@ -122,7 +122,7 @@ showMates();
 
 function showMates(){
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -260,7 +260,7 @@ function MyAnalyze(){
     showLoading();
 
     const instance = axios.create({
-        baseURL: "43.201.214.57:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

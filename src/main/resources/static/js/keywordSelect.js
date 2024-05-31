@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = window.localStorage.getItem("token");
 
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",

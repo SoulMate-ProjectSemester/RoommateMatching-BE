@@ -18,7 +18,7 @@ async function login() {
 
     //set axios instance
     const instance = axios.create({
-        baseURL: "43.201.214.57",
+        baseURL: "http://soulmate.pe.kr",
         timeout: 5000,
         headers: {
             "Cache-Control": "no-cache",
@@ -47,7 +47,7 @@ async function login() {
 
                 //set axios instance again with bearer token for 키워드 불러와서 최초가입자 여부 파악
                 const instance = axios.create({
-                    baseURL: "43.201.214.57",
+                    baseURL: "http://soulmate.pe.kr",
                     timeout: 5000,
                     headers: {
                         "Cache-Control": "no-cache",

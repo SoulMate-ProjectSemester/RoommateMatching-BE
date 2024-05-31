@@ -1,6 +1,6 @@
+
 package school.project.soulmate.common.authority
 
-import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,17 +15,14 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
+
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtTokenProvider: JwtTokenProvider,
 ) {
-
-    private val logger = LoggerFactory.getLogger(SecurityConfig::class.java)
-
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        logger.info("Configuring HttpSecurity: {}", http)
         http
             .httpBasic { it.disable() }
             .csrf { it.disable() }
@@ -34,21 +31,16 @@ class SecurityConfig(
                 it.requestMatchers(
                     "/api/member/signup",
                     "/api/member/login",
-                    "/api/member/info_edit",
-                    "/api/member/chat_list",
-                    "/api/member/chat",
-                    //키워드 입력페이지 개발을 위해 임시 추가
-                    "/api/member/keyword",
-                    //키워드 수정페이지 개발을 위해 임시 추가
-                    "api/member/keyword_edit",
-                    "api/member/main",
-                ).permitAll() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
-                    .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
-                    .requestMatchers("/api/keyword/**").hasRole("MEMBER")
-                    .requestMatchers("/pub/**", "/sub/**").permitAll()
-                    .requestMatchers("/api/chat/**", "/api/room/**").permitAll()
+                    "/api/auth/refresh",
+                ).anonymous() // 해당 url에 접속하는 사용자는 인증되지 않은 사용자.
+                    .requestMatchers(
+                        "/api/member/**",
+                        "/api/keyword/**",
+                        "/api/room/**",
+                        "/api/chat/**",
+                    ).hasRole("MEMBER")
                     .requestMatchers("/ws-stomp/**").permitAll()
-                    .requestMatchers("/api/auth/refresh").permitAll()
+                    .requestMatchers("/api/page/**").permitAll()
             }
             // 로그인 인증하지 않은 사용자 URL 리디렉션
             .exceptionHandling {it.authenticationEntryPoint(customAuthenticationEntryPoint())}

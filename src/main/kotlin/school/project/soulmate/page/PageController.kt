@@ -23,7 +23,7 @@ class PageController {
      * 내 정보 수정
      */
     @GetMapping("/info_edit")
-    fun info(model: Model): String {
+    fun info(): String {
         return "profileEdit"
     }
 

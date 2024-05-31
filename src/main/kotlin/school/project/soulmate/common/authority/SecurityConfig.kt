@@ -35,6 +35,7 @@ class SecurityConfig(
                     .requestMatchers("/api/member/**").hasRole("MEMBER") // 멤버 권한이 있어야 들어갈 수 있음
                     .requestMatchers("/api/keyword/**").hasRole("MEMBER")
                     .requestMatchers("/ws-stomp/**").permitAll()
+                    .requestMatchers("/api/page/**").permitAll()
             }
             // 로그인 인증하지 않은 사용자 URL 리디렉션
             .exceptionHandling {it.authenticationEntryPoint(customAuthenticationEntryPoint())}

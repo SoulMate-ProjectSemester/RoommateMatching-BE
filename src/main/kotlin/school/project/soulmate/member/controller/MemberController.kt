@@ -60,17 +60,6 @@ class MemberController(
     }
 
     /**
-     * 메인 페이지
-     */
-
-    @GetMapping("/main")
-    fun mainPage(): ModelAndView {
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "index"
-        return modelAndView
-    }
-
-    /**
      * 내 정보 보기
      */
     @GetMapping("/info")
@@ -93,24 +82,6 @@ class MemberController(
         return BaseResponse(message = resultMsg)
     }
 
-    @GetMapping("/info_edit")
-    fun info(): ModelAndView {
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "profileEdit"
-
-        val memberDtoRequest: MemberDtoRequest? = null
-        modelAndView.addObject("memberDtoRequest", memberDtoRequest)
-        return modelAndView
-    }
-
-    // 채팅방 리스트 보기
-    @GetMapping("/chat_list")
-    fun chatList(): ModelAndView {
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "ChatList"
-        return modelAndView
-    }
-
     /**
      * 로그아웃
      */
@@ -120,26 +91,6 @@ class MemberController(
     ): BaseResponse<Unit> {
         val resultMsg: String = memberService.deleteRefToken(loginId)
         return BaseResponse(message = resultMsg)
-    }
-
-    /**
-     * 키워드
-     */
-
-    //keyword 입력페이지를 위한 임시 controller
-    @GetMapping("/keyword")
-    fun keywordSelect(): ModelAndView {
-        val modelAndView = ModelAndView()
-        modelAndView.viewName = "keywordSelect"
-        return modelAndView
-    }
-
-    //keyword 수정페이지를 위한 임시 controller
-    @GetMapping("/keyword_edit")
-    fun keywordEdit():ModelAndView{
-        val modelAndView=ModelAndView()
-        modelAndView.viewName="keywordEdit"
-        return modelAndView
     }
 
     /**

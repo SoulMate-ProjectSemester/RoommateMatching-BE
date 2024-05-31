@@ -25,14 +25,10 @@ class KeywordController(
      * 키워드 저장
      */
     @PostMapping("/new")
-    fun saveKeyword(@RequestBody @Valid keywordDto: KeywordDto): ModelAndView {
+    fun saveKeyword(@RequestBody @Valid keywordDto: KeywordDto): BaseResponse<Unit> {
         val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
-        return if (resultMsg == "키워드가 저장되었습니다") {
-            ModelAndView("redirect:/api/member/main")
-        } else {
-            throw IllegalArgumentException("키워드 저장에 실패했습니다")
-        }
+        return BaseResponse(message = resultMsg)
     }
 
     /**

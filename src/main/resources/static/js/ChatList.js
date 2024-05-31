@@ -166,7 +166,7 @@ function ShowChatList(){
                         <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
                       </div>
                       <p>${userName}</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://soulmate.pe.kr/api/room/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <a class="btn btn-link p-0" id="myBtn" href="http://soulmate.pe.kr/api/page/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
                     </div>
                   `;
                     // 생성된 div를 문서에 추가

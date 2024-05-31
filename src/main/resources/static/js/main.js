@@ -94,7 +94,6 @@ function logout(){
                     loginId:myId
                 }
             });
-            console.log(response);
             response.then(response => {
                 // Access the 'data' property from the resolved value
                 const responseData = response.data.resultCode;

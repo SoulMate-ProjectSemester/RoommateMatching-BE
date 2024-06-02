@@ -25,6 +25,14 @@ button {
     text-align: center;
 }
 
+.login-logo-img {
+    width: 300px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 40px !important;
+}
+
 .cont {
     overflow: hidden;
     position: relative;

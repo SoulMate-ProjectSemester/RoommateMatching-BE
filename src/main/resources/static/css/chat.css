@@ -8,9 +8,13 @@ body {
 
 header {
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #2F2F2F;
+    background-color: #1A1A1A;
 }
 
 .profile .back-arrow {
@@ -26,7 +30,7 @@ header {
 
 .chat-left{
     margin-left: auto;
-    margin-right: 10px;
+    margin-right: 20px;
     padding: 10px 15px;
     background-color: #1DA1F2;
     color: white;
@@ -52,9 +56,14 @@ header {
     margin-left: auto;
 }
 
+#empty-space{
+    padding: 20px;
+    margin-top: 20px;
+}
+
 .messages {
     padding: 10px;
-    overflow: scroll;
+    overflow: auto;
     margin-bottom: 50px
 }
 
@@ -272,7 +281,7 @@ footer button.send {
 }
 
 body.prev_loading {
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 .loading{

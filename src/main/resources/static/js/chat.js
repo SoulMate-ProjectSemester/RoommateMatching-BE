@@ -74,6 +74,9 @@ function sendMessage() {
         // stompClient.send("/app/chat/message", {}, JSON.stringify(chatMessage));
         stompClient.send(`/pub/${roomId}`, {}, JSON.stringify(chatMessage));
         document.getElementById('messageInput').value = '';
+
+        var chatRoom = document.getElementById('');
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }
 }
 
@@ -135,6 +138,7 @@ function onMessageReceived(payload){
         chatRoom.appendChild(messageElement);
     }
 
+    var chatRoom = document.getElementById('chatRoom');
     chatRoom.scrollTop = chatRoom.scrollHeight;
 
 }
@@ -321,6 +325,8 @@ function getOldMessages(){
                         chatRoom.appendChild(messageElement);
                     }
                 }
+                var chatRoom = document.getElementById('chatRoom');
+                chatRoom.scrollTop = chatRoom.scrollHeight;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

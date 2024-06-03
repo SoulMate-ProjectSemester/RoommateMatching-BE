@@ -142,6 +142,7 @@ function showMates(){
                 var mateName = response.data.data[i].name;
                 var mateMajor = response.data.data[i].major;
                 var blogDiv = document.createElement('div');
+                var mateLoginId=response.data.data[i].loginId;
 
                 blogDiv.innerHTML = `
                         <div class="row blog-item px-3 pb-5">
@@ -156,7 +157,7 @@ function showMates(){
                                     <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
                                 </div>
                                 <p>${mateName}</p>
-                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat()"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
+                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat(mateLoginId)"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                 `;
@@ -206,7 +207,7 @@ function startChat(){
 var roomId = null;
 
 //채팅방 이름 입력후 채팅방 생성하는 함수
-function saveChange(){
+function saveChange(mateLoginId){
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
     if (messageTitle.trim() === '') {
@@ -217,7 +218,7 @@ function saveChange(){
     try {
         const response=instance.post("/api/room/new",{
             loginId: loginId,
-            userId: "vkflco08",
+            userId: mateLoginId,
             roomName: messageTitle,
             createDate: getCurrentDate()
         });

@@ -10,6 +10,11 @@ async function login() {
     if(!username) { alert("아이디를 다시 입력하세요"); return; }
     if(!password) {alert("비밀번호를 다시 입력하세요"); return; }
 
+    if(window.localStorage.getItem('token') && window.localStorage.getItem('refreshtoken')){
+        window.localStorage.setItem('token','');
+        window.localStorage.setItem('refreshtoken','');
+    }
+
     // Prepare data to send
     var data = {
         loginId: username,

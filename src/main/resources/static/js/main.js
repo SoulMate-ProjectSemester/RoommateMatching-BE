@@ -153,7 +153,7 @@ function showMates(){
                                 <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${mateName}</h3>
                                 <div class="d-flex mb-3">
                                     <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
-                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>
                                     <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
                                 </div>
                                 <p>${mateName}</p>

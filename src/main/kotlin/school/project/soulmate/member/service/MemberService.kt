@@ -114,6 +114,7 @@ class MemberService(
                 id = member.id!!,
                 name = member.name,
                 studentNumber = member.studentNumber,
+                loginId = member.loginId,
                 major = member.major
             )
         }

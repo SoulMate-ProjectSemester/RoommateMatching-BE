@@ -114,5 +114,6 @@ data class MemberListDto(
     val id: Long,
     val name: String,
     val studentNumber: String,
+    val loginId: String,
     val major: String,
 )

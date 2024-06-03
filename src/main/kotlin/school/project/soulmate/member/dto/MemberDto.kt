@@ -113,6 +113,7 @@ data class MemberDtoResponse(
 data class MemberListDto(
     val id: Long,
     val name: String,
+    val loginId: String,
     val studentNumber: String,
     val major: String,
 )

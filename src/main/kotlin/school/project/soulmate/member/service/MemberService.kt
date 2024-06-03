@@ -116,6 +116,7 @@ class MemberService(
             MemberListDto(
                 id = member.id!!,
                 name = member.name,
+                loginId = member.loginId,
                 studentNumber = member.studentNumber,
                 major = member.major
             )

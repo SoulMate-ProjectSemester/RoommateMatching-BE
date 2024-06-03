@@ -259,7 +259,7 @@ function MyAnalyze(){
     showLoading();
 
     const instance = axios.create({
-        baseURL: "http://43.201.214.57:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

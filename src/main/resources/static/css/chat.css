@@ -273,7 +273,7 @@ footer button.send {
 }
 
 body.prev_loading {
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 .loading{

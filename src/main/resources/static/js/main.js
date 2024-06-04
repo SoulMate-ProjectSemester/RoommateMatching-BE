@@ -142,7 +142,7 @@ function showMates(){
                 var mateName = response.data.data[i].name;
                 var mateMajor = response.data.data[i].major;
                 var blogDiv = document.createElement('div');
-                var mateLoginId=response.data.data[i].loginId;
+                mateLoginId=response.data.data[i].loginId;
 
                 blogDiv.innerHTML = `
                         <div class="row blog-item px-3 pb-5">
@@ -156,8 +156,8 @@ function showMates(){
                                     <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>
                                     <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
                                 </div>
-                                <p>${mateName}</p>
-                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat(mateLoginId)"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
+                                <p>${mateLoginId}</p>
+                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat(mateLoginId)"> 채팅하기 <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                 `;
@@ -177,18 +177,15 @@ function move(){
 function startChat(){
     // Get the modal
     var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
 
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+var modal = document.getElementById("myModal");
+var saveBtn=document.getElementById("saveBtn");
 
 // Get the element that closes the modal
     var span = document.getElementsByClassName("close")[0];
     var closeBtn = document.getElementById("closeBtn");
-
-// When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
 
 // When the user clicks on <span> (x) or the Close button, close the modal
     span.onclick = closeBtn.onclick = function() {
@@ -201,7 +198,10 @@ function startChat(){
             modal.style.display = "none";
         }
     }
-}
+
+    saveBtn.onclick=function(){
+        saveChange(mateLoginId);
+    }
 
 
 var roomId = null;

@@ -97,7 +97,7 @@ async function login() {
 
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
     headers: {
         "Cache-Control": "no-cache",

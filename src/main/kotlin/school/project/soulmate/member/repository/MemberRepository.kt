@@ -11,7 +11,7 @@ import school.project.soulmate.member.entity.MemberRole
 interface MemberRepository : JpaRepository<Member, Long> {
     fun findByLoginId(loginId: String): Member?
     @Query("SELECT m FROM Member m WHERE m.gender = :gender AND m.id <> :memberId ORDER BY function('RAND')")
-    fun findRandomMemberSameGender(@Param("gender") gender: Gender, @Param("memberId") memberId: Long, pageable: Pageable): List<Member>
+    fun findRandomMemberSameGender(@Param("gender") gender: Gender, @Param("memberId") memberId: Long?, pageable: Pageable): List<Member>
 }
 
 interface MemberRoleRepository : JpaRepository<MemberRole, Long>

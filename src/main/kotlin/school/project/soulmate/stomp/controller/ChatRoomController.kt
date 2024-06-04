@@ -1,6 +1,7 @@
 package school.project.soulmate.stomp.controller
 
 import lombok.RequiredArgsConstructor
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -9,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.servlet.ModelAndView
 import school.project.soulmate.common.dto.BaseResponse
+import school.project.soulmate.common.dto.CustomUser
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomInfoDto
 import school.project.soulmate.stomp.dto.LeaveRoomDto
 import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.service.ChatRoomService
-import java.util.UUID
+import java.util.*
 
 @RequiredArgsConstructor
 @RestController
@@ -42,7 +43,9 @@ class ChatRoomController(
     fun chatRoom(
         @PathVariable roomId: UUID,
     ): BaseResponse<ChatRoomInfoDto>  {
-        return BaseResponse(data = chatRoomService.findRoom(roomId))
+        val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
+        val roomInfo = chatRoomService.findRoom(roomId, userId)
+        return BaseResponse(data = roomInfo)
     }
 
     /**
@@ -52,7 +55,8 @@ class ChatRoomController(
     fun rooms(
         @RequestParam("loginId") loginId: String,
     ): BaseResponse<List<ChatRoomInfoDto>> {
-        return BaseResponse(data = chatRoomService.findRooms(loginId))
+        val roomInfo = chatRoomService.findRooms(loginId)
+        return BaseResponse(data = roomInfo)
     }
 
     /**

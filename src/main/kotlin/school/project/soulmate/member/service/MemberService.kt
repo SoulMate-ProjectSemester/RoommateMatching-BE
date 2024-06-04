@@ -21,7 +21,6 @@ import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.entity.MemberRole
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.member.repository.MemberRoleRepository
-import java.util.*
 
 @Transactional
 @Service
@@ -55,7 +54,7 @@ class MemberService(
      * 로그인 -> 토큰 발행
      */
     @Transactional
-    fun login(loginDto: LoginDto): TokenInfo { // 사용자에게 받은 정보를 TokenInfo에 담아서 전달
+    fun login(loginDto: LoginDto): TokenInfo {
         val authenticationToken = UsernamePasswordAuthenticationToken(loginDto.loginId, loginDto.password)
         val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
 
@@ -78,7 +77,7 @@ class MemberService(
     /**
      * 내정보 조회
      */
-    fun searchMyInfo(userId: Long): MemberDtoResponse {
+    fun searchMyInfo(userId: Long?): MemberDtoResponse {
         val member: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("id", "회원번호($userId)가 존재하지 않습니다.")
         return member.toDto()
     }
@@ -106,15 +105,13 @@ class MemberService(
      * 친구추천
      */
     @Transactional
-    fun findFriendsList(userId: Long): List<MemberListDto> {
+    fun findFriendsList(userId: Long?): List<MemberListDto> {
         val pageable: Pageable = PageRequest.of(0, 10)  // 첫 번째 페이지에서 10개의 항목을 요청
-        val findMember: Member = memberRepository.findById(userId).orElseThrow {
-            IllegalArgumentException("Member not found")
-        }
-        val members: List<Member> = memberRepository.findRandomMemberSameGender(findMember.gender, findMember.id!!, pageable)
+        val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
+        val members: List<Member> = memberRepository.findRandomMemberSameGender(findMember.gender, findMember.id, pageable)
         return members.map { member ->
             MemberListDto(
-                id = member.id!!,
+                id = member.id,
                 name = member.name,
                 loginId = member.loginId,
                 studentNumber = member.studentNumber,

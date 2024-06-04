@@ -38,6 +38,6 @@ data class ChatRoomInfoDto(
 )
 
 data class MemberInfoDto(
-    val memberId: Long,
-    val memberName: String, // 멤버의 식별 정보와 이름 등 추가 정보 포함 가능
+    val memberId: Long?,
+    val memberName: String?, // 멤버의 식별 정보와 이름 등 추가 정보 포함 가능
 )

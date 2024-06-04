@@ -26,7 +26,7 @@ class KeywordController(
     fun saveKeyword(
         @RequestBody @Valid keywordDto: KeywordDto,
     ): BaseResponse<Unit> {
-        val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
+        val userId: Long? = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
         val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
         return BaseResponse(message = resultMsg)
     }

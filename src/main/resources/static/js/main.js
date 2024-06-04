@@ -139,6 +139,7 @@ function showMates(){
                 var mateName = response.data.data[i].name;
                 var mateMajor = response.data.data[i].major;
                 var blogDiv = document.createElement('div');
+                mateLoginId = response.data.data[i].loginId;
 
                 blogDiv.innerHTML = `
                         <div class="row blog-item px-3 pb-5">
@@ -149,11 +150,11 @@ function showMates(){
                                 <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${mateName}</h3>
                                 <div class="d-flex mb-3">
                                     <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
-                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId} </small>
                                     <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
                                 </div>
                                 <p>${mateName}</p>
-                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat()"> 테스트 채팅 <i class="fa fa-angle-right"></i></a>
+                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat()"> 채팅하기 <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                 `;
@@ -173,37 +174,38 @@ function move(){
 function startChat(){
     // Get the modal
     var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
 
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+var modal = document.getElementById("myModal");
+var saveBtn=document.getElementById("saveBtn");
 
 // Get the element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    var closeBtn = document.getElementById("closeBtn");
-
-// When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+var span = document.getElementsByClassName("close")[0];
+var closeBtn = document.getElementById("closeBtn");
 
 // When the user clicks on <span> (x) or the Close button, close the modal
-    span.onclick = closeBtn.onclick = function() {
-        modal.style.display = "none";
-    }
+span.onclick = closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
 
 // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
+}
+
+saveBtn.onclick=function(){
+    saveChange(mateLoginId);
 }
 
 
 var roomId = null;
 
 //채팅방 이름 입력후 채팅방 생성하는 함수
-function saveChange(){
+function saveChange(mateLoginId){
+    console.log(mateLoginId);
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
     if (messageTitle.trim() === '') {
@@ -214,7 +216,7 @@ function saveChange(){
     try {
         const response=instance.post("/api/room/new",{
             loginId: loginId,
-            userId: "vkflco08",
+            userId: mateLoginId,
             roomName: messageTitle,
             createDate: getCurrentDate()
         });

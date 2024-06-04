@@ -98,7 +98,7 @@ class MemberController(
      */
     @GetMapping("/user_list")
     fun userList(): BaseResponse<List<MemberListDto>> {
-        val userId: Long = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
+        val userId: Long? = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
 
         val resultMsg: List<MemberListDto> = memberService.findFriendsList(userId)
         return BaseResponse(data = resultMsg)

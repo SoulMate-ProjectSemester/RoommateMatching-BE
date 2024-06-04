@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.common.exception.InvalidInputException
+import school.project.soulmate.member.entity.Member
 import school.project.soulmate.member.repository.MemberRepository
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomInfoDto
@@ -13,7 +14,7 @@ import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
 import school.project.soulmate.stomp.repository.ChatRoomRepository
-import java.util.UUID
+import java.util.*
 
 @Service
 class ChatRoomService(
@@ -24,8 +25,8 @@ class ChatRoomService(
     @Transactional
     fun createChatRoom(chatRoomDto: ChatRoomDto): ChatRoom {
         // 사용자 조회
-        val loginMember = memberRepository.findByLoginId(chatRoomDto.loginId)
-        val userMember = memberRepository.findByLoginId(chatRoomDto.userId)
+        val loginMember: Member = memberRepository.findByLoginId(chatRoomDto.loginId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
+        val userMember: Member = memberRepository.findByLoginId(chatRoomDto.userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
 
         // 채팅방 생성
         val chatRoom =
@@ -36,20 +37,27 @@ class ChatRoomService(
         chatRoomRepository.save(chatRoom)
 
         // 채팅방 멤버 추가
-        val loginChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = loginMember!!)
-        val userChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = userMember!!)
+        val loginChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = loginMember)
+        val userChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = userMember)
         chatRoomMemberRepository.saveAll(listOf(loginChatRoomMember, userChatRoomMember))
 
         return chatRoom
     }
 
-    fun findRoom(roomId: UUID): ChatRoomInfoDto {
-        val findRoom = chatRoomRepository.findByRoomId(roomId)
-        val chatRoomMembers = chatRoomMemberRepository.findAllByChatRoom(findRoom)
-        val members =
-            chatRoomMembers.map { member ->
-                MemberInfoDto(memberId = member.member.id!!, memberName = member.member.name)
-            }.toList()
+    // 로그인한 유저가 첫번째, 나머지 유저는 이름으로 오름차순
+    fun findRoom(roomId: UUID, userId: Long?): ChatRoomInfoDto {
+        val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
+
+        val findRoom: ChatRoom = chatRoomRepository.findByRoomId(roomId)
+        val chatRoomMembers: List<ChatRoomMember> = chatRoomMemberRepository.findAllByChatRoom(findRoom)
+
+        // 채팅방의 멤버 리스트에서 findMember가 아닌 멤버들을 MemberInfoDto로 매핑하고 이름으로 정렬
+        val members: MutableList<MemberInfoDto> = mapAndSortChatRoomMembers(chatRoomMembers, findMember.id)
+
+        // findMember를 첫 번째 요소로 추가
+        members.add(0, MemberInfoDto(memberId = findMember.id, memberName = findMember.name))
+
+        // ChatRoomInfoDto 객체 생성 및 반환
         return ChatRoomInfoDto(
             roomId = roomId,
             roomName = findRoom.roomName,
@@ -58,15 +66,17 @@ class ChatRoomService(
         )
     }
 
+    // 로그인한 유저 제외하고 이름으로 오름차순
     fun findRooms(loginId: String): List<ChatRoomInfoDto> {
-        val findMember = memberRepository.findByLoginId(loginId)
-        val chatRoomMembers = chatRoomMemberRepository.findAllByMember(findMember)
+        val findMember: Member = memberRepository.findByLoginId(loginId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
+        val chatRoomMembers: List<ChatRoomMember> = chatRoomMemberRepository.findAllByMember(findMember)
 
         return chatRoomMembers.map { chatRoomMember ->
-            val members =
-                chatRoomMember.chatRoom.chatRoomMembers.map { member ->
-                    MemberInfoDto(memberId = member.member.id!!, memberName = member.member.name)
-                }.toList()
+            val chatRoom = chatRoomMember.chatRoom
+            val roomMembers: List<ChatRoomMember> = chatRoomMemberRepository.findAllByChatRoom(chatRoom)
+
+            // 채팅방의 멤버 리스트에서 findMember가 아닌 멤버들을 MemberInfoDto로 매핑하고 이름으로 정렬
+            val members: MutableList<MemberInfoDto> = mapAndSortChatRoomMembers(roomMembers, findMember.id)
 
             ChatRoomInfoDto(
                 roomId = chatRoomMember.chatRoom.roomId!!,
@@ -75,6 +85,16 @@ class ChatRoomService(
                 members = members,
             )
         }
+    }
+
+    fun mapAndSortChatRoomMembers(chatRoomMembers: List<ChatRoomMember>, memberId: Long?): MutableList<MemberInfoDto> {
+        return chatRoomMembers
+            .filter { member -> member.member.id != memberId }
+            .map { member ->
+                MemberInfoDto(memberId = member.member.id, memberName = member.member.name)
+            }
+            .sortedBy { it.memberName }
+            .toMutableList()
     }
 
     @Transactional

@@ -19,6 +19,6 @@ data class KeywordDto(
 }
 
 data class KeywordDtoResponse(
-    val member: Long,
+    val member: Long?,
     val keywordSet: MutableSet<String>?,
 )

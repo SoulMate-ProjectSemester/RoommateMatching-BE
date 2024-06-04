@@ -111,7 +111,7 @@ data class MemberDtoResponse(
 )
 
 data class MemberListDto(
-    val id: Long,
+    val id: Long?,
     val name: String,
     val studentNumber: String,
     val loginId: String,

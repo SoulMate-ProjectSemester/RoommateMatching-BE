@@ -19,7 +19,7 @@ class KeywordService(
     @Transactional
     fun saveKeyword(
         keywordDto: KeywordDto,
-        userId: Long,
+        userId: Long?,
     ): String {
         val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
 
@@ -28,12 +28,12 @@ class KeywordService(
         return "키워드가 저장되었습니다"
     }
 
-    fun findKeyword(memberId: Long): KeywordDtoResponse {
+    fun findKeyword(memberId: Long?): KeywordDtoResponse {
         val findMember: Member = memberRepository.findByIdOrNull(memberId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
         val keyword: Keyword? = keywordRepository.findByMember(findMember)
 
         return KeywordDtoResponse(
-            member = findMember.id!!,
+            member = findMember.id,
             keywordSet = keyword?.keywordSet,
         )
     }
@@ -41,7 +41,7 @@ class KeywordService(
     @Transactional
     fun updateKeyword(
         keywordDto: KeywordDto,
-        userId: Long,
+        userId: Long?,
     ): String {
         val member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
         val keyword = keywordRepository.findByMember(member) ?: throw InvalidInputException("유저의 키워드가 존재하지 않습니다.")

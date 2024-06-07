@@ -149,25 +149,23 @@ function ShowChatList(){
                     var roomId=response.data.data[i].roomId;
                     var createDate=response.data.data[i].createDate;
                     var roomName=response.data.data[i].roomName;
-                    var userName=response.data.data[i].members[0].memberName;
+                    var userName=response.data.data[i].members[1].memberName;
                     var chatRoomDiv = document.createElement('div');
                     chatRoomDiv.className = 'row blog-item px-3 pb-5';
 
                     // HTML 내용을 문자열로 추가
                     chatRoomDiv.innerHTML = `
                     <div class="col-md-5">
-                      <img class="img-fluid mb-4 mb-md-0" src="/img/blog-1.jpg" alt="Image">
+                      <img class="img-fluid mb-4 mb-md-0" src="/images/user-2.jpg" alt="Image">
                     </div>
                     <div class="col-md-7">
-                      <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${roomName}</h3>
+                      <h3 class="mt-md-4 px-md-3 mb-2 font-weight-bold">${roomName}</h3>
                       <div class="d-flex mb-3">
-                        <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${roomId}</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
+                        <small class="mr-2 text-muted" style="margin-left: -45%; margin-top: -0.7rem;"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
                       </div>
-                      <p>${userName}</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://localhost:8080/api/page/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <p style="margin-left:-45.4%; margin-top:-1rem;"><i class="fa-solid fa-user" style="margin-right: 3px;"></i>${userName}</p>
                     </div>
+                    <a class="chat_btn" id="myBtn" href="http://localhost:8080/api/page/${roomId}"> <i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
                   `;
                     // 생성된 div를 문서에 추가
                     var container = document.querySelector('.container.bg-white.pt-5');

@@ -156,17 +156,16 @@ function ShowChatList(){
                     // HTML 내용을 문자열로 추가
                     chatRoomDiv.innerHTML = `
                     <div class="col-md-5">
-                      <img class="img-fluid mb-4 mb-md-0" src="/images/blog-1.jpg" alt="Image">
+                      <img class="img-fluid mb-4 mb-md-0" src="/images/user-2.jpg" alt="Image">
                     </div>
                     <div class="col-md-7">
-                      <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${roomName}</h3>
+                      <h3 class="mt-md-4 px-md-3 mb-2 font-weight-bold">${roomName}</h3>
                       <div class="d-flex mb-3">
-                        <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${roomId}</small>
-                        <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 messages </small>
+                        <small class="mr-2 text-muted" style="margin-left: -45%; margin-top: -0.7rem;"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
+                      
                       </div>
-                      <p>${userName}</p>
-                      <a class="btn btn-link p-0" id="myBtn" href="http://soulmate.pe.kr/api/page/${roomId}">채팅하기 <i class="fa fa-angle-right"></i></a>
+                      <p style="margin-left: -45.5%; margin-top: -1rem;"><i class="fa-solid fa-user" style="margin-right: 3px;"></i>${username}</p>
+                      <a class="chat_btn" id="myBtn" href="http://soulmate.pe.kr/api/page/${roomId}"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
                     </div>
                   `;
                     // 생성된 div를 문서에 추가

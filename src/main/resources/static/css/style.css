@@ -8034,6 +8034,9 @@ button.bg-dark:focus {
     .mb-md-0,
     .my-md-0 {
         margin-bottom: 0 !important;
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
     }
 
     .ml-md-0,
@@ -8119,7 +8122,7 @@ button.bg-dark:focus {
 
     .mt-md-4,
     .my-md-4 {
-        margin-top: 1.5rem !important;
+        margin-top: 1rem !important;
     }
 
     .mr-md-4,
@@ -9859,7 +9862,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 @media (min-width: 768px) {
     .blog-item h3 {
-        margin-left: -90px;
+        margin-left: -50%;
     }
 }
 .skills .progress .progress-bar {
@@ -9976,7 +9979,7 @@ a.text-dark:hover, a.text-dark:focus {
     user-select: none; /* Prevent text selection */
     color: #f2f2f2;
     font-size: 0.9rem;
-    background: #ff375f;
+    background: #48b4ef;
 }
 
 .ai-analyze{
@@ -10007,8 +10010,8 @@ body.prev_loading {
 .loading{
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    background: rgba(255,255,255,0.95);
+    /*background-color: rgba(0,0,0,0.5);*/
+    /*background: rgba(255,255,255,0.95);*/
     display:none;
     align-items: center;
     justify-content: center;
@@ -10044,4 +10047,11 @@ body.prev_loading {
         opacity: 1;
         transform: scale(1.2);
     }
+}
+
+.chat_btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: -100px;
 }

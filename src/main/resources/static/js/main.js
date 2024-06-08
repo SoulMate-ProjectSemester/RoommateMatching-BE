@@ -147,17 +147,16 @@ function showMates(){
                 blogDiv.innerHTML = `
                         <div class="row blog-item px-3 pb-5">
                             <div class="col-md-5">
-                                <img class="img-fluid mb-4 mb-md-0" src="/images/blog-1.jpg" alt="Image">
+                                <img class="img-fluid mb-4 mb-md-0" src="/images/user-1.jpg" alt="Image">
                             </div>
                             <div class="col-md-7">
-                                <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">${mateName}</h3>
+                                <h3 class="mt-md-4 px-md-3 mb-2 py-2 font-weight-bold">${mateName}</h3>
                                 <div class="d-flex mb-3">
-                                    <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
-                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>
-                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                                    <small class="mr-2 text-muted" style="margin-left: -45.3%; margin-top: -1rem;"><i class="fa fa-calendar-alt"></i> ${mateMajor} </small>
+<!--                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>-->
+<!--                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>-->
                                 </div>
-                                <p>${mateLoginId}</p>
-                                <a class="btn btn-link p-0" id="myBtn" onclick="startChat(mateLoginId)"> 채팅하기 <i class="fa fa-angle-right"></i></a>
+                                <a class="chat_btn" id="myBtn" onclick="startChat()"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
                             </div>
                         </div>
                 `;
@@ -305,8 +304,16 @@ function showLoading() {
     var centerX = (scrollX + screenWidth / 2) - 30;
     var centerY = (scrollY + screenHeight / 2) - 12.7;
 
-    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
-    document.querySelector("#loading").style.height = "100%";
+    const comment=document.getElementById('ai-comment');
+    const comment2=document.getElementById('ai-analyze-text2');
+    const readbtn=document.getElementById('read-more-btn');
+
+    comment.style.display='none';
+    comment2.style.display='none';
+    readbtn.style.display='none';
+
+    // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+    // document.querySelector("#loading").style.height = "100%";
     //body 스크롤 막기
     document.querySelector('body').classList.add('prev_loading');
 

@@ -10055,3 +10055,7 @@ body.prev_loading {
     align-items: center;
     margin-top: -100px;
 }
+
+#ai-analyze{
+    width:70%;
+}

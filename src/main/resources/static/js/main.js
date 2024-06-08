@@ -42,6 +42,17 @@
     });
 })(jQuery);
 
+// if(localStorage.getItem('AnalyzeText')!=""){
+//     const element=document.getElementById('ai-analyze');
+//     window.localStorage.setItem('AnalyzeText',cleanedText);
+//     element.innerText=cleanedText;
+//
+//     const elementId1=document.getElementById('ai-analyze-text1');
+//     elementId1.style.display='none';
+//     const elementId2=document.getElementById('ai-analyze-text2');
+//     elementId2.style.display='none';
+// }
+
 const token = window.localStorage.getItem("token");
 // const refreshtoken = window.localStorage.getItem('refreshToken');
 
@@ -154,7 +165,7 @@ function showMates(){
 <!--                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>-->
                                 </div>
                             </div> 
-                            <a class="chat_btn" id="myBtn" onclick="startChat()"> <i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i> </a>
+                            <a class="chat_btn" id="myBtn" onclick="startChat(mateLoginId)"> <i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i> </a>
                         </div>
                      `
 
@@ -170,10 +181,11 @@ function move(){
     window.location.href="http://localhost:8080/api/page/info_edit";
 }
 
-function startChat(){
+function startChat(mateLoginId){
     // Get the modal
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
+    mateLoginId=mateLoginId;
 }
 
 var modal = document.getElementById("myModal");
@@ -275,7 +287,10 @@ function MyAnalyze(){
         console.log(response);
         // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
-        element.innerText=response.data.response;
+        let cleanedText = response.data.response.replace(/【[^【】]*】/g, '');
+        window.localStorage.setItem('AnalyzeText',cleanedText);
+        element.innerText=cleanedText;
+
         const elementId1=document.getElementById('ai-analyze-text1');
         elementId1.style.display='none';
         const elementId2=document.getElementById('ai-analyze-text2');

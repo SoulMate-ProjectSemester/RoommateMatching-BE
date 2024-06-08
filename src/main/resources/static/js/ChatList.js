@@ -149,7 +149,7 @@ function ShowChatList(){
                     var roomId=response.data.data[i].roomId;
                     var createDate=response.data.data[i].createDate;
                     var roomName=response.data.data[i].roomName;
-                    var userName=response.data.data[i].members[1].memberName;
+                    var userName=response.data.data[i].members[0].memberName;
                     var chatRoomDiv = document.createElement('div');
                     chatRoomDiv.className = 'row blog-item px-3 pb-5';
 

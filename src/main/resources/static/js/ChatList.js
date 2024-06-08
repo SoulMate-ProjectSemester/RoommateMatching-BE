@@ -155,19 +155,20 @@ function ShowChatList(){
 
                     // HTML 내용을 문자열로 추가
                     chatRoomDiv.innerHTML = `
-                    <div class="col-md-5">
-                      <img class="img-fluid mb-4 mb-md-0" src="/images/user-2.jpg" alt="Image">
-                    </div>
-                    <div class="col-md-7">
-                      <h3 class="mt-md-4 px-md-3 mb-2 font-weight-bold">${roomName}</h3>
-                      <div class="d-flex mb-3">
-                        <small class="mr-2 text-muted" style="margin-left: -45%; margin-top: -0.7rem;"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
-                      
-                      </div>
-                      <p style="margin-left: -45.5%; margin-top: -1rem;"><i class="fa-solid fa-user" style="margin-right: 3px;"></i>${username}</p>
-                      <a class="chat_btn" id="myBtn" href="http://soulmate.pe.kr/api/page/${roomId}"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
-                    </div>
-                  `;
+                        <div class="col-md-5">
+                          <img class="img-fluid mb-4 mb-md-0" src="/images/user-2.jpg" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                          <h3 class="mt-md-4 px-md-3 mb-2 font-weight-bold">${roomName}</h3>
+                          <div class="d-flex mb-3">
+                            <small class="mr-2 text-muted" style="margin-left: -45%; margin-top: -0.7rem;"><i class="fa fa-calendar-alt"></i> ${createDate}</small>
+                          
+                          </div>
+                          <p style="margin-left: -45.5%; margin-top: -1rem;"><i class="fa-solid fa-user" style="margin-right: 3px;"></i>${userName}</p>
+                          <a class="chat_btn" id="myBtn" href="http://soulmate.pe.kr/api/page/${roomId}"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
+                        </div>
+                    `;
+
                     // 생성된 div를 문서에 추가
                     var container = document.querySelector('.container.bg-white.pt-5');
                     container.appendChild(chatRoomDiv);

@@ -156,7 +156,7 @@ function showMates(){
 <!--                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>-->
 <!--                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>-->
                                 </div>
-                                <a class="chat_btn" id="myBtn" onclick="startChat()"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
+                                <a class="chat_btn" id="myBtn" onclick="startChat(mateLoginId)"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
                             </div>
                         </div>
                 `;
@@ -173,10 +173,11 @@ function move(){
     location.href="/api/page/info_edit";
 }
 
-function startChat(){
+function startChat(mateLoginId){
     // Get the modal
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
+    NewMateLoginId=mateLoginId;
 }
 
 var modal = document.getElementById("myModal");
@@ -199,14 +200,14 @@ var saveBtn=document.getElementById("saveBtn");
     }
 
     saveBtn.onclick=function(){
-        saveChange(mateLoginId);
+        saveChange(NewMateLoginId);
     }
 
 
 var roomId = null;
 
 //채팅방 이름 입력후 채팅방 생성하는 함수
-function saveChange(mateLoginId){
+function saveChange(NewmateLoginId){
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
     if (messageTitle.trim() === '') {
@@ -217,7 +218,7 @@ function saveChange(mateLoginId){
     try {
         const response=instance.post("/api/room/new",{
             loginId: loginId,
-            userId: mateLoginId,
+            userId: NewmateLoginId,
             roomName: messageTitle,
             createDate: getCurrentDate()
         });

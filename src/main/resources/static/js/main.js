@@ -283,9 +283,7 @@ function MyAnalyze(){
         console.log(response);
         // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
-        let cleanedText = response.data.response.replace(/【[^【】]*】/g, '');
-        window.localStorage.setItem('AnalyzeText',cleanedText);
-        element.innerText=cleanedText;
+        element.innerText = response.data.response;
 
         const elementId1=document.getElementById('ai-analyze-text1');
         elementId1.style.display='none';

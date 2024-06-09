@@ -142,7 +142,7 @@ function showMates(){
                 var mateName = response.data.data[i].name;
                 var mateMajor = response.data.data[i].major;
                 var blogDiv = document.createElement('div');
-                mateLoginId=response.data.data[i].loginId;
+                var mateLoginId=response.data.data[i].loginId;
 
                 blogDiv.innerHTML = `
                         <div class="row blog-item px-3 pb-5">
@@ -156,7 +156,7 @@ function showMates(){
 <!--                                    <small class="mr-2 text-muted"><i class="fa fa-folder"></i> ${mateLoginId}</small>-->
 <!--                                    <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>-->
                                 </div>
-                                <a class="chat_btn" id="myBtn" onclick="startChat(mateLoginId)"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
+                                <a class="chat_btn" id="myBtn" onclick="startChat('${mateLoginId}')"><i class="fa-solid fa-comment a-volume-up fa-2x" style="z-index: 11;"></i></a>
                             </div>
                         </div>
                 `;
@@ -177,7 +177,8 @@ function startChat(mateLoginId){
     // Get the modal
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
-    NewMateLoginId=mateLoginId;
+    //mateLoginId를 전역변수로 저장하거나 모달의 data attribute 저장
+    modal.setAttribute('data-mate-login-id', mateLoginId);
 }
 
 var modal = document.getElementById("myModal");
@@ -200,14 +201,17 @@ var saveBtn=document.getElementById("saveBtn");
     }
 
     saveBtn.onclick=function(){
-        saveChange(NewMateLoginId);
+        saveChange();
     }
 
 
 var roomId = null;
 
 //채팅방 이름 입력후 채팅방 생성하는 함수
-function saveChange(NewmateLoginId){
+function saveChange(){
+    var modal = document.getElementById("myModal");
+    var mateLoginId = modal.getAttribute('data-mate-login-id'); // Retrieve mateLoginId from the modal
+
     var inputTitle = document.getElementById("chatroom-name");
     var messageTitle=inputTitle.value;
     if (messageTitle.trim() === '') {
@@ -218,7 +222,7 @@ function saveChange(NewmateLoginId){
     try {
         const response=instance.post("/api/room/new",{
             loginId: loginId,
-            userId: NewmateLoginId,
+            userId: mateLoginId,
             roomName: messageTitle,
             createDate: getCurrentDate()
         });

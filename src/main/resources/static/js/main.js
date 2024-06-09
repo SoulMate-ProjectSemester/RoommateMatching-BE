@@ -282,7 +282,10 @@ function MyAnalyze(){
         console.log(response);
         // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
-        element.innerText=response.data.response;
+        let cleanedText = response.data.response.replace(/【[^【】]*】/g, '');
+        window.localStorage.setItem('AnalyzeText',cleanedText);
+        element.innerText=cleanedText;
+
         const elementId1=document.getElementById('ai-analyze-text1');
         elementId1.style.display='none';
         const elementId2=document.getElementById('ai-analyze-text2');
@@ -312,10 +315,12 @@ function showLoading() {
     const comment=document.getElementById('ai-comment');
     const comment2=document.getElementById('ai-analyze-text2');
     const readbtn=document.getElementById('read-more-btn');
+    const analyze=document.getElementById('ai-analyze');
 
     comment.style.display='none';
     comment2.style.display='none';
     readbtn.style.display='none';
+    analyze.style.display='none';
 
     // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
     // document.querySelector("#loading").style.height = "100%";

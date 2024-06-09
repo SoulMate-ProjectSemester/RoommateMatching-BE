@@ -69,8 +69,9 @@ try {
         if(responseData=='SUCCESS'){
             var name = response.data.data.name;
             var major = response.data.data.major;
-            //loginId를 전역변수로 선언하여 어디서든 사용할 수 있도록 함.(var 선언만 안하면 됨)
+            //loginId를 전역변수로 선언하여 어디서든 사용할 수 있도록 함.(var 선언만 안하면 됨), 문자열
             loginId=response.data.data.loginId;
+            //primary key, id
             myId=response.data.data.id;
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
@@ -275,7 +276,7 @@ function MyAnalyze(){
     });
 
     const response = instance.post("/chat",{
-        userId: 1,
+        userId: myId,
         message: "나는 어떤 사람이야?"
     });
     response.then(response => {
@@ -315,12 +316,10 @@ function showLoading() {
     const comment=document.getElementById('ai-comment');
     const comment2=document.getElementById('ai-analyze-text2');
     const readbtn=document.getElementById('read-more-btn');
-    const analyze=document.getElementById('ai-analyze');
 
     comment.style.display='none';
     comment2.style.display='none';
     readbtn.style.display='none';
-    analyze.style.display='none';
 
     // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
     // document.querySelector("#loading").style.height = "100%";

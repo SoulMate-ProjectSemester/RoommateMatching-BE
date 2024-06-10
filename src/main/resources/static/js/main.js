@@ -45,8 +45,6 @@
 const token = window.localStorage.getItem("token");
 // const refreshtoken = window.localStorage.getItem('refreshToken');
 
-console.log("Loaded Token:", token); // 로드된 토큰을 로그로 확인
-
 const instance = axios.create({
     baseURL: "http://soulmate.pe.kr",
     timeout: 5000,
@@ -56,8 +54,6 @@ const instance = axios.create({
         Authorization: `Bearer ${token}`,
     },
 });
-
-console.log("Axios Headers:", instance.defaults.headers); // 설정된 헤더를 로그로 확인
 
 try {
     const response=instance.get("/api/member/info");
@@ -99,22 +95,26 @@ const instanceAI = axios.create({
     responseType: "json",
 });
 
-const response = instanceAI.get("/chat",{
-    userId: myId
-});
-response.then(response => {
-    if(response.data.user_message){
-        const comment=document.getElementById('ai-comment');
-        const comment2=document.getElementById('ai-analyze-text2');
-        comment.style.display='none';
-        comment2.style.display='none';
+try{
+    const response = instanceAI.get("/chat",{
+        userId: myId
+    });
+    response.then(response => {
+        if(response.data.user_message){
+            const comment=document.getElementById('ai-comment');
+            const comment2=document.getElementById('ai-analyze-text2');
+            comment.style.display='none';
+            comment2.style.display='none';
 
-        const element=document.getElementById('ai-analyze');
-        element.innerText=response.data.response;
-    }
-}).catch(error => {
-    console.log('error occurred:', error);
-})
+            const element=document.getElementById('ai-analyze');
+            element.innerText=response.data.response;
+        }
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
+}catch (error){
+    console.log(error);
+}
 
 function logout(){
     if(confirm("정말 로그아웃 하시겠습니까?")==true){

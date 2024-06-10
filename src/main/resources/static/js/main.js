@@ -88,7 +88,7 @@ try {
 }
 
 //이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
-const instance = axios.create({
+const instanceAI = axios.create({
     baseURL: "http://soulmate.pe.kr:8181",
     timeout: 5000,
     headers: {
@@ -99,7 +99,7 @@ const instance = axios.create({
     responseType: "json",
 });
 
-const response = instance.get("/chat",{
+const response = instanceAI.get("/chat",{
     userId: myId
 });
 response.then(response => {

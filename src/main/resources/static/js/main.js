@@ -86,7 +86,7 @@ try {
 //이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
 const instanceAI = axios.create({
     baseURL: "http://soulmate.pe.kr:8181",
-    timeout: 5000,
+    timeout: 500000,
     headers: {
         "Cache-Control": "no-cache",
         "Content-Type": "application/json",

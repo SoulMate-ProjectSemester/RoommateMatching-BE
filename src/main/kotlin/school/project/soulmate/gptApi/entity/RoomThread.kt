@@ -1,5 +1,6 @@
 package school.project.soulmate.gptApi.entity
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.Id
@@ -15,5 +16,8 @@ class RoomThread(
     @JoinColumn(name = "chatroom_id")
     var room: ChatRoom,
     val threadId: String,
+
+    @Column(length = 1000)
+    val roomMessage: String,
     val createDate: LocalDate,
 )

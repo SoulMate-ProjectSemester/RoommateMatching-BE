@@ -405,7 +405,7 @@ function ChatAnalyze(){
         responseType: "json",
     });
 
-    const response = instance.post("/room",{
+    const response = instance.post("/room/new",{
         roomId: roomId
     });
     response.then(response => {

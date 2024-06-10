@@ -42,17 +42,6 @@
     });
 })(jQuery);
 
-// if(localStorage.getItem('AnalyzeText')!=""){
-//     const element=document.getElementById('ai-analyze');
-//     window.localStorage.setItem('AnalyzeText',cleanedText);
-//     element.innerText=cleanedText;
-//
-//     const elementId1=document.getElementById('ai-analyze-text1');
-//     elementId1.style.display='none';
-//     const elementId2=document.getElementById('ai-analyze-text2');
-//     elementId2.style.display='none';
-// }
-
 const token = window.localStorage.getItem("token");
 // const refreshtoken = window.localStorage.getItem('refreshToken');
 
@@ -92,6 +81,35 @@ try {
 }catch (error){
     console.error("로그인 중 에러:", error);
 }
+
+//이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
+const instance = axios.create({
+    baseURL: "http://localhost:8181",
+    timeout: 5000,
+    headers: {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+    },
+    responseType: "json",
+});
+
+const response = instance.get("/chat",{
+    userId: myId
+});
+response.then(response => {
+    if(response.data.user_message){
+        const comment=document.getElementById('ai-comment');
+        const comment2=document.getElementById('ai-analyze-text2');
+        comment.style.display='none';
+        comment2.style.display='none';
+
+        const element=document.getElementById('ai-analyze');
+        element.innerText=response.data.response;
+    }
+}).catch(error => {
+    console.log('error occurred:', error);
+})
 
 function logout(){
     if(confirm("정말 로그아웃 하시겠습니까?")==true){
@@ -279,7 +297,7 @@ function MyAnalyze(){
         responseType: "json",
     });
 
-    const response = instance.post("/chat",{
+    const response = instance.post("/chat/new",{
         userId: 1,
         message: "나는 어떤 사람이야?"
     });
@@ -288,7 +306,7 @@ function MyAnalyze(){
         // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
         let cleanedText = response.data.response.replace(/【[^【】]*】/g, '');
-        window.localStorage.setItem('AnalyzeText',cleanedText);
+        window.localStorage.setItem(`${myId}`,cleanedText);
         element.innerText=cleanedText;
 
         const elementId1=document.getElementById('ai-analyze-text1');
@@ -319,11 +337,9 @@ function showLoading() {
 
     const comment=document.getElementById('ai-comment');
     const comment2=document.getElementById('ai-analyze-text2');
-    const readbtn=document.getElementById('read-more-btn');
 
     comment.style.display='none';
     comment2.style.display='none';
-    readbtn.style.display='none';
     //$("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
     //document.querySelector("#loading").style.height = "100%";
     //body 스크롤 막기
@@ -346,8 +362,8 @@ function closeLoading() {
     // 화면 중앙 좌표 계산
     var centerX = (scrollX + screenWidth / 2) - 30;
     var centerY = (scrollY + screenHeight / 2) - 12.7;
-    document.querySelector("#loading").style.height = "100%";
-    $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+    // document.querySelector("#loading").style.height = "100%";
+    // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
 }
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <title>soulmate</title>
@@ -81,6 +81,9 @@
                                 <p id="ai-analyze-text1">여기에 내 성향 분석 결과가 나타납니다</p>
                             </div>
                             <p class="ai-comment" id="ai-analyze-text2" style="display: block;">옆의 AI 내 성향 분석 결과 버튼을 눌러주세요!🌟</p>
+                            <div id="ai-comment2">
+                                <p id="ai-analyze-text3">이미 분석을 완료하셨다면, '내 분석 결과 보기' 버튼을 눌러주세요! ✔</p>
+                            </div>
                             <div id="loading" class="loading">
                                 <div id="spinner" style="top:53%; left:46%;">
                                     <!-- 로딩 점 보일 span -->
@@ -88,6 +91,7 @@
                                 </div>
                             </div>
                             <span id="ai-analyze"></span>
+                            <a class="btn btn-lg btn-outline-light mt-4" id="old-analyze-result" onclick="getAIResult()">내 분석 결과 보기</a>
 <!--                            <a href="" class="btn btn-lg btn-outline-light mt-4" id="read-more-btn">Read More</a>-->
                         </div>
                     </div>
@@ -99,7 +103,7 @@
         <!-- 룸메이트 대화 유도 메세지 -->
         <div class="container py-4 bg-secondary text-center">
             <p class="m-0 text-white">
-                <a class="text-white font-weight-bold">아래의 다양한 친구들과 함께 </a> 자유롭게 대화를 나누어 보세요! 😆
+                <a class="text-white font-weight-bold">실시간으로 업데이트 되는 친구들과 함께 </a> 자유롭게 대화를 나누어 보세요! 😆
             </p>
         </div>
 

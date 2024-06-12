@@ -1,5 +1,5 @@
 (function ($) {
-    "use strict";
+    // "use strict";
 
     // Dropdown on mouse hover
     $(document).ready(function () {
@@ -71,6 +71,7 @@ try {
             document.getElementById("myProfileName").innerHTML = name;
             document.getElementById("content-space").innerHTML="&nbsp";
             document.getElementById("myProfileMajor").innerHTML = major;
+            window.localStorage.setItem('myId',myId);
         }
     }).catch(error => {
         // Handle errors if the Promise is rejected
@@ -81,35 +82,6 @@ try {
 }catch (error){
     console.error("로그인 중 에러:", error);
 }
-
-//이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
-const instance = axios.create({
-    baseURL: "http://localhost:8181",
-    timeout: 5000,
-    headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-    },
-    responseType: "json",
-});
-
-const response = instance.get("/chat",{
-    userId: myId
-});
-response.then(response => {
-    if(response.data.user_message){
-        const comment=document.getElementById('ai-comment');
-        const comment2=document.getElementById('ai-analyze-text2');
-        comment.style.display='none';
-        comment2.style.display='none';
-
-        const element=document.getElementById('ai-analyze');
-        element.innerText=response.data.response;
-    }
-}).catch(error => {
-    console.log('error occurred:', error);
-})
 
 function logout(){
     if(confirm("정말 로그아웃 하시겠습니까?")==true){
@@ -298,15 +270,14 @@ function MyAnalyze(){
     });
 
     const response = instance.post("/chat/new",{
-        userId: 1,
+        userId: myId,
         message: "나는 어떤 사람이야?"
     });
     response.then(response => {
         console.log(response);
         // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
-        let cleanedText = response.data.response.replace(/【[^【】]*】/g, '');
-        window.localStorage.setItem(`${myId}`,cleanedText);
+        let cleanedText = response.data.response.replace(/【[^【】"\\n*]*】/g, '');
         element.innerText=cleanedText;
 
         const elementId1=document.getElementById('ai-analyze-text1');
@@ -317,6 +288,7 @@ function MyAnalyze(){
             closeLoading();
     }).catch(error => {
         console.log('error occurred:', error);
+        alert("다른 친구와 채팅 후, AI 분석 기능을 사용해 주세요!");
     })
 
 
@@ -337,13 +309,17 @@ function showLoading() {
 
     const comment=document.getElementById('ai-comment');
     const comment2=document.getElementById('ai-analyze-text2');
+    const comment3=document.getElementById('ai-comment2');
+    const resultBtn=document.getElementById('old-analyze-result');
+    const element=document.getElementById('ai-analyze');
 
     comment.style.display='none';
     comment2.style.display='none';
-    //$("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
-    //document.querySelector("#loading").style.height = "100%";
-    //body 스크롤 막기
-    document.querySelector('body').classList.add('prev_loading');
+    resultBtn.style.display='none';
+    comment3.style.display='none';
+    //AI 내 성향 분석하기를 연속으로 할 때 분석결과를 빈칸처리
+    if(element.innerText!="")
+        element.innerText="";
 
     $('#loading').show();
 }
@@ -364,6 +340,49 @@ function closeLoading() {
     var centerY = (scrollY + screenHeight / 2) - 12.7;
     // document.querySelector("#loading").style.height = "100%";
     // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
+}
+
+//이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
+function getAIResult(){
+    const instance = axios.create({
+        baseURL: "http://localhost:8181",
+        timeout: 500000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+    let getmyId=window.localStorage.getItem('myId');
+    const response = instance.post("/chat",{
+            userId:myId
+        }
+    );
+    response.then(response => {
+        console.log(response);
+        if(response.data==null) {
+            alert("AI 분석 결과가 없습니다!");
+        }else if(response.data.user_message==null){
+            alert("AI 분석 결과가 없습니다!");
+        }
+        if(response.data.user_message!=null){
+            const comment=document.getElementById('ai-comment');
+            const comment2=document.getElementById('ai-analyze-text2');
+            const comment3=document.getElementById('ai-comment2');
+            const resultBtn=document.getElementById('old-analyze-result');
+            comment.style.display='none';
+            comment2.style.display='none';
+            resultBtn.style.display='none';
+            comment3.style.display='none';
+
+            const element=document.getElementById('ai-analyze');
+            let cleanedText = response.data.response.replace(/【[^【】"\\n*]*】/g, '');
+            element.innerText=cleanedText;
+        }
+    }).catch(error => {
+        console.log('error occurred:', error);
+    })
 }
 
 

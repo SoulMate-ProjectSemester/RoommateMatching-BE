@@ -384,7 +384,7 @@ function getAIResult(){
             comment3.style.display='none';
 
             const element=document.getElementById('ai-analyze');
-            let cleanedText = response.data.response.replace(/【[^【】"\\n*]*】/g, '');
+            let cleanedText = response.data.user_message.replace(/【[^【】"\\n*]*】/g, '');
             element.innerText=cleanedText;
         }
     }).catch(error => {

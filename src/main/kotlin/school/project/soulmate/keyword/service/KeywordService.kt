@@ -26,19 +26,31 @@ class KeywordService(
     ): String {
         val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
 
+        // Create a new Keyword entity
         val keyword = Keyword(
             id = null,
             member = findMember,
-            keywords = keywordDto.keywordSet.map { KeywordDetail(id = null, keyword = null, value = it) }.toMutableSet()
+            keywords = mutableSetOf()
         )
+        keywordRepository.save(keyword) // Save the keyword entity first to get the ID
 
-        keyword.keywords.forEach { it.keyword = keyword }  // Set the back-reference
-        keywordRepository.save(keyword)
+        // Create and save each KeywordDetail individually
+        keywordDto.keywordSet.forEach {
+            val keywordDetail = KeywordDetail(
+                id = null,
+                keyword = keyword,
+                value = it
+            )
+            keywordDetailRepository.save(keywordDetail)
+            keyword.keywords.add(keywordDetail) // Add to the keyword's set
+        }
+
         return "키워드가 저장되었습니다"
     }
 
-    fun findKeyword(memberId: Long?): KeywordDtoResponse {
-        val findMember: Member = memberRepository.findByIdOrNull(memberId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
+
+    fun findKeyword(userId: Long?): KeywordDtoResponse {
+        val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저가 존재하지 않습니다.")
         val keyword: Keyword? = keywordRepository.findByMember(findMember)
 
         return KeywordDtoResponse(

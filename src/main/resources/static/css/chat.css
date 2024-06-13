@@ -64,10 +64,11 @@ header {
 .chat-container{
     display: flex;
     flex-direction: column;
-    height:1000px;
+    height:100vh;
 }
 
 .messages {
+    flex: 1; /* 남은 공간 차지 */
     padding: 10px;
     overflow-y: auto;
     margin-bottom: 50px

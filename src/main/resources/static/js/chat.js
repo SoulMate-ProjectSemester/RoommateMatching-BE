@@ -108,6 +108,7 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }else{
         var chatRoom = document.getElementById('chatRoom');
 
@@ -132,6 +133,7 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }
 
     var chatRoom = document.getElementById('chatRoom');
@@ -296,6 +298,7 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }else{
                         var chatRoom = document.getElementById('chatRoom');
 
@@ -319,6 +322,7 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }
                 }
                 var chatRoom = document.getElementById('chatRoom');

@@ -411,6 +411,7 @@ function ChatAnalyze(){
         result.innerText=response.data.response;$
     }).catch(error => {
         console.log('error occurred:', error);
+        alert('채팅을 조금 더 하고 분석을 진행해 주세요!')
     })
 }
 

@@ -57,7 +57,7 @@ function onError(error){
 }
 
 function sendMessage() {
-    // var chatRoom = document.getElementById('chatRoom');
+    var chatRoom = document.getElementById('chatRoom');
     var messageInput = document.getElementById('messageInput');
     var messageText = messageInput.value;
     if (messageText.trim() === '') {
@@ -75,12 +75,11 @@ function sendMessage() {
         stompClient.send(`/pub/${roomId}`, {}, JSON.stringify(chatMessage));
         document.getElementById('messageInput').value = '';
     }
+    chatRoom.scrollTop=chatRoom.scrollHeight;
 }
 
 //메세지를 수신 시, 처리 동작
 function onMessageReceived(payload){
-    console.log(payload);
-
     var ParseBody = JSON.parse(payload.body);
     var message=ParseBody.messageText;
     var userId=ParseBody.userId;
@@ -400,7 +399,7 @@ function ChatAnalyze(){
         responseType: "json",
     });
 
-    const response = instance.post("/room",{
+    const response = instance.post("/room/new",{
         roomId: roomId
     });
     response.then(response => {

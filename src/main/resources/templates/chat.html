@@ -37,15 +37,19 @@
 </div>
 
 
-<section class="messages" id="chatRoom">
-<!--채팅 메세지들이 동적으로 들어가는 공간-->
-</section>
+<div class="chat-container">
 
-<footer>
-    <button class="send" onclick="ChatAnalyze()">AI 채팅분석</button>
-    <input type="text" placeholder="Start a new message" id="messageInput">
-    <button class="send" onclick="sendMessage()">Send</button>
-</footer>
+    <div class="messages" id="chatRoom">
+        <!--채팅 메세지들이 동적으로 들어가는 공간-->
+    </div>
+
+    <div class="input-container">
+        <button class="send" onclick="ChatAnalyze()">AI 채팅분석</button>
+        <input type="text" placeholder="Start a new message" id="messageInput">
+        <button class="send" onclick="sendMessage()">Send</button>
+    </div>
+
+</div>
 
 
 <div id="myModal" class="modal">

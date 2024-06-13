@@ -53,10 +53,17 @@ header {
     margin-left: auto;
 }
 
+.chat-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
 .messages {
     padding: 10px;
-    overflow: scroll;
-    margin-bottom: 50px
+    overflow-y: auto;
+    margin-bottom: 50px;
 }
 
 .message {
@@ -122,7 +129,7 @@ header {
     text-align: right;
 }
 
-footer {
+.input-container {
     display: flex;
     position: fixed; /* 고정 위치 설정 */
     bottom: 0; /* 하단에 배치 */
@@ -132,7 +139,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.1); /* 배경색 지정 */
 }
 
-footer input {
+.input-container input {
     flex: 1;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.15);
@@ -141,7 +148,7 @@ footer input {
     color: black;
 }
 
-footer button.send {
+.input-container button.send {
     margin-left: 10px;
     margin-right: 20px;
     padding: 10px 20px;

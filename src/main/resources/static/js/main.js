@@ -352,7 +352,7 @@ function closeLoading() {
 //이미 AI 내 성향 분석하기 결과가 존재한다면 화면에 띄워줌
 function getAIResult(){
     const instance = axios.create({
-        baseURL: "http://localhost:8181",
+        baseURL: "http://soulmate.pe.kr:8181",
         timeout: 500000,
         headers: {
             "Cache-Control": "no-cache",

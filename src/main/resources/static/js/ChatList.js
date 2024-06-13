@@ -190,28 +190,5 @@ function ShowChatList(){
     }
 }
 
-function MyAnalyze(){
-    const instance = axios.create({
-        baseURL: "http://soulmate.pe.kr:8181",
-        timeout: 500000,
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-        },
-        responseType: "json",
-    });
-
-    const response = instance.post("/chat",{
-        userId: 1,
-        message: "나는 어떤 사람이야?"
-    });
-    response.then(response => {
-        console.log(response);
-        // console.log(response.data.response);
-    }).catch(error => {
-        console.log('error occurred:', error);
-    })
-}
 
 

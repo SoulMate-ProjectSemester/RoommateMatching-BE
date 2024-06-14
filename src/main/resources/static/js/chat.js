@@ -408,7 +408,7 @@ function ChatAnalyze(){
         closeLoading();
         modal2.style.display='block';
         const result=document.getElementById('analyze-result');
-        result.innerText=response.data.response;$
+        result.innerText=response.data.response;
     }).catch(error => {
         console.log('error occurred:', error);
         alert('더 많은 대화를 나눈 후 분석을 시도해 주세요!');

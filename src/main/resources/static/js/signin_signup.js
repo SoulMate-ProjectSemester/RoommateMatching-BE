@@ -50,6 +50,7 @@ function login() {
                 window.localStorage.setItem('token',response.data.data.accessToken);
                 window.localStorage.setItem('refreshtoken',response.data.data.refreshToken);
                 token=response.data.data.accessToken;
+                refreshtoken=response.data.data.refreshToken;
 
                 //set axios instance again with bearer token for 키워드 불러와서 최초가입자 여부 파악
                 const instance = axios.create({
@@ -85,7 +86,7 @@ function login() {
                 }
             }
         }).catch(error => {
-            // Handle errors if the Promise is rejected
+            //로그인 만료되었을 경우
             console.error('Error occurred:', error);
             alert('아이디 혹은 비밀번호를 다시한번 확인하세요.');
         });

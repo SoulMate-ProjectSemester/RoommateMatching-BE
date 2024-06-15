@@ -269,6 +269,7 @@ header {
     left: 80px; /* 왼쪽 공백 위치 조절 */
     top: 58px; /* 위쪽 공백 위치조절 */
     width: 60px;
+    border: solid black;
 }
 
 #participant-ul{

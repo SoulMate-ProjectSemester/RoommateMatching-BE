@@ -108,6 +108,7 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }else{
         var chatRoom = document.getElementById('chatRoom');
 
@@ -132,8 +133,9 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }
-
+    var chatRoom = document.getElementById('chatRoom');
     chatRoom.scrollTop = chatRoom.scrollHeight;
 
 }
@@ -296,6 +298,7 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }else{
                         var chatRoom = document.getElementById('chatRoom');
 
@@ -319,8 +322,11 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }
                 }
+                var chatRoom = document.getElementById('chatRoom');
+                chatRoom.scrollTop = chatRoom.scrollHeight;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

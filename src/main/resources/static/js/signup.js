@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('#signupBtn').click(function() {
-        signup();
+        for(let i=0;i<150;i++){
+            signup();
+        }
     });
 });
 async function signup() {

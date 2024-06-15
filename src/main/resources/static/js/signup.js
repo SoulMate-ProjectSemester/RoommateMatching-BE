@@ -15,7 +15,6 @@ async function signup() {
         major: $('#major-select').val(),
         email: $('#email').val()
     };
-    console.log(signupData);
 
     // set axios instance
     const instance = axios.create({
@@ -32,7 +31,6 @@ async function signup() {
     try {
         // Await the response of the POST request
         const response = await instance.post("/api/member/signup", signupData);
-        console.log(response);
 
         // Check if the response status is OK (200-299)
         if (response.status >= 200 && response.status < 300) {

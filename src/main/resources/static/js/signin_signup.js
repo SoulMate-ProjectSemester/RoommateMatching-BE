@@ -43,7 +43,6 @@ async function login() {
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
-            console.log(response);
             //로그인 성공시 처리되어야 할 로직
             if(responseData=="SUCCESS"){
                 window.localStorage.setItem('token',response.data.data.accessToken);
@@ -64,7 +63,6 @@ async function login() {
                 try{
                     const response=instance.get("/api/keyword/keywords");
                     response.then(response=>{
-                        console.log(response.data.data.keywordSet);
                         keywordSetLength=response.data.data.keywordSet;
                         //로그인을 성공했지만, 키워드 입력을 하지 않은 최초로그인, null인 경우
                         if(keywordSetLength===null){
@@ -122,13 +120,11 @@ function logout(){
                 loginId:myId
             }
         });
-        console.log(response);
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
-                var return_message = response.data.data.message;
-                console.log(return_message);
+                //로그아웃 성공
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

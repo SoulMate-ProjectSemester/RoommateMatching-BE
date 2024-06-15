@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     keywordSet: selectedTopicNames
                 });
                 response.then(response => {
-                    console.log(response);
                     const result = response.data.resultCode;
                     if(result == "SUCCESS"){
                         //키워드 저장 성공시, 메인페이지로 넘어가는 로직

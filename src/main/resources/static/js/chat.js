@@ -239,7 +239,6 @@ function ChatRoomLeft(){
             }
         });
         response.then(response => {
-            console.log(response);
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             //채팅방 삭제가 성공하였을 경우
@@ -266,7 +265,6 @@ function getOldMessages(){
                 roomId:roomId
             }
         });
-        console.log(response);
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
@@ -409,8 +407,6 @@ function ChatAnalyze(){
         roomId: roomId
     });
     response.then(response => {
-        console.log(response);
-        // console.log(response.data.response);
         closeLoading();
         modal2.style.display='block';
         const result=document.getElementById('analyze-result');

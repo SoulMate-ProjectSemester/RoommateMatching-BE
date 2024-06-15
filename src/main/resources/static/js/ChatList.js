@@ -95,8 +95,9 @@ function logout(){
                 // Access the 'data' property from the resolved value
                 const responseData = response.data.resultCode;
                 if(responseData=='SUCCESS'){
-                    var return_message = response.data.data.message;
-                    console.log(return_message);
+                    // var return_message = response.data.data.message;
+                    // console.log(return_message);
+                    //로그아웃 성공
                 }
             }).catch(error => {
                 // Handle errors if the Promise is rejected

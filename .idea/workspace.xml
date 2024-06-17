@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d7f334f-eabc-45f3-89a2-09c7aab4b926" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/dto/KeywordsDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/service/KeywordsService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/controller/KeywordController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/controller/KeywordsController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/dto/KeywordDto.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/entity/Keyword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/entity/Keywords.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordDetailRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordsRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/service/KeywordService.kt" beforeDir="false" />
-    </list>
+    <list default="true" id="4d7f334f-eabc-45f3-89a2-09c7aab4b926" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -308,7 +298,7 @@
       <workItem from="1718306365008" duration="2520000" />
       <workItem from="1718610726340" duration="1877000" />
       <workItem from="1718612615984" duration="57000" />
-      <workItem from="1718612678598" duration="3885000" />
+      <workItem from="1718612678598" duration="4802000" />
     </task>
     <servers />
   </component>

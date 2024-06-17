@@ -35,7 +35,7 @@ class KeywordsService(
         val keywords: List<Keywords> = keywordsRepository.findByMember(findMember)
 
         return KeywordDtoResponse(
-            memberId = findMember.id,
+            member = findMember.id,
             keywordSet = keywords.map { it.value }.toSet()
         )
     }

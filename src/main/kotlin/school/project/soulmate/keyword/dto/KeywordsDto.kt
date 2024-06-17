@@ -22,6 +22,6 @@ data class KeywordsDto(
 }
 
 data class KeywordDtoResponse(
-    val memberId: Long?,
+    val member: Long?,
     val keywordSet: Set<String>?,
 )

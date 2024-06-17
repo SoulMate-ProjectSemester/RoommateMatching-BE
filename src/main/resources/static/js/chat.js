@@ -233,7 +233,7 @@ window.onclick = function(event) {
 function ChatRoomLeft(){
     try {
         const response=instance.delete("/api/room/quit", {
-            data:{
+            data: {
                 loginId: myId,
                 roomId: roomId
             }

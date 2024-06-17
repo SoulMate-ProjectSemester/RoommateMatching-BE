@@ -233,10 +233,8 @@ window.onclick = function(event) {
 function ChatRoomLeft(){
     try {
         const response=instance.delete("/api/room/quit", {
-            data:{
-                loginId: myloginId,
-                roomId: roomId
-            }
+            loginId: myId,
+            roomId: roomId
         });
         response.then(response => {
             // Access the 'data' property from the resolved value

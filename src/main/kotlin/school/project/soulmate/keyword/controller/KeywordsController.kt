@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import school.project.soulmate.common.dto.BaseResponse
 import school.project.soulmate.common.dto.CustomUser
-import school.project.soulmate.keyword.dto.KeywordDto
 import school.project.soulmate.keyword.dto.KeywordDtoResponse
-import school.project.soulmate.keyword.service.KeywordService
+import school.project.soulmate.keyword.dto.KeywordsDto
+import school.project.soulmate.keyword.service.KeywordsService
 
 @RestController
 @RequestMapping("/api/keyword")
-class KeywordController(
-    private val keywordService: KeywordService,
+class KeywordsController(
+    private val keywordService: KeywordsService,
 ) {
     /**
      * 키워드 저장
      */
     @PostMapping("/new")
     fun saveKeyword(
-        @RequestBody @Valid keywordDto: KeywordDto,
+        @RequestBody @Valid keywordsDTO: KeywordsDto,
     ): BaseResponse<Unit> {
         val userId: Long? = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
-        val resultMsg: String = keywordService.saveKeyword(keywordDto, userId)
+        val resultMsg: String = keywordService.saveKeyword(keywordsDTO, userId)
         return BaseResponse(message = resultMsg)
     }
 
@@ -46,10 +46,10 @@ class KeywordController(
      */
     @PutMapping("/keywords")
     fun editKeyword(
-        @RequestBody @Valid keywordDto: KeywordDto,
+        @RequestBody @Valid keywordsDto: KeywordsDto,
     ): BaseResponse<Unit> {
         val userId = (SecurityContextHolder.getContext().authentication.principal as CustomUser).userId
-        val resultMsg = keywordService.updateKeyword(keywordDto, userId)
+        val resultMsg = keywordService.updateKeyword(keywordsDto, userId)
         return BaseResponse(message = resultMsg)
     }
 }

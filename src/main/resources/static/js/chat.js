@@ -244,7 +244,7 @@ function ChatRoomLeft(){
             //채팅방 삭제가 성공하였을 경우
             if(responseData=='SUCCESS'){
                 // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
-                location.href="43.201.214.57/api/page/chat_list";
+                location.href="http://soulmate.pe.kr/api/page/chat_list";
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected

@@ -64,6 +64,7 @@ async function login() {
                     const response=instance.get("/api/keyword/keywords");
                     response.then(response=>{
                         keywordSetLength=response.data.data.keywordSet;
+                        console.log(keywordSetLength)
                         //로그인을 성공했지만, 키워드 입력을 하지 않은 최초로그인, null인 경우
                         if(keywordSetLength===null){
                             window.location.href="/api/page/keyword";

@@ -234,7 +234,7 @@ function ChatRoomLeft(){
     try {
         const response=instance.delete("/api/room/quit", {
             data:{
-                loginId: myId,
+                loginId: myloginId,
                 roomId: roomId
             }
         });

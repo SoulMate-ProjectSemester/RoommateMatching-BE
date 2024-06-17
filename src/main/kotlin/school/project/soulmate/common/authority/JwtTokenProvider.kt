@@ -14,7 +14,7 @@ import school.project.soulmate.common.dto.CustomUser
 import java.util.Date
 import org.slf4j.LoggerFactory
 
-const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 30 // 30분
+const val ACCESS_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 24 // 30분 -> 24시간으로 변경
 
 const val REFRESH_EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 24 // 24시간
 

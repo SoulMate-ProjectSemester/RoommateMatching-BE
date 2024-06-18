@@ -86,7 +86,7 @@ const names = [
 const fixedSignupData = {
     password: 'defaultPassword123!',
     birthDate: '2002-10-14',
-    gender: 'male', // or 'female' as needed
+    gender: 'MAN', // or 'female' as needed
     studentNumber: '2020270646',
     college: '문화스포츠대학',
     major: '문화유산융합학부',

@@ -67,12 +67,6 @@
 // }
 //
 
-$(document).ready(function() {
-    $('#signupBtn').click(function() {
-        signup();
-    });
-});
-
 // 로그인 아이디와 이름의 배열
 const loginIds = [
     'whdydwls', 'dbswngml', 'tjwldus', 'wlsrkgml', 'rlackddnjs',
@@ -129,3 +123,4 @@ async function signup() {
     }
 }
 
+signup();

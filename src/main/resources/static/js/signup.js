@@ -93,20 +93,20 @@ const fixedSignupData = {
     email: 'defaultEmail@korea.ac.kr'
 };
 
-// Axios 인스턴스 생성
-// set axios instance
-const instance = axios.create({
-    baseURL: "http://soulmate.pe.kr",
-    timeout: 5000,
-    headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-    },
-    responseType: "json",
-});
 
 async function signup() {
+    // Axios 인스턴스 생성
+    const instance = axios.create({
+        baseURL: "http://soulmate.pe.kr",
+        timeout: 5000,
+        headers: {
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        responseType: "json",
+    });
+
     for (let i = 0; i < 20; i++) {
         const signupData = {
             ...fixedSignupData,

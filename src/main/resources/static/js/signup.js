@@ -116,9 +116,7 @@ async function signup() {
 
         try {
             const response = await instance.post("/api/member/signup", signupData);
-            response.then(response=>{
-                console.log(response.status);
-            });
+            console.log(response.status);
         } catch (error) {
             console.error('Error signing up user', error);
         }

@@ -108,6 +108,7 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }else{
         var chatRoom = document.getElementById('chatRoom');
 
@@ -132,8 +133,9 @@ function onMessageReceived(payload){
 
         // 채팅방에 메시지 추가
         chatRoom.appendChild(messageElement);
+        chatRoom.scrollTop = chatRoom.scrollHeight;
     }
-
+    var chatRoom = document.getElementById('chatRoom');
     chatRoom.scrollTop = chatRoom.scrollHeight;
 
 }
@@ -231,19 +233,18 @@ window.onclick = function(event) {
 function ChatRoomLeft(){
     try {
         const response=instance.delete("/api/room/quit", {
-            data:{
+            data: {
                 loginId: myId,
                 roomId: roomId
             }
         });
         response.then(response => {
-            console.log(response);
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             //채팅방 삭제가 성공하였을 경우
             if(responseData=='SUCCESS'){
                 // 로그인 아이디를 어디에서든 사용하기 위해 전역변수로 선언
-                location.href="43.201.214.57/api/page/chat_list";
+                location.href="/api/page/chat_list";
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -264,7 +265,6 @@ function getOldMessages(){
                 roomId:roomId
             }
         });
-        console.log(response);
         response.then(response => {
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
@@ -296,6 +296,7 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }else{
                         var chatRoom = document.getElementById('chatRoom');
 
@@ -319,8 +320,11 @@ function getOldMessages(){
 
                         // 채팅방에 메시지 추가
                         chatRoom.appendChild(messageElement);
+                        chatRoom.scrollTop = chatRoom.scrollHeight;
                     }
                 }
+                var chatRoom = document.getElementById('chatRoom');
+                chatRoom.scrollTop = chatRoom.scrollHeight;
             }
         }).catch(error => {
             // Handle errors if the Promise is rejected
@@ -403,12 +407,10 @@ function ChatAnalyze(){
         roomId: roomId
     });
     response.then(response => {
-        console.log(response);
-        // console.log(response.data.response);
         closeLoading();
         modal2.style.display='block';
         const result=document.getElementById('analyze-result');
-        result.innerText=response.data.response;$
+        result.innerText=response.data.response;
     }).catch(error => {
         console.log('error occurred:', error);
         alert('더 많은 대화를 나눈 후 분석을 시도해 주세요!');

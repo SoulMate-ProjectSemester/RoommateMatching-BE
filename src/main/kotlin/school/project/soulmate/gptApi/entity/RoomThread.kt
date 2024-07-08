@@ -14,10 +14,12 @@ class RoomThread(
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chatroom_id")
-    var room: ChatRoom,
+    var chatRoom: ChatRoom,
+
     val threadId: String,
 
     @Column(length = 1000)
     val roomMessage: String,
+
     val createDate: LocalDate,
 )

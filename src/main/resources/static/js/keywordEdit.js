@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 //응답을 성공적으로 받았다면,
                 const responseData = response.data.resultCode;
                 if(responseData=='SUCCESS'){
-                    console.log(response.data.message);
                     window.location.href="http://soulmate.pe.kr/api/page/info_edit";
                 }
             }).catch(error => {

@@ -1,6 +1,8 @@
 package school.project.soulmate.stomp.service
 
 import jakarta.transaction.Transactional
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.common.exception.InvalidInputException
@@ -14,7 +16,7 @@ import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.entity.ChatRoomMember
 import school.project.soulmate.stomp.repository.ChatRoomMemberRepository
 import school.project.soulmate.stomp.repository.ChatRoomRepository
-import java.util.UUID
+import java.util.*
 
 @Service
 class ChatRoomService(
@@ -23,7 +25,7 @@ class ChatRoomService(
     val chatRoomMemberRepository: ChatRoomMemberRepository,
 ) {
     @Transactional
-    fun createChatRoom(chatRoomDto: ChatRoomDto): ChatRoom {
+    fun createChatRoom(chatRoomDto: ChatRoomDto): ChatRoomInfoDto {
         // 사용자 조회
         val loginMember: Member = memberRepository.findByLoginId(chatRoomDto.loginId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
         val userMember: Member = memberRepository.findByLoginId(chatRoomDto.userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
@@ -36,12 +38,19 @@ class ChatRoomService(
             )
         chatRoomRepository.save(chatRoom)
 
-        // 채팅방 멤버 추가
         val loginChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = loginMember)
         val userChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = userMember)
         chatRoomMemberRepository.saveAll(listOf(loginChatRoomMember, userChatRoomMember))
 
-        return chatRoom
+        val findMembers = chatRoomMemberRepository.findAllByChatRoom(chatRoom = chatRoom)
+        val members = findMembers.map { MemberInfoDto(it.member.id, it.member.name) }
+
+        return ChatRoomInfoDto(
+            roomId = chatRoom.roomId!!,
+            roomName = chatRoom.roomName,
+            createDate = chatRoom.createDate,
+            members = members
+        )
     }
 
     // 로그인한 유저가 첫번째, 나머지 유저는 이름으로 오름차순

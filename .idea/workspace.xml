@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4d7f334f-eabc-45f3-89a2-09c7aab4b926" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/dto/KeywordsDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordsRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/service/KeywordsService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/common/authority/JwtTokenProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/common/authority/JwtTokenProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/gptApi/entity/RoomThread.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/gptApi/entity/RoomThread.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/controller/KeywordController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/controller/KeywordsController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/dto/KeywordDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/entity/Keyword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/entity/Keywords.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordDetailRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/repository/KeywordRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/service/KeywordService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/controller/ChatRoomController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/controller/ChatRoomController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/entity/ChatRoom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/entity/ChatRoom.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/service/ChatRoomService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/service/ChatRoomService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/ChatList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/ChatList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/keywordEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/keywordEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/keywordSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/keywordSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/profileEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/profileEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/signin_signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/signin_signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/keywordEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/keywordEdit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profileEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profileEdit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signin_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signin_signup.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/soulmate">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="soulmate" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="Dockerfile" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/keyword/entity/Keyword.kt" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="20" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="17" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2dEAgtEybOxINZMkF5QPhReHGj3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Gradle.Build RoommateMatching-BE.executor": "Run",
+    "Gradle.RoommateMatching-BE 빌드.executor": "Run",
+    "Gradle.SoulmateApplicationTests.contextLoads.executor": "Run",
+    "Gradle.WebSocketTest.WebSocket 연결 에러 테스트.executor": "Run",
+    "Node.js.CreateAssistant.js.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.SoulmateApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/joseungbin/Documents/프로젝트학기/RoommateMatching-BE/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2",
+      "mysql"
+    ],
+    "kotlin-gradle-user-dirs": [
+      "/Users/joseungbin/.gradle"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/py" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SoulmateApplication">
+    <configuration name="SoulmateApplicationTests.contextLoads" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;school.project.soulmate.SoulmateApplicationTests.contextLoads&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WebSocketTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;school.project.soulmate.stomp.WebSocketTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WebSocketTest.WebSocket 연결 에러 테스트" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;school.project.soulmate.stomp.WebSocketTest.WebSocket 연결 에러 테스트&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SoulmateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="soulmate.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="school.project.soulmate.SoulmateApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.SoulmateApplicationTests.contextLoads" />
+        <item itemvalue="Gradle.WebSocketTest.WebSocket 연결 에러 테스트" />
+        <item itemvalue="Gradle.WebSocketTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d7f334f-eabc-45f3-89a2-09c7aab4b926" name="Changes" comment="" />
+      <created>1709562978680</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709562978680</updated>
+      <workItem from="1709562980299" duration="1838000" />
+      <workItem from="1709564833659" duration="412000" />
+      <workItem from="1709566551387" duration="1229000" />
+      <workItem from="1709714520667" duration="1210000" />
+      <workItem from="1709718002454" duration="14049000" />
+      <workItem from="1709893634770" duration="11718000" />
+      <workItem from="1709906349887" duration="41034000" />
+      <workItem from="1710062262469" duration="598000" />
+      <workItem from="1710074570600" duration="2115000" />
+      <workItem from="1710141426771" duration="76825000" />
+      <workItem from="1710750273237" duration="20780000" />
+      <workItem from="1710829215877" duration="13986000" />
+      <workItem from="1710907819297" duration="1102000" />
+      <workItem from="1710993651713" duration="11583000" />
+      <workItem from="1711019491342" duration="31557000" />
+      <workItem from="1711389598824" duration="12307000" />
+      <workItem from="1711468806646" duration="35804000" />
+      <workItem from="1711947507381" duration="1983000" />
+      <workItem from="1711949501971" duration="48543000" />
+      <workItem from="1712310953250" duration="25035000" />
+      <workItem from="1712509766592" duration="1470000" />
+      <workItem from="1712511249077" duration="138000" />
+      <workItem from="1712511397620" duration="7058000" />
+      <workItem from="1712657016856" duration="591000" />
+      <workItem from="1712657731387" duration="8251000" />
+      <workItem from="1713321635727" duration="6000" />
+      <workItem from="1713322812249" duration="50000" />
+      <workItem from="1713472945767" duration="97000" />
+      <workItem from="1713699265573" duration="1292000" />
+      <workItem from="1713804933981" duration="4968000" />
+      <workItem from="1714122888724" duration="13461000" />
+      <workItem from="1715067128279" duration="1610000" />
+      <workItem from="1715174350114" duration="835000" />
+      <workItem from="1715175196530" duration="52713000" />
+      <workItem from="1715936371195" duration="20632000" />
+      <workItem from="1716388629428" duration="19715000" />
+      <workItem from="1716783155703" duration="524000" />
+      <workItem from="1716785999602" duration="46225000" />
+      <workItem from="1716956202089" duration="2353000" />
+      <workItem from="1716976731756" duration="39243000" />
+      <workItem from="1717180495766" duration="25061000" />
+      <workItem from="1717666401428" duration="80000" />
+      <workItem from="1717845355475" duration="2139000" />
+      <workItem from="1717848905365" duration="582000" />
+      <workItem from="1717995952536" duration="4601000" />
+      <workItem from="1718027493984" duration="15694000" />
+      <workItem from="1718306365008" duration="2520000" />
+      <workItem from="1718610726340" duration="1877000" />
+      <workItem from="1718612615984" duration="57000" />
+      <workItem from="1718612678598" duration="6557000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-websocket" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.thymeleaf:thymeleaf" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="soulmate" type="b2602c69:ProjectViewProjectNode" />
+        <item name="dir{file:///Users/joseungbin/Documents/프로젝트학기/RoommateMatching-BE}" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+  </component>
+</project>

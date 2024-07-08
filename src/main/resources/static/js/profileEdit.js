@@ -100,13 +100,11 @@ function logout(){
                     loginId:myId
                 }
             });
-            console.log(response);
             response.then(response => {
                 // Access the 'data' property from the resolved value
                 const responseData = response.data.resultCode;
                 if(responseData=='SUCCESS'){
-                    var return_message = response.data.data.message;
-                    console.log(return_message);
+                    //로그아웃 성공
                 }
             }).catch(error => {
                 // Handle errors if the Promise is rejected
@@ -174,32 +172,6 @@ function showModal(event){
     }
 }
 
-// Get the modal
-// var modal = document.getElementById("myModal");
-//
-// // 특정 버튼을 누르면 모달창이 뜸
-// var btn = document.getElementById("myBtn");
-//
-// // Get the element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-// var closeBtn = document.getElementById("closeBtn");
-//
-// // When the user clicks the button, open the modal
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
-//
-// // When the user clicks on <span> (x) or the Close button, close the modal
-// span.onclick = closeBtn.onclick = function() {
-//     modal.style.display = "none";
-// }
-//
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
 
 function toKeywordPage(){
     window.location.href='/api/page/keyword_edit';

@@ -15,7 +15,6 @@ async function signup() {
         major: $('#major-select').val(),
         email: $('#email').val()
     };
-    console.log(signupData);
 
     // set axios instance
     const instance = axios.create({
@@ -32,7 +31,6 @@ async function signup() {
     try {
         // Await the response of the POST request
         const response = await instance.post("/api/member/signup", signupData);
-        console.log(response);
 
         // Check if the response status is OK (200-299)
         if (response.status >= 200 && response.status < 300) {
@@ -63,8 +61,64 @@ async function signup() {
             }
         } else {
             // 기타 에러 처리
-            console.error("회원가입 중 에러:", error);
+           console.error("회원가입 중 에러:", error);
         }
     }
 }
 
+
+// // 로그인 아이디와 이름의 배열
+// const loginIds = [
+//     'whdydwls', 'dbswngml', 'tjwldus', 'wlsrkgml', 'rlackddnjs',
+//     'chlrhgus', 'chlanstjr', 'chlqhrud', 'gktkddn', 'gkgjscks',
+//     'gkstlgus', 'ghdtjdus', 'chlwhddnjs', 'whgudwns', 'tjgmlwjd',
+//     'dlwnsdnjs', 'rnjstnsqja', 'rhkrtmdco', 'rlawodud', 'rlaehdgus'
+// ];
+//
+// const names = [
+//     '조용진', '윤주희', '서지연', '진가희', '김창원',
+//     '최고현', '최문석', '최보경', '하상우', '하헌찬',
+//     '한시현', '홍서연', '최종원', '조형준', '서희정',
+//     '이준원', '권순범', '곽승채', '김재영', '김동현'
+// ];
+//
+// // 고정된 회원 정보
+// const fixedSignupData = {
+//     password: 'defaultPassword123!',
+//     birthDate: '2002-10-14',
+//     gender: 'MAN', // or 'female' as needed
+//     studentNumber: '2020270646',
+//     college: '문화스포츠대학',
+//     major: '문화유산융합학부',
+//     email: 'defaultEmail@korea.ac.kr'
+// };
+//
+//
+// async function signup() {
+//     // Axios 인스턴스 생성
+//     const instance = axios.create({
+//         baseURL: "http://soulmate.pe.kr",
+//         timeout: 5000,
+//         headers: {
+//             "Cache-Control": "no-cache",
+//             "Content-Type": "application/json",
+//             "Access-Control-Allow-Origin": "*",
+//         },
+//         responseType: "json",
+//     });
+//
+//     for (let i = 0; i < 20; i++) {
+//         const signupData = {
+//             ...fixedSignupData,
+//             loginId: loginIds[i],
+//             name: names[i]
+//         };
+//
+//         try {
+//             const response = await instance.post("/api/member/signup", signupData);
+//             console.log(response.status);
+//         } catch (error) {
+//             console.error('Error signing up user', error);
+//         }
+//     }
+// }

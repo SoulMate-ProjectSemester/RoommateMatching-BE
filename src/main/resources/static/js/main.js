@@ -59,7 +59,6 @@ try {
     response.then(response => {
         // Access the 'data' property from the resolved value
         const responseData = response.data.resultCode;
-        console.log(response);
 
         if(responseData=='SUCCESS'){
             var name = response.data.data.name;
@@ -129,7 +128,6 @@ function showMates(){
 
     const response=instance.get("/api/member/user_list");
     response.then(response=>{
-        console.log(response);
         const result=response.data.resultCode;
         if(result=="SUCCESS" && response.data.data.length>0){
             var blogContainer = document.getElementById('blog-container');
@@ -226,7 +224,6 @@ function saveChange(){
         //채팅방 생성 후, 제목 입력칸 초기화
         inputTitle.value=null;
         response.then(response => {
-            console.log(response);
             // Access the 'data' property from the resolved value
             const responseData = response.data.resultCode;
             if(responseData=='SUCCESS'){
@@ -275,8 +272,6 @@ function MyAnalyze(){
         message: "나는 어떤 사람이야?"
     });
     response.then(response => {
-        console.log(response);
-        // console.log(response.data.response);
         const element=document.getElementById('ai-analyze');
         let cleanedText = response.data.response.replace(/【[^【】"\\n*]*】/g, '');
         element.innerText = cleanedText;
@@ -297,16 +292,16 @@ function MyAnalyze(){
 
 // 로딩 열기
 function showLoading() {
-    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    // 현재 스크롤 위치 가져오기
-    var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
-    var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    // var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    // var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    //
+    // // 현재 스크롤 위치 가져오기
+    // var scrollX = window.scrollX || window.pageXOffset || document.documentElement.scrollLeft;
+    // var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
     // 화면 중앙 좌표 계산
-    var centerX = (scrollX + screenWidth / 2) - 30;
-    var centerY = (scrollY + screenHeight / 2) - 12.7;
+    // var centerX = (scrollX + screenWidth / 2) - 30;
+    // var centerY = (scrollY + screenHeight / 2) - 12.7;
 
     const comment=document.getElementById('ai-comment');
     const comment2=document.getElementById('ai-analyze-text2');
@@ -343,8 +338,9 @@ function closeLoading() {
     var scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
     // 화면 중앙 좌표 계산
-    var centerX = (scrollX + screenWidth / 2) - 30;
-    var centerY = (scrollY + screenHeight / 2) - 12.7;
+    // var centerX = (scrollX + screenWidth / 2) - 30;
+    // var centerY = (scrollY + screenHeight / 2) - 12.7;
+
     // document.querySelector("#loading").style.height = "100%";
     // $("#spinner").attr("style", "top:" + centerY + "px" + "; left:" + centerX + "px");
 }
@@ -367,7 +363,6 @@ function getAIResult(){
         }
     );
     response.then(response => {
-        console.log(response);
         if(response.data==null) {
             alert("AI 분석 결과가 없습니다!");
         }else if(response.data.user_message==null){

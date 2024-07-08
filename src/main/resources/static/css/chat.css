@@ -56,7 +56,11 @@ header {
 .chat-container{
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     height: 100vh;
+=======
+    height: 93vh;
+>>>>>>> release
 }
 
 
@@ -261,17 +265,22 @@ header {
 /*채팅방 헤더의 people 클릭시, 참여자들을 나타내는 모달 css*/
 #participantsList {
     position: absolute;
-    background: #2c2c2e;
-    color: white;
+    background: white;
+    color: black;
     list-style: none;
     padding: 10px;
     border-radius: 10px;
-    left: 60px; /* 왼쪽 공백 위치 조절 */
-    top: 60px; /* 위쪽 공백 위치조절 */
+    left: 80px; /* 왼쪽 공백 위치 조절 */
+    top: 58px; /* 위쪽 공백 위치조절 */
+    width: 60px;
+    border: solid black;
 }
 
 #participant-ul{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
 }
 
 .participant-li{

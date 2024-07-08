@@ -31,7 +31,7 @@ class ChatRoomController(
     @PostMapping("/new")
     fun createRoom(
         @RequestBody chatRoomDto: ChatRoomDto,
-    ): BaseResponse<ChatRoom> {
+    ): BaseResponse<ChatRoomInfoDto> {
         val newChatRoom = chatRoomService.createChatRoom(chatRoomDto)
         return BaseResponse(data = newChatRoom)
     }

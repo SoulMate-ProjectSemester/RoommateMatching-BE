@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d7f334f-eabc-45f3-89a2-09c7aab4b926" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/gptApi/entity/RoomThread.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/gptApi/entity/RoomThread.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/controller/ChatRoomController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/controller/ChatRoomController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/entity/ChatRoom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/entity/ChatRoom.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/service/ChatRoomService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/school/project/soulmate/stomp/service/ChatRoomService.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,47 +94,47 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Gradle.Build RoommateMatching-BE.executor": "Run",
-    "Gradle.RoommateMatching-BE 빌드.executor": "Run",
-    "Gradle.SoulmateApplicationTests.contextLoads.executor": "Run",
-    "Gradle.WebSocketTest.WebSocket 연결 에러 테스트.executor": "Run",
-    "Node.js.CreateAssistant.js.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.SoulmateApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "release",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/joseungbin/Documents/프로젝트학기/RoommateMatching-BE/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.Build RoommateMatching-BE.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RoommateMatching-BE 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SoulmateApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WebSocketTest.WebSocket 연결 에러 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.CreateAssistant.js.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SoulmateApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;release&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joseungbin/Documents/프로젝트학기/RoommateMatching-BE/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;,
+      &quot;mysql&quot;
     ],
-    "kotlin-gradle-user-dirs": [
-      "/Users/joseungbin/.gradle"
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/Users/joseungbin/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -242,7 +239,6 @@
       <set>
         <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
         <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
@@ -307,6 +303,11 @@
       <workItem from="1718610726340" duration="1877000" />
       <workItem from="1718612615984" duration="57000" />
       <workItem from="1718612678598" duration="6557000" />
+      <workItem from="1719069317993" duration="5893000" />
+      <workItem from="1719208908724" duration="61000" />
+      <workItem from="1720083737152" duration="15000" />
+      <workItem from="1720145696099" duration="5000" />
+      <workItem from="1720154277438" duration="581000" />
     </task>
     <servers />
   </component>

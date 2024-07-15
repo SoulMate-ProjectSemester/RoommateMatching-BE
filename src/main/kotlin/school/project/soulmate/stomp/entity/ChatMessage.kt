@@ -1,5 +1,6 @@
 package school.project.soulmate.stomp.entity
 
+import BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -26,4 +27,4 @@ class ChatMessage(
     val content: String,
     @Column(nullable = false)
     val timestamp: LocalDateTime = LocalDateTime.now(),
-)
+) : BaseEntity()

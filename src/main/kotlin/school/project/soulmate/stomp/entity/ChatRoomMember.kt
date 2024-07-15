@@ -1,5 +1,6 @@
 package school.project.soulmate.stomp.entity
 
+import BaseEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -19,4 +20,4 @@ class ChatRoomMember(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_room_id")
     val chatRoom: ChatRoom,
-)
+) : BaseEntity()

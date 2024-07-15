@@ -1,5 +1,6 @@
 package school.project.soulmate.gptApi.entity
 
+import BaseEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 
@@ -8,4 +9,4 @@ class Assistant(
     @Id
     var id: Int,
     var assistantId: String,
-)
+) : BaseEntity()

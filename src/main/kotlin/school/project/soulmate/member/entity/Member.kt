@@ -1,5 +1,6 @@
 package school.project.soulmate.member.entity
 
+import BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -50,7 +51,7 @@ class Member(
     val major: String,
     @Column(nullable = false, length = 30)
     val email: String,
-) {
+) : BaseEntity() {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     val memberRole: List<MemberRole>? = null
 
@@ -75,4 +76,4 @@ class MemberRole(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = ForeignKey(name = "fk_member_role_member_id"))
     val member: Member,
-)
+) : BaseEntity()

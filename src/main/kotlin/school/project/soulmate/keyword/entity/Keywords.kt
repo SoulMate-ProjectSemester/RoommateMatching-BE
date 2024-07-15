@@ -1,5 +1,6 @@
 package school.project.soulmate.keyword.entity
 
+import BaseEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -17,5 +18,5 @@ class Keywords(
     @JoinColumn(name = "keyword_id")
     var member: Member?,
     val value: String
-)
+) : BaseEntity()
 

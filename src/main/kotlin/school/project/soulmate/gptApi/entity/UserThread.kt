@@ -1,5 +1,6 @@
 package school.project.soulmate.gptApi.entity
 
+import BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -20,4 +21,4 @@ class UserThread(
     @Column(length = 1000)
     val userMessage: String,
     val createDate: LocalDate,
-)
+) : BaseEntity()

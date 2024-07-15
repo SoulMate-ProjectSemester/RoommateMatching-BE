@@ -1,5 +1,6 @@
 package school.project.soulmate.stomp.entity
 
+import BaseEntity
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -20,7 +21,7 @@ class ChatRoom(
 
     @Column(nullable = false)
     val createDate: LocalDate,
-) {
+) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val roomId: UUID? = null

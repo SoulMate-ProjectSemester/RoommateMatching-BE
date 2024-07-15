@@ -1,5 +1,6 @@
 package school.project.soulmate.gptApi.entity
 
+import BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -22,4 +23,4 @@ class RoomThread(
     val roomMessage: String,
 
     val createDate: LocalDate,
-)
+) : BaseEntity()

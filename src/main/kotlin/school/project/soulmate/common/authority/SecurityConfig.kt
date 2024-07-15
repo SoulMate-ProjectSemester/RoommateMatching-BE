@@ -15,7 +15,6 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
-
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
@@ -43,7 +42,7 @@ class SecurityConfig(
                     .requestMatchers("/api/page/**").permitAll()
             }
             // 로그인 인증하지 않은 사용자 URL 리디렉션
-            .exceptionHandling {it.authenticationEntryPoint(customAuthenticationEntryPoint())}
+            .exceptionHandling { it.authenticationEntryPoint(customAuthenticationEntryPoint()) }
             .addFilterBefore(
                 // 필터 순서 설정. 앞에 필터가 실행되야 뒤에 있는 필터가 실행된다
                 JwtAuthenticationFilter(jwtTokenProvider),

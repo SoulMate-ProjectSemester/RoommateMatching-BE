@@ -18,10 +18,10 @@ open class BaseEntity {
     @LastModifiedDate
     var lastModifiedDate: LocalDateTime? = null
 
-//    @CreatedBy
-//    @Column(updatable = false)
-//    var createdBy: String? = null
-//
-//    @LastModifiedBy
-//    var lastModifiedBy: String? = null
+    @CreatedBy
+    @Column(updatable = false)
+    var createdBy: String? = null
+
+    @LastModifiedBy
+    var lastModifiedBy: String? = null
 }

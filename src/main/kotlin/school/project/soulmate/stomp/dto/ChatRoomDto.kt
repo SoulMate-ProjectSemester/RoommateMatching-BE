@@ -3,6 +3,7 @@ package school.project.soulmate.stomp.dto
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.validation.constraints.NotBlank
 import lombok.Getter
+import school.project.soulmate.stomp.entity.ChatRoom
 import java.time.LocalDate
 import java.util.UUID
 
@@ -31,11 +32,18 @@ data class LeaveRoomDto(
 )
 
 data class ChatRoomInfoDto(
-    val roomId: UUID,
+    val roomId: UUID?,
     val roomName: String?,
     val createDate: LocalDate,
     val members: List<MemberInfoDto>, // 방에 포함된 멤버들의 정보를 담을 리스트
-)
+){
+    constructor(chatRoom: ChatRoom, members: MutableList<MemberInfoDto>) : this(
+        roomId = chatRoom.roomId,
+        roomName = chatRoom.roomName,
+        createDate = chatRoom.createDate,
+        members = members,
+    )
+}
 
 data class MemberInfoDto(
     val memberId: Long?,

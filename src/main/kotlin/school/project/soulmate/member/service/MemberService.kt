@@ -107,17 +107,9 @@ class MemberService(
     @Transactional
     fun findFriendsList(userId: Long?): List<MemberListDto> {
         val pageable: Pageable = PageRequest.of(0, 10)  // 첫 번째 페이지에서 10개의 항목을 요청
-        val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
-        val members: List<Member> = memberRepository.findRandomMemberSameGender(findMember.gender, findMember.id, pageable)
-        return members.map { member ->
-            MemberListDto(
-                id = member.id,
-                name = member.name,
-                loginId = member.loginId,
-                studentNumber = member.studentNumber,
-                major = member.major
-            )
-        }
+        val findMember: Member =
+            memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
+        return memberRepository.findRandomMemberSameGender(findMember.gender, findMember.id, pageable)
+            .map { member -> MemberListDto(member) }
     }
-
 }

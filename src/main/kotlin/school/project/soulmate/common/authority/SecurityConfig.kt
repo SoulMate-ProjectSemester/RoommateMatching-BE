@@ -1,4 +1,3 @@
-
 package school.project.soulmate.common.authority
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest

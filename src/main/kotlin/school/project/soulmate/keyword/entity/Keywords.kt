@@ -19,4 +19,3 @@ class Keywords(
     var member: Member?,
     val value: String
 ) : BaseEntity()
-

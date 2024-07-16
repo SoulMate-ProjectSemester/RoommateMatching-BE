@@ -116,4 +116,13 @@ data class MemberListDto(
     val loginId: String,
     val studentNumber: String,
     val major: String,
-)
+){
+    constructor(member: Member) : this(
+        id = member.id,
+        name = member.name,
+        loginId = member.loginId,
+        studentNumber = member.studentNumber,
+        major = member.major,
+    )
+}
+

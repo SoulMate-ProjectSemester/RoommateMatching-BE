@@ -1,8 +1,6 @@
 package school.project.soulmate.stomp.service
 
 import jakarta.transaction.Transactional
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import school.project.soulmate.common.exception.InvalidInputException
@@ -42,14 +40,10 @@ class ChatRoomService(
         val userChatRoomMember = ChatRoomMember(chatRoom = chatRoom, member = userMember)
         chatRoomMemberRepository.saveAll(listOf(loginChatRoomMember, userChatRoomMember))
 
-        val findMembers = chatRoomMemberRepository.findAllByChatRoom(chatRoom = chatRoom)
-        val members = findMembers.map { MemberInfoDto(it.member.id, it.member.name) }
-
         return ChatRoomInfoDto(
-            roomId = chatRoom.roomId!!,
-            roomName = chatRoom.roomName,
-            createDate = chatRoom.createDate,
-            members = members
+            chatRoom,
+            chatRoomMemberRepository.findAllByChatRoom(chatRoom = chatRoom)
+                .map { MemberInfoDto(it.member.id, it.member.name) }.toMutableList()
         )
     }
 
@@ -57,8 +51,11 @@ class ChatRoomService(
     fun findRoom(roomId: UUID, userId: Long?): ChatRoomInfoDto {
         val findMember: Member = memberRepository.findByIdOrNull(userId) ?: throw InvalidInputException("유저를 찾을 수 없습니다.")
 
-        val findRoom: ChatRoom = chatRoomRepository.findByRoomId(roomId)
-        val chatRoomMembers: List<ChatRoomMember> = chatRoomMemberRepository.findAllByChatRoom(findRoom)
+        val chatRoomMembers: List<ChatRoomMember> = chatRoomMemberRepository.findAllByChatRoom(
+            chatRoomRepository.findByRoomId(
+                roomId
+            )
+        )
 
         // 채팅방의 멤버 리스트에서 findMember가 아닌 멤버들을 MemberInfoDto로 매핑하고 이름으로 정렬
         val members: MutableList<MemberInfoDto> = mapAndSortChatRoomMembers(chatRoomMembers, findMember.id)
@@ -67,12 +64,7 @@ class ChatRoomService(
         members.add(0, MemberInfoDto(memberId = findMember.id, memberName = findMember.name))
 
         // ChatRoomInfoDto 객체 생성 및 반환
-        return ChatRoomInfoDto(
-            roomId = roomId,
-            roomName = findRoom.roomName,
-            createDate = findRoom.createDate,
-            members = members,
-        )
+        return ChatRoomInfoDto(chatRoomRepository.findByRoomId(roomId), members)
     }
 
     // 로그인한 유저 제외하고 이름으로 오름차순

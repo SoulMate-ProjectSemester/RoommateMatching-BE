@@ -15,7 +15,6 @@ import school.project.soulmate.common.dto.CustomUser
 import school.project.soulmate.stomp.dto.ChatRoomDto
 import school.project.soulmate.stomp.dto.ChatRoomInfoDto
 import school.project.soulmate.stomp.dto.LeaveRoomDto
-import school.project.soulmate.stomp.entity.ChatRoom
 import school.project.soulmate.stomp.service.ChatRoomService
 import java.util.*
 

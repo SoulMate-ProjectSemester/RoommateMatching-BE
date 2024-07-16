@@ -1,7 +1,6 @@
 package school.project.soulmate.member.controller
 
 import jakarta.validation.Valid
-import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,7 +19,6 @@ import school.project.soulmate.member.dto.MemberDtoRequest
 import school.project.soulmate.member.dto.MemberDtoResponse
 import school.project.soulmate.member.dto.MemberListDto
 import school.project.soulmate.member.service.MemberService
-
 
 @RestController
 @RequestMapping("/api/member")
